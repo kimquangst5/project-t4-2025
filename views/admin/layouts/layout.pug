@@ -5,13 +5,18 @@ html(lang="en" class="")
 		//- include ../partials/header.pug
 		//- include ../partials/activity-timeline.pug
 		//- include ../partials/sider-right.pug
-		div(class="flex")
-			sl-split-panel(class="" position-in-pixels="150")
-				include ../partials/sider.pug
-				div(class="flex-1" slot="end") 
-					block main
+		div(class="")
+			sl-split-panel(class="" position="25")
+				div(class="" slot="start")
+					include ../partials/sider.pug
+				div(class="h-screen overflow-y-auto flex flex-col" slot="end")
+					include ../partials/header.pug
+					include ../partials/header-sub.pug
+					div(class="bg-[#EBECF3] p-5 flex-1") 
+						block main
 		
 		//- include ../partials/footer.pug
 		script(type="module", src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js")
+		script(src="https://unpkg.com/just-validate@4.3.0/dist/just-validate.production.min.js")
 		block script
 		script(src="/admin/assets/js/style.js") 

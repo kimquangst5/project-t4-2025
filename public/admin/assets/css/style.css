@@ -5,18 +5,93 @@ body {
      font-weight: 400;
      font-style: normal;
 }
- [css-hover-text]:hover * {
-      color: white;
- }
 
- .no-scrollbar::-webkit-scrollbar {
-      display: none;
- }
+[css-hover-text]:hover * {
+     color: white;
+}
 
- /* Hide scrollbar for IE, Edge and Firefox */
- .no-scrollbar {
-      -ms-overflow-style: none;
-      /* IE and Edge */
-      scrollbar-width: none;
-      /* Firefox */
- }
+.no-scrollbar::-webkit-scrollbar {
+     display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+     -ms-overflow-style: none;
+     /* IE and Edge */
+     scrollbar-width: none;
+     /* Firefox */
+}
+
+sl-input::part(base):focus-within {
+
+     box-shadow: none;
+}
+
+sl-select::part(combobox):focus-within {
+
+     box-shadow: none;
+}
+
+sl-select::part(combobox):focus-within {
+     box-shadow: none;
+}
+
+sl-select:not(.select--disabled)::part(combobox) {
+     box-shadow: none;
+}
+
+sl-select::part(tag__base) {
+     display: flex;
+     flex-direction: row-reverse;
+     column-gap: 7px;
+     background-color: transparent;
+     border-radius: 15px;
+     margin-inline: 5px;
+     border: none;
+}
+
+sl-tag[variant="neutral"]::part(base) {
+     background-color: red;
+}
+
+sl-select::part(tag__remove-button) {
+     color: #E69DB8;
+}
+
+sl-option::part(base) {
+     font-size: 14px;
+     background-color: transparent;
+     color: #626262;
+}
+
+sl-option::part(base):hover {
+     background-color: transparent;
+     background-color: #f2f2f2;
+}
+
+*[required]::part(form-control-label)::after {
+     content: none;
+}
+
+*[required]::part(form-control-label)::before {
+     content: '*';
+     margin-right: 10px;
+     color: red;
+     font-size: 15px;
+}
+
+*[required]::part(form-control-label) {
+     color: #626262;
+}
+
+sl-details::part(summary) {
+     font-weight: bolder;
+     color: #626262;
+     font-size: 20px;
+     letter-spacing: 2px;
+}
+
+sl-details::part(header) {
+     padding-block: 10px;
+     border-bottom: 1px solid #e0e0e0;
+}

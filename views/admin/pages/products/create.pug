@@ -1,4 +1,73 @@
 extends ../../layouts/layout.pug
+
+block title
+     div Thêm sản phẩm
+
+block action
+     sl-button(type="submit" size="small" variant="primary") Thêm mới
+
+block script
+     script(src="/admin/assets/js/products/create.js") 
+
 block main
-     div(class="bg-[red] dark:bg-[green]") 
-     sl-input
+     sl-details(summary="Thông tin cơ bản", open)
+          form(class="flex flex-col gap-y-[20px]")
+               sl-input(
+                    required,
+                    label="Tên sản phẩm",
+                    clearable,
+                    help-text="Tên sản phẩm + Thương hiệu + Model + Thông số kỹ thuật",
+                    placeholder="Nhập tên sản phẩm",
+                    name="name",
+                    type="text",
+                    value="",
+                    size="small"
+               )
+               sl-input(
+                    required,
+                    label="Đường dẫn",
+                    clearable,
+                    help-text="Độ dài lý tưởng của một URL cho SEO là 50 đến 60 ký tự.",
+                    placeholder="Nhập đường dẫn",
+                    type="text",
+                    value="",
+                    size="small",
+                    name="slug"
+               )
+               sl-select(
+                    required,
+                    label="Danh mục",
+                    clearable,
+                    help-text="Có thể chọn nhiều danh mục. Chon ít nhất 1 danh mục.",
+                    placeholder="Chọn danh mục",
+                    type="text",
+                    value="",
+                    size="small",
+                    name="categories"
+                    hoist
+                    maxOptionsVisible = 2
+                    multiple
+               )
+                    sl-option(value="1") Danh mục 1
+                    sl-option(value="2") Danh mục 2
+                    sl-option(value="3") Danh mục 3
+                    sl-option(value="4") Danh mục 4
+                    sl-option(value="5") Danh mục 5
+                    sl-option(value="6") Danh mục 6
+               sl-radio-group(
+                    required,
+                    label="Sản phẩm nổi bật",
+                    value="",
+                    size="small",
+                    name="featured"
+               )
+                    sl-radio(value="1") Có
+                    sl-radio(value="2") Không
+                    sl-radio(value="3") Danh mục 3
+                    sl-radio(value="4") Danh mục 4
+                    sl-radio(value="5") Danh mục 5
+                    sl-radio(value="6") Danh mục 6
+               
+
+
+//- sl-button(type="submit") ok
