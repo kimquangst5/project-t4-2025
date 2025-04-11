@@ -1,0 +1,17 @@
+doctype html
+html(lang="en" class="")
+	include ../partials/head.pug
+	body
+		//- include ../partials/header.pug
+		//- include ../partials/activity-timeline.pug
+		//- include ../partials/sider-right.pug
+		div(class="flex")
+			sl-split-panel(class="" position-in-pixels="150")
+				include ../partials/sider.pug
+				div(class="flex-1" slot="end") 
+					block main
+		
+		//- include ../partials/footer.pug
+		script(type="module", src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js")
+		block script
+		script(src="/admin/assets/js/style.js") 

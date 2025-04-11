@@ -1,0 +1,37 @@
+aside(class="bg-[#27374D]  h-screen flex flex-col" slot="start")
+     div(class="h-[55px] my-[20px] px-[10px] flex items-center justify-between")
+          img(
+               alt="logo light",
+               src="/assets/images/banner logo-white.svg",
+               class="h-full w-auto"
+          )
+          button
+               sl-animation(name="fadeOutRight" easing="easeInBack" duration="3000" play)
+                    i(class="text-[#9DB2BF] fa-light fa-angles-right fa-fade text-[14px]")
+     nav(class="flex-1 overflow-y-auto no-scrollbar")
+          ul
+
+               li(class="pb-[10px] px-[25px] text-[15px] duration-700 group-open:mt-[10px] group-closed:mt-[0px] relative" css-hover-text)
+                    div(class="w-[5px] rounded-r-full hidden h-full absolute left-0 bg-[#3FC1C9]/60 bottom-[10px] active:block ") 
+                    a(href="/admin/dashboard" class="text-[#9DB2BF] flex items-center gap-x-[12px] duration-700 hover:ml-[10px] ")
+                         i(class="fa-light fa-circle-plus text-[#9DB2BF] duration-700  ")
+                         span(class="") Tổng quan
+               li(class="text-[15px] group")
+                    details(class="group duration-700")
+                         summary(class="text-[#9DB2BF] flex items-center justify-between hover:text-[white] duration-700 group-open:text-[white] relative py-[10px] px-[25px] cursor-pointer")
+                              div(class="flex items-center gap-x-[12px]") 
+                                   i(class="fa-light fa-shirt")
+                                   span(class="") Sản phẩm
+                              i(class="fa-light fa-angle-right duration-500 group-open:rotate-90 text-[12px]")
+                         ul(class="")
+                              li(class="pb-[10px] px-[50px] text-[15px] duration-700 group-open:mt-[10px] group-closed:mt-[0px] relative" css-hover-text)
+                                   div(class="w-[5px] rounded-r-full hidden h-full absolute left-0 bg-[#3FC1C9]/60 bottom-[10px] active:block ") 
+                                   a(href="/" class="text-[#9DB2BF] flex items-center gap-x-[12px] duration-700 hover:ml-[10px] ")
+                                        i(class="fa-light fa-circle-plus text-[#9DB2BF] duration-700  ")
+                                        span(class="") Thêm mới
+                              li(class="pb-[10px] px-[50px] text-[15px] duration-700 group-open:mt-[10px] group-closed:mt-[0px] relative" css-hover-text)
+                                   div(class="w-[5px] rounded-r-full h-full absolute left-0 bg-[#3FC1C9]/60 bottom-[10px] active:block active") 
+                                   a(href="/admin/products/create" class="text-[#9DB2BF] flex items-center gap-x-[12px] duration-700 hover:ml-[10px] h-full")
+                                        i(class="fa-light fa-bars-staggered text-[#9DB2BF] duration-700  ")
+                                        span(class="") Danh sách
+                              

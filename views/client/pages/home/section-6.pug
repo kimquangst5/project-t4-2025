@@ -1,0 +1,420 @@
+div(class="row items-start md:justify-between")
+  div(class="w-full lg:w-1/2")
+    div(data-wow-delay="0.2s", class="wow fadeInUp mb-7.5")
+      div(class="left-content")
+        h2(class="text-4xl mb-2 max-lg:text-2.5xl max-sm:!text-xl") Most Popular Products
+  div(class="w-full lg:w-1/2")
+    div(
+      data-wow-delay="0.4s",
+      class="mb-5 border border-black w-fit rounded-4xl wow fadeInUp site-filters style-1 p-1.5 lg:ml-auto max-lg:w-full max-lg:text-center max-sm:p-1 max-sm:mb-10"
+    )
+      ul(data-bs-toggle="buttons", class="filters")
+        li(
+          class="px-2 rounded-5xl inline-block text-sm duration-500 active py-1.1 xl:px-5 sm:px-3.6"
+        )
+          input(type="radio", class="hidden")
+          a(href="javascript:void(0);", class="font-medium") ALL
+        li(
+          data-filter=".Dresses",
+          class="px-2 rounded-5xl inline-block text-sm duration-500 py-1.1 xl:px-5 sm:px-3.6"
+        )
+          input(type="radio", class="hidden")
+          a(href="javascript:void(0);", class="font-medium") Dresses
+        li(
+          data-filter=".Tops",
+          class="px-2 rounded-5xl inline-block text-sm duration-500 py-1.1 xl:px-5 sm:px-3.6"
+        )
+          input(type="radio", class="hidden")
+          a(href="javascript:void(0);", class="font-medium") Tops
+        li(
+          data-filter=".Outerwear",
+          class="px-2 rounded-5xl inline-block text-sm duration-500 py-1.1 xl:px-5 sm:px-3.6"
+        )
+          input(type="radio", class="hidden")
+          a(href="javascript:void(0);", class="font-medium") Outerwear
+        li(
+          data-filter=".Jacket",
+          class="px-2 rounded-5xl inline-block text-sm duration-500 py-1.1 xl:px-5 sm:px-3.6"
+        )
+          input(type="radio", class="hidden")
+          a(href="javascript:void(0);", class="font-medium") Jacket
+
+div(class="clearfix")
+  ul#masonry2div(class="row g-xl-4 g-3")
+    div(class="grid-sizer w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2 !m-0")
+    li(
+      data-wow-delay="0.6s",
+      class="grid-item Tops wow fadeInUp w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+    )
+      div(class="relative z-1 h-full group")
+        div(class="relative overflow-hidden rounded-3xl duration-500")
+          img(
+            class="rounded-3xl duration-500 w-full group-hover:-translate-y-5",
+            alt="image",
+            src="/client/assets/images/shop/product/1.png"
+          )
+          div(
+            class="absolute bottom-0 left-0 size-full flex flex-col justify-start items-end duration-200 gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6"
+          )
+            a(
+              class="btn py-3 text-sm font-Lufga inline-block font-medium bg-secondary text-white rounded-full duration-500 -bottom-16 whitespace-nowrap absolute overflow-hidden border-4 px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]",
+              @click="open = true",
+              href="javascript:void(0);"
+            )
+              i(class="fa-solid fa-eye block md:hidden")
+              span(class="hidden md:block") Quick View
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-wishicon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="icon feather icon-heart dz-heart text-white text-lg")
+              i(class="icon feather icon-heart-on dz-heart-fill text-white text-lg")
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-carticon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="flaticon flaticon-basket text-white text-lg")
+              i(class="flaticon flaticon-basket-on dz-heart-fill text-white text-lg")
+        div(class="text-start py-5 flex justify-between max-sm:p-2.5")
+          h5(class="capitalize w-[70%] max-xl:w-full max-sm:text-sm")
+            a(href="shop-list.html")
+              | Cozy Knit Cardigan
+              |
+              | Sweater
+          h5(class="max-sm:text-2xs") $80
+        div(
+          class="absolute top-5 left-5 w-auto flex items-center justify-between max-sm:top-2.5 max-sm:left-2.5"
+        )
+          span(
+            class="bg-white font-Lufga text-xs uppercase text-center font-semibold py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+          )
+            | Get
+            |
+            | 20% Off
+    li(
+      data-wow-delay="0.8s",
+      class="grid-item Dresses Jacket wow fadeInUp w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+    )
+      div(class="relative z-1 h-full group")
+        div(class="relative overflow-hidden rounded-3xl duration-500")
+          img(
+            class="rounded-3xl duration-500 w-full group-hover:-translate-y-5",
+            alt="image",
+            src="/client/assets/images/shop/product/2.png"
+          )
+          div(
+            class="absolute bottom-0 left-0 size-full flex flex-col justify-start items-end duration-200 gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6"
+          )
+            a(
+              class="btn py-3 text-sm font-Lufga inline-block font-medium bg-secondary text-white rounded-full duration-500 -bottom-16 whitespace-nowrap absolute overflow-hidden border-4 px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]",
+              @click="open = true",
+              href="javascript:void(0);"
+            )
+              i(class="fa-solid fa-eye block md:hidden")
+              span(class="hidden md:block") Quick View
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-wishicon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="icon feather icon-heart dz-heart text-white text-lg")
+              i(class="icon feather icon-heart-on dz-heart-fill text-white text-lg")
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-carticon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="flaticon flaticon-basket text-white text-lg")
+              i(class="flaticon flaticon-basket-on dz-heart-fill text-white text-lg")
+        div(class="text-start py-5 flex justify-between max-sm:p-2.5")
+          h5(class="capitalize w-[70%] max-xl:w-full max-sm:text-sm")
+            a(href="shop-list.html")
+              | Sophisticated
+              |
+              | Swagger Suit
+          h5(class="max-sm:text-2xs") $80
+        div(
+          class="absolute top-5 left-5 w-auto flex items-center justify-between max-sm:top-2.5 max-sm:left-2.5"
+        )
+          span(
+            class="bg-white font-Lufga text-xs uppercase text-center font-semibold py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+          )
+            | Get
+            |
+            | 20% Off
+    li(
+      data-wow-delay="1.0s",
+      class="grid-item Dresses wow fadeInUp w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+    )
+      div(class="relative z-1 h-full group")
+        div(class="relative overflow-hidden rounded-3xl duration-500")
+          img(
+            class="rounded-3xl duration-500 w-full group-hover:-translate-y-5",
+            alt="image",
+            src="/client/assets/images/shop/product/3.png"
+          )
+          div(
+            class="absolute bottom-0 left-0 size-full flex flex-col justify-start items-end duration-200 gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6"
+          )
+            a(
+              class="btn py-3 text-sm font-Lufga inline-block font-medium bg-secondary text-white rounded-full duration-500 -bottom-16 whitespace-nowrap absolute overflow-hidden border-4 px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]",
+              @click="open = true",
+              href="javascript:void(0);"
+            )
+              i(class="fa-solid fa-eye block md:hidden")
+              span(class="hidden md:block") Quick View
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-wishicon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="icon feather icon-heart dz-heart text-white text-lg")
+              i(class="icon feather icon-heart-on dz-heart-fill text-white text-lg")
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-carticon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="flaticon flaticon-basket text-white text-lg")
+              i(class="flaticon flaticon-basket-on dz-heart-fill text-white text-lg")
+        div(class="text-start py-5 flex justify-between max-sm:p-2.5")
+          h5(class="capitalize w-[70%] max-xl:w-full max-sm:text-sm")
+            a(href="shop-list.html")
+              | Classic Denim
+              |
+              | Skinny Jeans
+          h5(class="max-sm:text-2xs") $80
+        div(
+          class="absolute top-5 left-5 w-auto flex items-center justify-between max-sm:top-2.5 max-sm:left-2.5"
+        )
+          span(
+            class="bg-white font-Lufga text-xs uppercase text-center font-semibold py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+          )
+            | Get
+            |
+            | 20% Off
+    li(
+      data-wow-delay="1.2s",
+      class="grid-item Tops Jacket wow fadeInUp w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+    )
+      div(class="relative z-1 h-full group")
+        div(class="relative overflow-hidden rounded-3xl duration-500")
+          img(
+            class="rounded-3xl duration-500 w-full group-hover:-translate-y-5",
+            alt="image",
+            src="/client/assets/images/shop/product/4.png"
+          )
+          div(
+            class="absolute bottom-0 left-0 size-full flex flex-col justify-start items-end duration-200 gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6"
+          )
+            a(
+              class="btn py-3 text-sm font-Lufga inline-block font-medium bg-secondary text-white rounded-full duration-500 -bottom-16 whitespace-nowrap absolute overflow-hidden border-4 px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]",
+              @click="open = true",
+              href="javascript:void(0);"
+            )
+              i(class="fa-solid fa-eye block md:hidden")
+              span(class="hidden md:block") Quick View
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-wishicon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="icon feather icon-heart dz-heart text-white text-lg")
+              i(class="icon feather icon-heart-on dz-heart-fill text-white text-lg")
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-carticon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="flaticon flaticon-basket text-white text-lg")
+              i(class="flaticon flaticon-basket-on dz-heart-fill text-white text-lg")
+        div(class="text-start py-5 flex justify-between max-sm:p-2.5")
+          h5(class="capitalize w-[70%] max-xl:w-full max-sm:text-sm")
+            a(href="shop-list.html")
+              | Athletic Mesh
+              |
+              | Sports Leggings
+          h5(class="max-sm:text-2xs") $80
+        div(
+          class="absolute top-5 left-5 w-auto flex items-center justify-between max-sm:top-2.5 max-sm:left-2.5"
+        )
+          span(
+            class="bg-white font-Lufga text-xs uppercase text-center font-semibold py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+          )
+            | Get
+            |
+            | 20% Off
+    li(
+      data-wow-delay="0.2s",
+      class="grid-item Dresses wow fadeInUp w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+    )
+      div(class="relative z-1 h-full group")
+        div(class="relative overflow-hidden rounded-3xl duration-500")
+          img(
+            class="rounded-3xl duration-500 w-full group-hover:-translate-y-5",
+            alt="image",
+            src="/client/assets/images/shop/product/5.png"
+          )
+          div(
+            class="absolute bottom-0 left-0 size-full flex flex-col justify-start items-end duration-200 gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6"
+          )
+            a(
+              class="btn py-3 text-sm font-Lufga inline-block font-medium bg-secondary text-white rounded-full duration-500 -bottom-16 whitespace-nowrap absolute overflow-hidden border-4 px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]",
+              @click="open = true",
+              href="javascript:void(0);"
+            )
+              i(class="fa-solid fa-eye block md:hidden")
+              span(class="hidden md:block") Quick View
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-wishicon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="icon feather icon-heart dz-heart text-white text-lg")
+              i(class="icon feather icon-heart-on dz-heart-fill text-white text-lg")
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-carticon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="flaticon flaticon-basket text-white text-lg")
+              i(class="flaticon flaticon-basket-on dz-heart-fill text-white text-lg")
+        div(class="text-start py-5 flex justify-between max-sm:p-2.5")
+          h5(class="capitalize w-[70%] max-xl:w-full max-sm:text-sm")
+            a(href="shop-list.html")
+              | Vintage Denim
+              |
+              | Overalls Shorts
+          h5(class="max-sm:text-2xs") $80
+        div(
+          class="absolute top-5 left-5 w-auto flex items-center justify-between max-sm:top-2.5 max-sm:left-2.5"
+        )
+          span(
+            class="bg-white font-Lufga text-xs uppercase text-center font-semibold py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+          )
+            | Get
+            |
+            | 20% Off
+    li(
+      data-wow-delay="0.4s",
+      class="grid-item Outerwear wow fadeInUp w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+    )
+      div(class="relative z-1 h-full group")
+        div(class="relative overflow-hidden rounded-3xl duration-500")
+          img(
+            class="rounded-3xl duration-500 w-full group-hover:-translate-y-5",
+            alt="image",
+            src="/client/assets/images/shop/product/6.png"
+          )
+          div(
+            class="absolute bottom-0 left-0 size-full flex flex-col justify-start items-end duration-200 gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6"
+          )
+            a(
+              class="btn py-3 text-sm font-Lufga inline-block font-medium bg-secondary text-white rounded-full duration-500 -bottom-16 whitespace-nowrap absolute overflow-hidden border-4 px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]",
+              @click="open = true",
+              href="javascript:void(0);"
+            )
+              i(class="fa-solid fa-eye block md:hidden")
+              span(class="hidden md:block") Quick View
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-wishicon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="icon feather icon-heart dz-heart text-white text-lg")
+              i(class="icon feather icon-heart-on dz-heart-fill text-white text-lg")
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-carticon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="flaticon flaticon-basket text-white text-lg")
+              i(class="flaticon flaticon-basket-on dz-heart-fill text-white text-lg")
+        div(class="text-start py-5 flex justify-between max-sm:p-2.5")
+          h5(class="capitalize w-[70%] max-xl:w-full max-sm:text-sm")
+            a(href="shop-list.html")
+              | Satin Wrap Party
+              |
+              | Blouse
+          h5(class="max-sm:text-2xs") $80
+        div(
+          class="absolute top-5 left-5 w-auto flex items-center justify-between max-sm:top-2.5 max-sm:left-2.5"
+        )
+          span(
+            class="bg-white font-Lufga text-xs uppercase text-center font-semibold py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+          )
+            | Get
+            |
+            | 20% Off
+    li(
+      data-wow-delay="0.6s",
+      class="grid-item Dresses wow fadeInUp w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+    )
+      div(class="relative z-1 h-full group")
+        div(class="relative overflow-hidden rounded-3xl duration-500")
+          img(
+            class="rounded-3xl duration-500 w-full group-hover:-translate-y-5",
+            alt="image",
+            src="/client/assets/images/shop/product/7.png"
+          )
+          div(
+            class="absolute bottom-0 left-0 size-full flex flex-col justify-start items-end duration-200 gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6"
+          )
+            a(
+              class="btn py-3 text-sm font-Lufga inline-block font-medium bg-secondary text-white rounded-full duration-500 -bottom-16 whitespace-nowrap absolute overflow-hidden border-4 px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]",
+              @click="open = true",
+              href="javascript:void(0);"
+            )
+              i(class="fa-solid fa-eye block md:hidden")
+              span(class="hidden md:block") Quick View
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-wishicon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="icon feather icon-heart dz-heart text-white text-lg")
+              i(class="icon feather icon-heart-on dz-heart-fill text-white text-lg")
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-carticon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="flaticon flaticon-basket text-white text-lg")
+              i(class="flaticon flaticon-basket-on dz-heart-fill text-white text-lg")
+        div(class="text-start py-5 flex justify-between max-sm:p-2.5")
+          h5(class="capitalize w-[70%] max-xl:w-full max-sm:text-sm")
+            a(href="shop-list.html")
+              | Plaid Wool Winter
+              |
+              | Coat
+          h5(class="max-sm:text-2xs") $80
+        div(
+          class="absolute top-5 left-5 w-auto flex items-center justify-between max-sm:top-2.5 max-sm:left-2.5"
+        )
+          span(
+            class="bg-white font-Lufga text-xs uppercase text-center font-semibold py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+          )
+            | Get
+            |
+            | 20% Off
+    li(
+      data-wow-delay="2.0s",
+      class="grid-item Tops wow fadeInUp w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+    )
+      div(class="relative z-1 h-full group")
+        div(class="relative overflow-hidden rounded-3xl duration-500")
+          img(
+            class="rounded-3xl duration-500 w-full group-hover:-translate-y-5",
+            alt="image",
+            src="/client/assets/images/shop/product/8.png"
+          )
+          div(
+            class="absolute bottom-0 left-0 size-full flex flex-col justify-start items-end duration-200 gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6"
+          )
+            a(
+              class="btn py-3 text-sm font-Lufga inline-block font-medium bg-secondary text-white rounded-full duration-500 -bottom-16 whitespace-nowrap absolute overflow-hidden border-4 px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]",
+              @click="open = true",
+              href="javascript:void(0);"
+            )
+              i(class="fa-solid fa-eye block md:hidden")
+              span(class="hidden md:block") Quick View
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-wishicon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="icon feather icon-heart dz-heart text-white text-lg")
+              i(class="icon feather icon-heart-on dz-heart-fill text-white text-lg")
+            div(
+              class="flex items-center justify-center rounded-full shadow-default relative overflow-hidden btn meta-icon dz-carticon size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1"
+            )
+              i(class="flaticon flaticon-basket text-white text-lg")
+              i(class="flaticon flaticon-basket-on dz-heart-fill text-white text-lg")
+        div(class="text-start py-5 flex justify-between max-sm:p-2.5")
+          h5(class="capitalize w-[70%] max-xl:w-full max-sm:text-sm")
+            a(href="shop-list.html")
+              | Water-Resistant
+              |
+              | Windbreaker Jacket
+          h5(class="max-sm:text-2xs") $80
+        div(
+          class="absolute top-5 left-5 w-auto flex items-center justify-between max-sm:top-2.5 max-sm:left-2.5"
+        )
+          span(
+            class="bg-white font-Lufga text-xs uppercase text-center font-semibold py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+          )
+            | Get
+            |
+            | 20% Off

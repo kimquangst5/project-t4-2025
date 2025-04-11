@@ -1,0 +1,1341 @@
+// Header Star
+header(class="site-header mo-left header style-1 header-transparent")
+  // Main Header
+  div(class="sticky-header main-bar-wraper navbar-expand-lg")
+    div(
+      class="main-bar !border-b !border-black/10 after:block after:content-[\'\'] after:clear-both"
+    )
+      div(
+        class="container-fluid block after:block after:content-[\'\'] after:clear-both lg:flex"
+      )
+        // Website Logo
+        div(class="logo-header logo-dark md:mr-12")
+          a(href="index.html")
+            img(alt="logo", src="/client/assets/images/logo.svg")
+        // Nav Toggle Button
+        button(type="button", class="navbar-toggler collapsed navicon justify-end")
+          span
+          span
+          span
+        // Main Nav
+        #navbarNavDropdowndiv(class="header-nav w3menu navbar-collapse justify-start")
+          div(class="logo-header logo-dark")
+            a(href="index.html")
+              img(alt="", src="/client/assets/images/logo.svg")
+          ul(class="nav navbar-nav")
+            li(class="has-mega-menu sub-menu-down auto-width menu-left")
+              a(href="javascript:void(0);")
+                span Home
+                i(class="fas fa-chevron-down tabindex")
+              div(class="mega-menu")
+                ul(class="demo-menu mb-0")
+                  li
+                    a(href="index.html")
+                      img(alt="/", src="/client/assets/images/demo/demo-1.png")
+                      span(class="menu-title") 01 Home Page
+                  li
+                    a(href="index-2.html")
+                      img(alt="/", src="/client/assets/images/demo/demo-2.png")
+                      span(class="menu-title") 02 Home Page
+                  li
+                    a(href="index-3.html")
+                      img(alt="/", src="/client/assets/images/demo/demo-3.png")
+                      span(class="menu-title") 03 Home Page
+            li(class="has-mega-menu sub-menu-down")
+              a(href="javascript:void(0);")
+                span Shop
+                i(class="fas fa-chevron-down tabindex")
+              div(class="mega-menu shop-menu")
+                ul
+                  li(class="side-left")
+                    ul
+                      li
+                        a(href="javascript:void(0);", class="menu-title") Shop Structure
+                        ul
+                          li
+                            a(href="shop-standard.html") Shop Standard
+                          li
+                            a(href="shop-list.html") Shop List
+                          li
+                            a(href="shop-with-category.html") Shop With Category
+                          li
+                            a(href="shop-filters-top-bar.html") Shop Filters Top Bar
+                          li
+                            a(href="shop-sidebar.html") Shop Sidebar
+                          li
+                            a(href="shop-style-1.html") Shop Style 1
+                          li
+                            a(href="shop-style-2.html") Shop Style 2
+                      li
+                        a(href="javascript:void(0);", class="menu-title") Product Structure
+                        ul
+                          li
+                            a(href="product-default.html") Default
+                          li
+                            a(href="product-thumbnail.html") Thumbnail
+                          li
+                            a(href="product-grid-media.html") Grid Media
+                          li
+                            a(href="product-carousel.html") Carousel
+                          li
+                            a(href="product-full-width.html") Full Width
+                      li
+                        a(href="javascript:void(0);", class="menu-title") Shop Pages
+                        ul
+                          li
+                            a(href="shop-wishlist.html") Wishlist
+                          li
+                            a(href="shop-cart.html") Cart
+                          li
+                            a(href="shop-checkout.html") Checkout
+                          li
+                            a(href="shop-compare.html") Compare
+                          li
+                            a(href="shop-order-tracking.html") Order Tracking
+                          li
+                            a(href="shop-my-account.html") My Account
+                          li
+                            a(href="shop-registration.html") Registration
+                      li(class="month-deal")
+                        div(class="clearfix mr-4")
+                          h3 Deal of the month
+                          p(class="text-2xs")
+                            | Yes! Send me exclusive offers, personalised, and unique gift ideas, tips for shopping on Pixio
+                            a(href="shop-standard.html", class="dz-link-2") View All Products
+                        div(class="sale-countdown")
+                          div(class="countdown text-center")
+                            div(class="date")
+                              span(class="time days text-primary")
+                              span(class="work-time") Days
+                            div(class="date")
+                              span(class="time hours text-primary")
+                              span(class="work-time") Hours
+                            div(class="date")
+                              span(class="time mins text-primary")
+                              span(class="work-time") Minutess
+                            div(class="date")
+                              span(class="time secs text-primary")
+                              span(class="work-time") Second
+                  li(class="side-right")
+                    div(class="adv-media")
+                      img(alt="/", src="/client/assets/images/adv-1.png")
+            li(class="has-mega-menu sub-menu-down auto-width")
+              a(href="javascript:void(0);")
+                span Blog
+                i(class="fas fa-chevron-down tabindex")
+              div(class="mega-menu")
+                ul
+                  li
+                    a(href="javascript:void(0);", class="menu-title") Blog Dark Style
+                    ul
+                      li
+                        a(href="blog-dark-2-column.html") Blog 2 Column
+                      li
+                        a(href="blog-dark-2-column-sidebar.html") Blog 2 Column Sidebar
+                      li
+                        a(href="blog-dark-3-column.html") Blog 3 Column
+                      li
+                        a(href="blog-dark-half-image.html") Blog Half Image
+                    a(href="javascript:void(0);", class="menu-title") Blog Light Style
+                    ul
+                      li
+                        a(href="blog-light-2-column.html") Blog 2 Column
+                      li
+                        a(href="blog-light-2-column-sidebar.html") Blog 2 Column Sidebar
+                      li
+                        a(href="blog-light-half-image.html") Blog Half Image
+                      li
+                        a(href="blog-exclusive.html") Blog Exclusive
+                  li
+                    a(href="javascript:void(0);", class="menu-title") Blog Sidebar
+                    ul
+                      li
+                        a(href="blog-left-sidebar.html") Blog left Sidebar
+                      li
+                        a(href="blog-right-sidebar.html") Blog Right Sidebar
+                      li
+                        a(href="blog-both-sidebar.html") Blog Both Sidebar
+                      li
+                        a(href="blog-wide-sidebar.html") Blog Wide Sidebar
+                    a(href="javascript:void(0);", class="menu-title") Blog Page
+                    ul
+                      li
+                        a(href="blog-archive.html") Blog Archive
+                      li
+                        a(href="blog-author.html") Author
+                      li
+                        a(href="blog-category.html") Blog Category
+                      li
+                        a(href="blog-tag.html") Blog Tag
+                  li
+                    a(href="javascript:void(0);", class="menu-title") Blog Details
+                    ul
+                      li
+                        a(href="post-standard.html") Post Standard
+                      li
+                        a(href="post-left-sidebar.html") Post Left Sidebar
+                      li
+                        a(href="post-header-image.html") Post Header Image
+                      li
+                        a(href="post-slide-show.html") Post Slide Show
+                      li
+                        a(href="post-side-image.html") Post Side Image
+                      li
+                        a(href="post-gallery.html") Post Gallery
+                      li
+                        a(href="post-gallery-alternative.html") Post Gallery Alternative
+                      li
+                        a(href="post-open-gutenberg.html") Post Open Gutenberg
+                      li
+                        a(href="post-link.html") Post Link
+                      li
+                        a(href="post-audio.html") Post Audio
+                      li
+                        a(href="post-video.html") Post Video
+                  li(class="post-menu")
+                    a(href="javascript:void(0);", class="menu-title") Recent Posts
+                    div(class="widget pt-2 widget_post")
+                      ul(class="mb-3.6")
+                        li(class="flex items-center mb-4 relative")
+                          div(class="mr-3.6 size-14.5 min-w-14.5")
+                            img(
+                              alt="",
+                              src="/client/assets/images/shop/product/small/1.png",
+                              class="rounded-xl w-full"
+                            )
+                          div(class="dz-content")
+                            h6
+                              a(
+                                href="post-standard.html",
+                                class="font-medium text-2sm !text-title"
+                              ) Cozy Knit Cardigan Sweater
+                            span(class="text-2xs") July 23, 2024
+                        li(class="flex items-center mb-4 relative")
+                          div(class="mr-3.6 size-14.5 min-w-14.5")
+                            img(
+                              alt="",
+                              src="/client/assets/images/shop/product/small/2.png",
+                              class="rounded-xl w-full"
+                            )
+                          div(class="dz-content")
+                            h6
+                              a(
+                                href="post-standard.html",
+                                class="font-medium text-2sm !text-title"
+                              ) Sophisticated Swagger Suit
+                            span(class="text-2xs") July 23, 2024
+                        li(class="flex items-center mb-4 relative")
+                          div(class="mr-3.6 size-14.5 min-w-14.5")
+                            img(
+                              alt="",
+                              src="/client/assets/images/shop/product/small/3.png",
+                              class="rounded-xl w-full"
+                            )
+                          div(class="dz-content")
+                            h6
+                              a(
+                                href="post-standard.html",
+                                class="font-medium text-2sm !text-title"
+                              ) Athletic Mesh Sports Leggings
+                            span(class="text-2xs") July 23, 2024
+                        li(class="flex items-center mb-4 relative")
+                          div(class="mr-3.6 size-14.5 min-w-14.5")
+                            img(
+                              alt="",
+                              src="/client/assets/images/shop/product/small/4.png",
+                              class="rounded-xl w-full"
+                            )
+                          div(class="dz-content")
+                            h6
+                              a(
+                                href="post-standard.html",
+                                class="font-medium text-2sm !text-title"
+                              ) Satin Wrap Party Blouse
+                            span(class="text-2xs") July 23, 2024
+            li(class="has-mega-menu sub-menu-down")
+              a(href="javascript:void(0);")
+                span Portfolio
+                i(class="fas fa-chevron-down tabindex")
+              div(class="mega-menu portfolio-menu")
+                ul
+                  li(class="side-left")
+                    ul(class="portfolio-nav-link")
+                      li
+                        a(href="portfolio-tiles.html")
+                          img(
+                            alt="/",
+                            src="/client/assets/images/portfolio/icons/portfolio-tiles.svg"
+                          )
+                          span Portfolio Tiles
+                      li
+                        a(href="collage-style-1.html")
+                          img(
+                            alt="/",
+                            src="/client/assets/images/portfolio/icons/collage-style-1.svg"
+                          )
+                          span Collage Style 1
+                      li
+                        a(href="collage-style-2.html")
+                          img(
+                            alt="/",
+                            src="/client/assets/images/portfolio/icons/collage-style-2.svg"
+                          )
+                          span Collage Style 2
+                      li
+                        a(href="masonry-grid.html")
+                          img(
+                            alt="/",
+                            src="/client/assets/images/portfolio/icons/masonry-grid.svg"
+                          )
+                          span Masonry Grid
+                      li
+                        a(href="cobble-style-1.html")
+                          img(
+                            alt="/",
+                            src="/client/assets/images/portfolio/icons/cobble-style-1.svg"
+                          )
+                          span Cobble Style 1
+                      li
+                        a(href="cobble-style-2.html")
+                          img(
+                            alt="/",
+                            src="/client/assets/images/portfolio/icons/cobble-style-2.svg"
+                          )
+                          span Cobble Style 2
+                      li
+                        a(href="portfolio-thumbs-slider.html")
+                          img(
+                            alt="/",
+                            src="/client/assets/images/portfolio/icons/portfolio-thumbs-slider.svg"
+                          )
+                          span Portfolio Thumbs Slider
+                      li
+                        a(href="portfolio-film-strip.html")
+                          img(
+                            alt="/",
+                            src="/client/assets/images/portfolio/icons/portfolio-film-strip.svg"
+                          )
+                          span Portfolio Film Strip
+                      li
+                        a(href="carousel-showcase.html")
+                          img(
+                            alt="/",
+                            src="/client/assets/images/portfolio/icons/carousel-showcase.svg"
+                          )
+                          span Carousel Showcase
+                      li
+                        a(href="portfolio-split-slider.html")
+                          img(
+                            alt="/",
+                            src="/client/assets/images/portfolio/icons/portfolio-split-slider.svg"
+                          )
+                          span Portfolio Split Slider
+                  li(class="side-right line-left")
+                    a(href="javascript:void(0);", class="menu-title") Portfolio Details
+                    ul
+                      li
+                        a(href="portfolio-details-1.html") Portfolio Details 1
+                      li
+                        a(href="portfolio-details-2.html") Portfolio Details 2
+                      li
+                        a(href="portfolio-details-3.html") Portfolio Details 3
+                      li
+                        a(href="portfolio-details-4.html") Portfolio Details 4
+                      li
+                        a(href="portfolio-details-5.html") Portfolio Details 5
+            li(class="has-mega-menu sub-menu-down wide-width")
+              a(href="javascript:void(0);")
+                span Pages
+                i(class="fas fa-chevron-down tabindex")
+              div(class="mega-menu")
+                ul
+                  li
+                    a(href="javascript:void(0);", class="menu-title") Pages
+                    ul
+                      li
+                        a(href="about-us.html") About Us
+                      li
+                        a(href="about-me.html") About Me
+                      li
+                        a(href="pricing-table.html") Pricing Table
+                      li
+                        a(href="our-gift-vouchers.html") Our Gift Vouchers
+                      li
+                        a(href="what-we-do.html") What We Do
+                      li
+                        a(href="faqs-1.html") Faqs 1
+                      li
+                        a(href="faqs-2.html") Faqs 2
+                      li
+                        a(href="our-team.html") Our Team
+                  li
+                    a(href="javascript:void(0);", class="menu-title") Contact Us
+                    ul
+                      li
+                        a(href="contact-us-1.html") Contact Us 1
+                      li
+                        a(href="contact-us-2.html") Contact Us 2
+                      li
+                        a(href="contact-us-3.html") Contact Us 3
+                    a(href="javascript:void(0);", class="menu-title") Web Pages
+                    ul
+                      li
+                        a(href="error-1.html") Error 404 1
+                      li
+                        a(href="error-2.html") Error 404 2
+                      li
+                        a(href="coming-soon.html") Coming Soon
+                      li
+                        a(href="under-construction.html") Under Construction
+                  li
+                    a(href="javascript:void(0);", class="menu-title") Banner Style
+                    ul
+                      li
+                        a(href="banner-with-bg-color.html") Banner with BG Color
+                      li
+                        a(href="banner-with-image.html") Banner with Image
+                      li
+                        a(href="banner-with-video.html") Banner with Video
+                      li
+                        a(href="banner-with-kanbern.html") Banner with Kanbern
+                      li
+                        a(href="banner-small.html") Banner Small
+                      li
+                        a(href="banner-medium.html") Banner Medium
+                      li
+                        a(href="banner-large.html") Banner Large
+                  li
+                    a(href="javascript:void(0);", class="menu-title") Header Style
+                    ul
+                      li
+                        a(href="header-style-1.html") Header Style 1
+                      li
+                        a(href="header-style-2.html") Header Style 2
+                      li
+                        a(href="header-style-3.html") Header Style 3
+                      li
+                        a(href="header-style-4.html") Header Style 4
+                      li
+                        a(href="header-style-5.html") Header Style 5
+                      li
+                        a(href="header-style-6.html") Header Style 6
+                      li
+                        a(href="header-style-7.html") Header Style 7
+                      li(class="w3menulink")
+                        a(href="w3menu.html") Menu Styles
+                  li
+                    a(href="javascript:void(0);", class="menu-title") Footer Style
+                    ul
+                      li
+                        a(href="footer-style-1.html") Footer Style 1
+                      li
+                        a(href="footer-style-2.html") Footer Style 2
+                      li
+                        a(href="footer-style-3.html") Footer Style 3
+                      li
+                        a(href="footer-style-4.html") Footer Style 4
+                      li
+                        a(href="footer-style-5.html") Footer Style 5
+                      li
+                        a(href="footer-style-6.html") Footer Style 6
+                      li
+                        a(href="footer-style-7.html") Footer Style 7
+                  li
+                    a(href="javascript:void(0);", class="menu-title") Dashboard
+                    ul
+                      li
+                        a(href="account-dashboard.html") Dashboard
+                      li
+                        a(href="account-orders.html") Orders
+                      li
+                        a(href="account-order-details.html") Orders Details
+                      li
+                        a(href="account-order-confirmation.html") Orders Confirmation
+                      li
+                        a(href="account-downloads.html") Downloads
+                      li
+                        a(href="account-return-request.html") Return Request
+                      li
+                        a(href="account-return-request-detail.html") Return Request Detail
+                      li
+                        a(href="account-refund-requests-confirmed.html") Return Request Confirmed
+            li(class="sub-menu-down")
+              a(href="javascript:void(0);")
+                span My Account
+                i(class="fas fa-chevron-down tabindex")
+              ul(class="sub-menu")
+                li
+                  a(href="account-dashboard.html") Dashboard
+                li
+                  a(href="account-orders.html") Orders
+                li
+                  a(href="account-order-details.html") Orders Details
+                li
+                  a(href="account-order-confirmation.html") Orders Confirmation
+                li
+                  a(href="account-downloads.html") Downloads
+                li
+                  a(href="account-return-request.html") Return Request
+                li
+                  a(href="account-return-request-detail.html") Return Request Detail
+                li
+                  a(href="account-refund-requests-confirmed.html") Return Request Confirmed
+                li
+                  a(href="account-profile.html") Profile
+                li
+                  a(href="account-address.html") Address
+                li
+                  a(href="account-shipping-methods.html") Shipping methods
+                li
+                  a(href="account-payment-methods.html") Payment Methods
+                li
+                  a(href="account-review.html") Review
+                li
+                  a(href="account-billing-address.html") Billing address
+                li
+                  a(href="account-shipping-address.html") Shipping address
+                li
+                  a(href="account-cancellation-requests.html") Cancellation Requests
+          div(class="dz-social-icon")
+            ul
+              li
+                a(
+                  href="https://www.facebook.com/dexignzone",
+                  target="_blank",
+                  class="fab fa-facebook-f"
+                )
+              li
+                a(
+                  href="https://twitter.com/dexignzones",
+                  target="_blank",
+                  class="fab fa-twitter"
+                )
+              li
+                a(
+                  href="https://www.linkedin.com/showcase/3686700/admin/",
+                  target="_blank",
+                  class="fab fa-linkedin-in"
+                )
+              li
+                a(
+                  href="https://www.instagram.com/dexignzone/",
+                  target="_blank",
+                  class="fab fa-instagram"
+                )
+        // EXTRA NAV
+        div(x-data="{ tab: shoppingcart }", class="extra-nav")
+          div(class="extra-cell")
+            ul(class="header-right")
+              li(class="nav-item login-link")
+                a(
+                  href="shop-my-account.html",
+                  class="nav-link border-b border-[#0000005c]"
+                ) Login / Register
+              li
+                a(
+                  data-target="offcanvasTop",
+                  href="javascript:void(0);",
+                  class="offcanvas-btn"
+                )
+                  i(class="iconly-Light-Search")
+              li
+                a(
+                  data-target="offcanvasRight",
+                  href="javascript:void(0);",
+                  @click.prevent="tab = 'wishlist'",
+                  class="offcanvas-btn"
+                )
+                  i(class="iconly-Light-Heart2")
+              li
+                a(
+                  data-target="offcanvasRight",
+                  href="javascript:void(0);",
+                  @click.prevent="tab = 'shoppingcart'",
+                  class="offcanvas-btn"
+                )
+                  i(class="iconly-Broken-Buy")
+                  span(
+                    class="absolute -top-1 flex items-center justify-center font-bold rounded-full bg-primary text-white right-0.5 text-[11px] min-h-4.5 min-w-4.5"
+                  ) 5
+              li(class="filte-link")
+                a(
+                  data-target="offcanvasLeft",
+                  href="javascript:void(0);",
+                  class="filte-btn offcanvas-btn"
+                )
+                  svg(
+                    fill="none",
+                    viewBox="0 0 30 13",
+                    height="30",
+                    width="30",
+                    xmlns="http://www.w3.org/2000/svg"
+                  )
+                    rect(fill="black", height="2", width="30", y="11")
+                    rect(fill="black", height="2", width="30")
+          // Sidebar cart
+          #offcanvasRightdiv(
+            class="fixed flex flex-col max-full duration-500 top-0 bottom-0 right-0 bg-light right offcanvas is-closed w-[485px] z-[1045]"
+          )
+            button(
+              class="size-10 flex items-center justify-center absolute right-5 opacity-50 offcanvas-close top-1.5 text-4.5xl",
+              type="button"
+            ) ×
+            div(
+              class="flex-grow overflow-y-auto py-14.5 px-[75px] max-sm:py-13.5 max-sm:px-3.6"
+            )
+              div(class="product-description")
+                div
+                  ul#myTabdiv(
+                    role="tablist",
+                    class="flex flex-wrap justify-center border-b border-[#D7D7D7]"
+                  )
+                    li(role="presentation", class="nav-item")
+                      button#shoppingcartdiv(
+                        :class="{ '!border-secondary': tab == 'shoppingcart' }",
+                        @click.prevent="tab = 'shoppingcart'",
+                        class="w-full px-5 text-start font-medium font-Lufga border-b-2 border-transparent py-2.5 mb-[-1px]"
+                      )
+                        | Shopping Cart
+                        span(
+                          :class="{ 'bg-secondary text-white': tab == 'shoppingcart' }",
+                          class="text-xs inline-flex items-center justify-center size-6 font-bold rounded-full ml-1.1 px-0.5"
+                        ) 5
+                    li(role="presentation", class="nav-item")
+                      button#wishlistdiv(
+                        :class="{ '!border-secondary': tab == 'wishlist' }",
+                        @click.prevent="tab = 'wishlist'",
+                        class="w-full px-5 text-start font-medium font-Lufga border-b-2 border-transparent py-2.5 mb-[-1px]"
+                      )
+                        | Wishlist
+                        span(
+                          :class="{ 'bg-secondary text-white': tab == 'wishlist' }",
+                          class="text-xs inline-flex items-center justify-center size-6 font-bold rounded-full ml-1.1 px-0.5"
+                        ) 2
+                  #dz-shopcart-sidebardiv(class="pt-6")
+                    div(
+                      x-transition:enter-end="opacity-100",
+                      x-transition:enter-start="opacity-0",
+                      x-transition:enter="transition-all duration-700 easy-in-out",
+                      x-show="tab == 'shoppingcart'"
+                    )
+                      div(class="flex flex-col min-h-[calc(100vh_-_190px)]")
+                        ul(class="sidebar-cart-list")
+                          li(x-data="{ show: true }")
+                            div(
+                              x-transition.opacity="",
+                              x-show="console.log('sup'); return show",
+                              x-ref="show",
+                              class="py-5 border-b border-border"
+                            )
+                              div(class="flex items-center justify-center")
+                                div(
+                                  class="size-20 rounded-3xl relative overflow-hidden mr-4"
+                                )
+                                  img(
+                                    alt="",
+                                    src="/client/assets/images/shop/shop-cart/pic1.jpg",
+                                    class="w-full"
+                                  )
+                                div(class="mr-5 flex-[1]")
+                                  h6(class="mb-2 font-medium")
+                                    a(href="product-thumbnail.html") Sophisticated Swagger Suit
+                                  div(class="flex items-center")
+                                    div(class="input-group")
+                                      span(class="flex")
+                                        input(
+                                          class="button-minus text-xl rounded-full text-center border border-secondary bg-secondary text-white size-7.5 leading-[27px] mr-2.5 mb-1.1",
+                                          data-field="quantity",
+                                          value="-",
+                                          type="button"
+                                        )
+                                        input(
+                                          class="touchspin rounded-full text-center border border-secondary bg-light outline-none size-7.5 leading-[27px] mr-2.5 mb-1.1",
+                                          name="quantity",
+                                          value="1",
+                                          step="1",
+                                          type="number"
+                                        )
+                                        input(
+                                          class="button-plus text-xl rounded-full text-center border border-secondary bg-secondary text-white size-7.5 leading-[27px] mr-2.5 mb-1.1",
+                                          data-field="quantity",
+                                          value="+",
+                                          type="button"
+                                        )
+                                    h6(class="font-medium") $50.00
+                                a(
+                                  @click="$refs.show.remove()",
+                                  href="javascript:void(0);",
+                                  class="size-7 flex items-center"
+                                )
+                                  i(class="ti-close")
+                          li(x-data="{ show: true }")
+                            div(
+                              x-transition.opacity="",
+                              x-show="console.log('sup'); return show",
+                              x-ref="show",
+                              class="py-5 border-b border-border"
+                            )
+                              div(class="flex items-center justify-center")
+                                div(
+                                  class="size-20 rounded-3xl relative overflow-hidden mr-4"
+                                )
+                                  img(
+                                    alt="",
+                                    src="/client/assets/images/shop/shop-cart/pic2.jpg",
+                                    class="w-full"
+                                  )
+                                div(class="mr-5 flex-[1]")
+                                  h6(class="mb-2 font-medium")
+                                    a(href="product-thumbnail.html") Cozy Knit Cardigan Sweater
+                                  div(class="flex items-center")
+                                    div(class="input-group")
+                                      span(class="flex")
+                                        input(
+                                          class="button-minus text-xl rounded-full text-center border border-secondary bg-secondary text-white size-7.5 leading-[27px] mr-2.5 mb-1.1",
+                                          data-field="quantity",
+                                          value="-",
+                                          type="button"
+                                        )
+                                        input(
+                                          class="touchspin rounded-full text-center border border-secondary bg-light outline-none size-7.5 leading-[27px] mr-2.5 mb-1.1",
+                                          name="quantity",
+                                          value="1",
+                                          step="1",
+                                          type="number"
+                                        )
+                                        input(
+                                          class="button-plus text-xl rounded-full text-center border border-secondary bg-secondary text-white size-7.5 leading-[27px] mr-2.5 mb-1.1",
+                                          data-field="quantity",
+                                          value="+",
+                                          type="button"
+                                        )
+                                    h6(class="font-medium") $40.00
+                                a(
+                                  @click="$refs.show.remove()",
+                                  href="javascript:void(0);",
+                                  class="size-7 flex items-center"
+                                )
+                                  i(class="ti-close")
+                          li(x-data="{ show: true }")
+                            div(
+                              x-transition.opacity="",
+                              x-show="console.log('sup'); return show",
+                              x-ref="show",
+                              class="py-5 border-b border-border"
+                            )
+                              div(class="flex items-center justify-center")
+                                div(
+                                  class="size-20 rounded-3xl relative overflow-hidden mr-4"
+                                )
+                                  img(
+                                    alt="",
+                                    src="/client/assets/images/shop/shop-cart/pic3.jpg",
+                                    class="w-full"
+                                  )
+                                div(class="mr-5 flex-[1]")
+                                  h6(class="mb-2 font-medium")
+                                    a(href="product-thumbnail.html") Athletic Mesh Sports Leggings
+                                  div(class="flex items-center")
+                                    div(class="input-group")
+                                      span(class="flex")
+                                        input(
+                                          class="button-minus text-xl rounded-full text-center border border-secondary bg-secondary text-white size-7.5 leading-[27px] mr-2.5 mb-1.1",
+                                          data-field="quantity",
+                                          value="-",
+                                          type="button"
+                                        )
+                                        input(
+                                          class="touchspin rounded-full text-center border border-secondary bg-light outline-none size-7.5 leading-[27px] mr-2.5 mb-1.1",
+                                          name="quantity",
+                                          value="1",
+                                          step="1",
+                                          type="number"
+                                        )
+                                        input(
+                                          class="button-plus text-xl rounded-full text-center border border-secondary bg-secondary text-white size-7.5 leading-[27px] mr-2.5 mb-1.1",
+                                          data-field="quantity",
+                                          value="+",
+                                          type="button"
+                                        )
+                                    h6(class="font-medium") $65.00
+                                a(
+                                  @click="$refs.show.remove()",
+                                  href="javascript:void(0);",
+                                  class="size-7 flex items-center"
+                                )
+                                  i(class="ti-close")
+                        div(class="flex items-center justify-between p-4.5 mb-2.5")
+                          h5(class="font-bold") Subtotal:
+                          h5(class="font-bold") 300.00$
+                        div(class="mt-auto")
+                          div(class="flex items-center mb-10")
+                            div(class="mr-5 flex items-center justify-center size-13.5")
+                              i(class="flaticon flaticon-ship text-[55px]")
+                            div(class="shipping-content")
+                              h6(class="mb-2 pr-6") Congratulations , you've got free shipping!
+                              div(class="overflow-hidden flex h-1.1 bg-[#e9ecef]")
+                                div(
+                                  role="progressbar",
+                                  style="width: 75%",
+                                  class="bg-secondary progress-animated border-0"
+                                )
+                                  span(class="sr-only") 75% Complete
+                          a(
+                            class="btn py-3 text-base inline-block font-medium font-Lufga border border-secondary rounded-xl duration-700 relative overflow-hidden text-center w-full mb-5 px-7.5 max-sm:px-6 max-sm:text-sm leading-[1.2] hover:bg-secondary hover:text-white",
+                            href="shop-checkout.html"
+                          ) Checkout
+                          a(
+                            class="btn py-3 text-base font-Lufga inline-block font-medium border border-secondary bg-secondary text-white rounded-xl duration-700 relative overflow-hidden text-center w-full px-7.5 max-sm:px-6 max-sm:text-sm leading-[1.2]",
+                            href="shop-cart.html"
+                          ) View Cart
+                    div(
+                      x-transition:enter-end="opacity-100",
+                      x-transition:enter-start="opacity-0",
+                      x-transition:enter="transition-all duration-700 easy-in-out",
+                      x-show="tab == 'wishlist'"
+                    )
+                      div(class="flex flex-col min-h-[calc(100vh_-_190px)]")
+                        ul(class="sidebar-cart-list")
+                          li(x-data="{ show: true }")
+                            div(
+                              x-transition.opacity="",
+                              x-show="console.log('sup'); return show",
+                              x-ref="show",
+                              class="py-5 border-b border-border"
+                            )
+                              div(class="flex items-center justify-center")
+                                div(
+                                  class="size-20 rounded-3xl relative overflow-hidden mr-4"
+                                )
+                                  img(
+                                    alt="",
+                                    src="/client/assets/images/shop/shop-cart/pic1.jpg",
+                                    class="w-full"
+                                  )
+                                div(class="mr-5 flex-[1]")
+                                  h6(class="mb-2 font-medium")
+                                    a(href="product-thumbnail.html") Sophisticated Swagger Suit
+                                  div(class="flex items-center")
+                                    h6(class="font-medium") $50.00
+                                a(
+                                  @click="$refs.show.remove()",
+                                  href="javascript:void(0);",
+                                  class="size-7 flex items-center"
+                                )
+                                  i(class="ti-close")
+                          li(x-data="{ show: true }")
+                            div(
+                              x-transition.opacity="",
+                              x-show="console.log('sup'); return show",
+                              x-ref="show",
+                              class="py-5 border-b border-border"
+                            )
+                              div(class="flex items-center justify-center")
+                                div(
+                                  class="size-20 rounded-3xl relative overflow-hidden mr-4"
+                                )
+                                  img(
+                                    alt="",
+                                    src="/client/assets/images/shop/shop-cart/pic2.jpg",
+                                    class="w-full"
+                                  )
+                                div(class="mr-5 flex-[1]")
+                                  h6(class="mb-2 font-medium")
+                                    a(href="product-thumbnail.html") Cozy Knit Cardigan Sweater
+                                  div(class="flex items-center")
+                                    h6(class="font-medium") $40.00
+                                a(
+                                  @click="$refs.show.remove()",
+                                  href="javascript:void(0);",
+                                  class="size-7 flex items-center"
+                                )
+                                  i(class="ti-close")
+                          li(x-data="{ show: true }")
+                            div(
+                              x-transition.opacity="",
+                              x-show="console.log('sup'); return show",
+                              x-ref="show",
+                              class="py-5 border-b border-border"
+                            )
+                              div(class="flex items-center justify-center")
+                                div(
+                                  class="size-20 rounded-3xl relative overflow-hidden mr-4"
+                                )
+                                  img(
+                                    alt="",
+                                    src="/client/assets/images/shop/shop-cart/pic3.jpg",
+                                    class="w-full"
+                                  )
+                                div(class="mr-5 flex-[1]")
+                                  h6(class="mb-2 font-medium")
+                                    a(href="product-thumbnail.html") Athletic Mesh Sports Leggings
+                                  div(class="flex items-center")
+                                    h6(class="font-medium") $65.00
+                                a(
+                                  @click="$refs.show.remove()",
+                                  href="javascript:void(0);",
+                                  class="size-7 flex items-center"
+                                )
+                                  i(class="ti-close")
+                        div(class="mt-auto")
+                          a(
+                            class="btn py-3 text-base font-Lufga font-medium border border-secondary bg-secondary text-white rounded-xl duration-700 relative overflow-hidden text-center block w-full px-7.5 max-sm:px-6 max-sm:text-sm leading-[1.2]",
+                            href="shop-wishlist.html"
+                          ) Check Your Favourite
+          // Sidebar cart
+          // Main Header End
+          // SearchBar
+          #offcanvasTopdiv(
+            tabindex="-1",
+            class="fixed flex flex-col duration-500 top-0 left-0 right-0 bg-light overflow-auto offcanvas offcanvas-top is-closed h-[580px] max-md:h-[470px] max-sm:!h-[440px] pt-13.5 max-md:pt-7.5 z-[1045]"
+          )
+            button(
+              class="size-10 flex items-center justify-center absolute right-5 opacity-50 offcanvas-close top-1.5 text-4.5xl",
+              type="button"
+            ) ×
+            div(class="container")
+              form(class="block w-full relative mb-13.5")
+                div(
+                  class="relative flex flex-wrap items-center border-b-2 border-secondary pb-2"
+                )
+                  div(
+                    class="relative after:content-[\'\'] after:absolute after:-translate-y-1/2 after:top-1/2 after:right-0 after:w-[1px] after:h-[35px] max-sm:after:h-6.1 after:bg-[#bbbbbbad]"
+                  )
+                    select(
+                      class="nice-select bg-transparent border-0 float-none px-0 text-xl font-Lufga min-w-[270px] h-[45px] leading-[48px]"
+                    )
+                      option All Categories
+                      option Clothes
+                      option UrbanSkirt
+                      option VelvetGown
+                      option LushShorts
+                      option Vintage
+                      option Wedding
+                      option Cotton
+                      option Linen
+                      option Navy
+                      option Urban
+                      option Business Meeting
+                      option Formal
+                  input(
+                    placeholder="Search Product",
+                    class="text-xl font-Lufga text-title outline-none flex-auto bg-light py-2.5 px-3.6 w-[1%] h-[45px]",
+                    type="search"
+                  )
+                  button(type="button", class="btn")
+                    i(class="iconly-Light-Search")
+                ul(class="flex items-center flex-wrap py-2.5")
+                  li(class="text-2sm py-1.1")
+                    span Quick Search :
+                  li(class="text-2sm py-1.1 px-3.6")
+                    a(href="shop-list.html") Clothes
+                  li(class="text-2sm py-1.1 px-3.6")
+                    a(href="shop-list.html") UrbanSkirt
+                  li(class="text-2sm py-1.1 px-3.6")
+                    a(href="shop-list.html") VelvetGown
+                  li(class="text-2sm py-1.1 px-3.6")
+                    a(href="shop-list.html") LushShorts
+              div(class="row")
+                div(class="w-full")
+                  h5(class="mb-4") You May Also Like
+                  div(class="swiper category-swiper2")
+                    div(class="swiper-wrapper")
+                      div(class="swiper-slide")
+                        div(class="relative h-full z-[1]")
+                          div(class="rounded-3xl overflow-hidden relative")
+                            img(
+                              alt="image",
+                              src="/client/assets/images/shop/product/1.png"
+                            )
+                          div(class="flex justify-between font-Lufga py-3")
+                            h6
+                              a(href="shop-list.html") SilkBliss Dress
+                            h6 $40.00
+                      div(class="swiper-slide")
+                        div(class="relative h-full z-[1]")
+                          div(class="rounded-3xl overflow-hidden relative")
+                            img(
+                              alt="image",
+                              src="/client/assets/images/shop/product/3.png"
+                            )
+                          div(class="flex justify-between font-Lufga py-3")
+                            h6
+                              a(href="shop-list.html") GlamPants
+                            h6 $30.00
+                      div(class="swiper-slide")
+                        div(class="relative h-full z-[1]")
+                          div(class="rounded-3xl overflow-hidden relative")
+                            img(
+                              alt="image",
+                              src="/client/assets/images/shop/product/4.png"
+                            )
+                          div(class="flex justify-between font-Lufga py-3")
+                            h6
+                              a(href="shop-list.html") ComfyLeggings
+                            h6 $35.00
+                      div(class="swiper-slide")
+                        div(class="relative h-full z-[1]")
+                          div(class="rounded-3xl overflow-hidden relative")
+                            img(
+                              alt="image",
+                              src="/client/assets/images/shop/product/2.png"
+                            )
+                          div(class="flex justify-between font-Lufga py-3")
+                            h6
+                              a(href="shop-list.html") ClassicCapri
+                            h6 $20.00
+                      div(class="swiper-slide")
+                        div(class="relative h-full z-[1]")
+                          div(class="rounded-3xl overflow-hidden relative")
+                            img(
+                              alt="image",
+                              src="/client/assets/images/shop/product/5.png"
+                            )
+                          div(class="flex justify-between font-Lufga py-3")
+                            h6
+                              a(href="shop-list.html") DapperCoat
+                            h6 $70.00
+                      div(class="swiper-slide")
+                        div(class="relative h-full z-[1]")
+                          div(class="rounded-3xl overflow-hidden relative")
+                            img(
+                              alt="image",
+                              src="/client/assets/images/shop/product/6.png"
+                            )
+                          div(class="flex justify-between font-Lufga py-3")
+                            h6
+                              a(href="shop-list.html") ComfyLeggings
+                            h6 $45.00
+                      div(class="swiper-slide")
+                        div(class="relative h-full z-[1]")
+                          div(class="rounded-3xl overflow-hidden relative")
+                            img(
+                              alt="image",
+                              src="/client/assets/images/shop/product/7.png"
+                            )
+                          div(class="flex justify-between font-Lufga py-3")
+                            h6
+                              a(href="shop-list.html") DenimDream Jeans
+                            h6 $40.00
+                      div(class="swiper-slide")
+                        div(class="relative h-full z-[1]")
+                          div(class="rounded-3xl overflow-hidden relative")
+                            img(
+                              alt="image",
+                              src="/client/assets/images/shop/product/4.png"
+                            )
+                          div(class="flex justify-between font-Lufga py-3")
+                            h6
+                              a(href="shop-list.html") SilkBliss Dress
+                            h6 $60.00
+          // SearchBar
+          // Sidebar finter
+          #offcanvasLeftdiv(
+            class="fixed flex flex-col max-full duration-500 top-0 bottom-0 right-0 bg-light right offcanvas is-closed w-[485px] z-[1045]"
+          )
+            button(
+              class="size-10 flex items-center justify-center absolute right-5 opacity-50 offcanvas-close top-1.5 text-4.5xl",
+              type="button"
+            ) ×
+            div(
+              class="flex-grow overflow-y-auto py-14.5 px-[75px] max-sm:py-13.5 max-sm:px-3.6"
+            )
+              div(class="product-description")
+                div(class="widget_search mb-[45px] max-lg:mb-10")
+                  div(class="mb-10")
+                    div(class="relative flex flex-wrap items-stretch w-full mb-5")
+                      input(
+                        placeholder="Search Product",
+                        class="text-2sm text-title outline-none flex-auto rounded-xl border border-secondary bg-light py-2.5 px-3.6 w-[1%]",
+                        type="search",
+                        required="required",
+                        name="dzSearch"
+                      )
+                      div(class="absolute z-9 top-1/2 -translate-y-1/2 right-3.6")
+                        button(type="submit", value="Submit", name="submit")
+                          i(class="icon feather icon-search text-xl text-title")
+                div(class="mb-[45px] max-lg:mb-10")
+                  h6(class="relative font-medium mb-6.1") Price
+                  div(class="price-slide range-slider")
+                    div(class="price")
+                      div(class="range-slider style-1")
+                        #slider-tooltipsdiv(class="mb-4")
+                        span#slider-margin-value-mindiv(class="text-sm mr-7.5")
+                        span#slider-margin-value-maxdiv(class="text-sm mr-7.5")
+                div(class="mb-[45px] max-lg:mb-10")
+                  h6(class="relative font-medium mb-6.1") Color
+                  div(class="flex items-center flex-wrap color-filter ps-2")
+                    div(class="form-check")
+                      input#radioNoLabel110div(
+                        checked="",
+                        aria-label="...",
+                        value="#000000",
+                        name="radioNoLabel",
+                        type="radio",
+                        class="opacity-0 relative cursor-pointer float-left mr-1 mb-1 form-check-input z-[2]"
+                      )
+                      span(class="size-4 block relative rounded-full z-1 mr-3.6")
+                    div(class="form-check")
+                      input#radioNoLabel210div(
+                        aria-label="...",
+                        value="#9BD1FF",
+                        name="radioNoLabel",
+                        type="radio",
+                        class="opacity-0 relative cursor-pointer float-left mr-1 mb-1 form-check-input z-[2]"
+                      )
+                      span(class="size-4 block relative rounded-full z-1 mr-3.6")
+                    div(class="form-check")
+                      input#radioNoLabel310div(
+                        aria-label="...",
+                        value="#21B290",
+                        name="radioNoLabel",
+                        type="radio",
+                        class="opacity-0 relative cursor-pointer float-left mr-1 mb-1 form-check-input z-[2]"
+                      )
+                      span(class="size-4 block relative rounded-full z-1 mr-3.6")
+                    div(class="form-check")
+                      input#radioNoLabel410div(
+                        aria-label="...",
+                        value="#FEC4C4",
+                        name="radioNoLabel",
+                        type="radio",
+                        class="opacity-0 relative cursor-pointer float-left mr-1 mb-1 form-check-input z-[2]"
+                      )
+                      span(class="size-4 block relative rounded-full z-1 mr-3.6")
+                    div(class="form-check")
+                      input#radioNoLabel510div(
+                        aria-label="...",
+                        value="#FF7354",
+                        name="radioNoLabel",
+                        type="radio",
+                        class="opacity-0 relative cursor-pointer float-left mr-1 mb-1 form-check-input z-[2]"
+                      )
+                      span(class="size-4 block relative rounded-full z-1 mr-3.6")
+                    div(class="form-check")
+                      input#radioNoLabel610div(
+                        aria-label="...",
+                        value="#51EDC8",
+                        name="radioNoLabel",
+                        type="radio",
+                        class="opacity-0 relative cursor-pointer float-left mr-1 mb-1 form-check-input z-[2]"
+                      )
+                      span(class="size-4 block relative rounded-full z-1 mr-3.6")
+                    div(class="form-check")
+                      input#radioNoLabel710div(
+                        aria-label="...",
+                        value="#B77CF3",
+                        name="radioNoLabel",
+                        type="radio",
+                        class="opacity-0 relative cursor-pointer float-left mr-1 mb-1 form-check-input z-[2]"
+                      )
+                      span(class="size-4 block relative rounded-full z-1 mr-3.6")
+                    div(class="form-check")
+                      input#radioNoLabel810div(
+                        aria-label="...",
+                        value="#FF4A76",
+                        name="radioNoLabel",
+                        type="radio",
+                        class="opacity-0 relative cursor-pointer float-left mr-1 mb-1 form-check-input z-[2]"
+                      )
+                      span(class="size-4 block relative rounded-full z-1 mr-3.6")
+                    div(class="form-check")
+                      input#radioNoLabel910div(
+                        aria-label="...",
+                        value="#3E68FF",
+                        name="radioNoLabel",
+                        type="radio",
+                        class="opacity-0 relative cursor-pointer float-left mr-1 mb-1 form-check-input z-[2]"
+                      )
+                      span(class="size-4 block relative rounded-full z-1 mr-3.6")
+                    div(class="form-check")
+                      input#radioNoLabe201div(
+                        aria-label="...",
+                        value="#7BEF68",
+                        name="radioNoLabel",
+                        type="radio",
+                        class="opacity-0 relative cursor-pointer float-left mr-1 mb-1 form-check-input z-[2]"
+                      )
+                      span(class="size-4 block relative rounded-full z-1 mr-3.6")
+                div(class="mb-[45px] max-lg:mb-10")
+                  h6(class="relative font-medium mb-6.1") Size
+                  div(class="flex flex-wrap relative product-size")
+                    input#btnradio11div(
+                      checked="",
+                      name="btnradio1",
+                      type="radio",
+                      class="opacity-0 absolute pointer-events-none btn-check"
+                    )
+                    label(
+                      class="rounded-full text-center border border-secondary size-[34px] leading-[34px] mr-2.5 mb-1.1",
+                      for="btnradio11"
+                    ) 4
+                    input#btnradio21div(
+                      name="btnradio1",
+                      type="radio",
+                      class="opacity-0 absolute pointer-events-none btn-check"
+                    )
+                    label(
+                      class="rounded-full text-center border border-secondary size-[34px] leading-[34px] mr-2.5 mb-1.1",
+                      for="btnradio21"
+                    ) 6
+                    input#btnradio31div(
+                      name="btnradio1",
+                      type="radio",
+                      class="opacity-0 absolute pointer-events-none btn-check"
+                    )
+                    label(
+                      class="rounded-full text-center border border-secondary size-[34px] leading-[34px] mr-2.5 mb-1.1",
+                      for="btnradio31"
+                    ) 8
+                    input#btnradio41div(
+                      name="btnradio1",
+                      type="radio",
+                      class="opacity-0 absolute pointer-events-none btn-check"
+                    )
+                    label(
+                      class="rounded-full text-center border border-secondary size-[34px] leading-[34px] mr-2.5 mb-1.1",
+                      for="btnradio41"
+                    ) 10
+                    input#btnradio51div(
+                      name="btnradio1",
+                      type="radio",
+                      class="opacity-0 absolute pointer-events-none btn-check"
+                    )
+                    label(
+                      class="rounded-full text-center border border-secondary size-[34px] leading-[34px] mr-2.5 mb-1.1",
+                      for="btnradio51"
+                    ) 12
+                    input#btnradio61div(
+                      name="btnradio1",
+                      type="radio",
+                      class="opacity-0 absolute pointer-events-none btn-check"
+                    )
+                    label(
+                      class="rounded-full text-center border border-secondary size-[34px] leading-[34px] mr-2.5 mb-1.1",
+                      for="btnradio61"
+                    ) 14
+                    input#btnradio71div(
+                      name="btnradio1",
+                      type="radio",
+                      class="opacity-0 absolute pointer-events-none btn-check"
+                    )
+                    label(
+                      class="rounded-full text-center border border-secondary size-[34px] leading-[34px] mr-2.5 mb-1.1",
+                      for="btnradio71"
+                    ) 16
+                    input#btnradio81div(
+                      name="btnradio1",
+                      type="radio",
+                      class="opacity-0 absolute pointer-events-none btn-check"
+                    )
+                    label(
+                      class="rounded-full text-center border border-secondary size-[34px] leading-[34px] mr-2.5 mb-1.1",
+                      for="btnradio81"
+                    ) 18
+                    input#btnradio91div(
+                      name="btnradio1",
+                      type="radio",
+                      class="opacity-0 absolute pointer-events-none btn-check"
+                    )
+                    label(
+                      class="rounded-full text-center border border-secondary size-[34px] leading-[34px] mr-2.5 mb-1.1",
+                      for="btnradio91"
+                    ) 20
+                div(class="widget_categories mb-[45px] max-lg:mb-10")
+                  h6(class="relative font-medium mb-6.1") Category
+                  ul
+                    li(class="py-2 text-right w-full text-2sm font-medium")
+                      a(
+                        href="blog-category.html",
+                        class="inline-block float-left duration-500 hover:text-primary"
+                      ) Dresses
+                      | (10)
+                    li(class="py-2 text-right w-full text-2sm font-medium")
+                      a(
+                        href="blog-category.html",
+                        class="inline-block float-left duration-500 hover:text-primary"
+                      ) Top & Blouses
+                      | (5)
+                    li(class="py-2 text-right w-full text-2sm font-medium")
+                      a(
+                        href="blog-category.html",
+                        class="inline-block float-left duration-500 hover:text-primary"
+                      ) Boots
+                      | (17)
+                    li(class="py-2 text-right w-full text-2sm font-medium")
+                      a(
+                        href="blog-category.html",
+                        class="inline-block float-left duration-500 hover:text-primary"
+                      ) Jewelry
+                      | (13)
+                    li(class="py-2 text-right w-full text-2sm font-medium")
+                      a(
+                        href="blog-category.html",
+                        class="inline-block float-left duration-500 hover:text-primary"
+                      ) Makeup
+                      | (06)
+                    li(class="py-2 text-right w-full text-2sm font-medium")
+                      a(
+                        href="blog-category.html",
+                        class="inline-block float-left duration-500 hover:text-primary"
+                      ) Fragrances
+                      | (17)
+                    li(class="py-2 text-right w-full text-2sm font-medium")
+                      a(
+                        href="blog-category.html",
+                        class="inline-block float-left duration-500 hover:text-primary"
+                      ) Shaving & Grooming
+                      | (13)
+                    li(class="py-2 text-right w-full text-2sm font-medium")
+                      a(
+                        href="blog-category.html",
+                        class="inline-block float-left duration-500 hover:text-primary"
+                      ) Jacket
+                      | (06)
+                    li(class="py-2 text-right w-full text-2sm font-medium")
+                      a(
+                        href="blog-category.html",
+                        class="inline-block float-left duration-500 hover:text-primary"
+                      ) Coat
+                      | (22)
+                div(class="widget_tag_cloud mb-[45px] max-lg:mb-10")
+                  h6(class="relative font-medium mb-6.1") Tags
+                  div(class="tagcloud")
+                    a(
+                      href="blog-tag.html",
+                      class="relative border border-secondary py-2 inline-block text-sm rounded-xl duration-500 px-3.6 mr-2.5 mb-2.5 leading-[1.4] hover:bg-secondary hover:text-white"
+                    ) Vintage
+                    a(
+                      href="blog-tag.html",
+                      class="relative border border-secondary py-2 inline-block text-sm rounded-xl duration-500 px-3.6 mr-2.5 mb-2.5 leading-[1.4] hover:bg-secondary hover:text-white"
+                    ) Wedding
+                    a(
+                      href="blog-tag.html",
+                      class="relative border border-secondary py-2 inline-block text-sm rounded-xl duration-500 px-3.6 mr-2.5 mb-2.5 leading-[1.4] hover:bg-secondary hover:text-white"
+                    ) Cotton
+                    a(
+                      href="blog-tag.html",
+                      class="relative border border-secondary py-2 inline-block text-sm rounded-xl duration-500 px-3.6 mr-2.5 mb-2.5 leading-[1.4] hover:bg-secondary hover:text-white"
+                    ) Linen
+                    a(
+                      href="blog-tag.html",
+                      class="relative border border-secondary py-2 inline-block text-sm rounded-xl duration-500 px-3.6 mr-2.5 mb-2.5 leading-[1.4] hover:bg-secondary hover:text-white"
+                    ) Navy
+                    a(
+                      href="blog-tag.html",
+                      class="relative border border-secondary py-2 inline-block text-sm rounded-xl duration-500 px-3.6 mr-2.5 mb-2.5 leading-[1.4] hover:bg-secondary hover:text-white"
+                    ) Urban
+                    a(
+                      href="blog-tag.html",
+                      class="relative border border-secondary py-2 inline-block text-sm rounded-xl duration-500 px-3.6 mr-2.5 mb-2.5 leading-[1.4] hover:bg-secondary hover:text-white"
+                    ) Business Meeting
+                    a(
+                      href="blog-tag.html",
+                      class="relative border border-secondary py-2 inline-block text-sm rounded-xl duration-500 px-3.6 mr-2.5 mb-2.5 leading-[1.4] hover:bg-secondary hover:text-white"
+                    ) Formal
+                a(
+                  class="btn text-2xs font-Lufga inline-block font-medium border border-secondary bg-secondary text-white rounded-xl duration-700 relative overflow-hidden py-2.5 px-3.6 leading-[1.2]",
+                  href="javascript:void(0);"
+                ) RESET
+          // filter sidebar
+          // Header End

@@ -1,0 +1,18 @@
+{
+    "plugins": ["@prettier/plugin-pug"],
+
+    "experimentalTernaries": false,
+    "tabWidth": 4,
+    "useTabs": false,
+    "pugClassNotation": "attribute",
+    "overrides": [
+      {
+        "files": "*.pug",
+        "options": {
+          "parser": "pug"
+        }
+      }
+    ]
+  }
+
+  

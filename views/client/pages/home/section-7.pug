@@ -1,0 +1,222 @@
+// Quick Modal Start
+div(
+  x-transition:leave-end="opacity-0",
+  x-transition:leave-start="opacity-100",
+  x-transition:leave="transition ease-in duration-500",
+  x-transition:enter-end="opacity-100",
+  x-transition:enter-start="opacity-0",
+  x-transition:enter="transition ease-in duration-800",
+  x-show="open",
+  x-cloak="",
+  @keydown.escape.window="open = false",
+  class="fixed inset-0 transition-opacity z-999999 overflow-x-hidden overflow-y-auto mt-0 bg-black/60"
+)
+  div(class="flex items-center justify-center min-h-screen")
+    div(
+      @click.away="open = false",
+      class="modal-dialog flex flex-col relative rounded-lg bg-card w-full pointer-events-auto mx-[10px] max-w-[1070px]"
+    )
+      div(
+        class="modal-content bg-white max-md:p-7.5 max-md:pt-13.5 max-sm:!px-3.6 max-sm:!pb-5"
+      )
+        button(
+          @click="open = false",
+          type="button",
+          class="absolute right-2 top-2 text-secondary text-2xl size-10 z-1"
+        )
+          i(class="icon feather icon-x")
+        div(class="modal-body")
+          div(class="row g-xl-4 g-3")
+            div(class="w-full md:w-1/2")
+              div(class="dz-product-detail mb-0")
+                div(class="relative swiper-btn-center-lr")
+                  div(class="swiper quick-modal-swiper2")
+                    #lightgallerydiv(class="swiper-wrapper")
+                      div(class="swiper-slide")
+                        div(class="relative overflow-hidden DZoomImage group")
+                          a(
+                            data-src="/client/assets/images/products/lady-1.png",
+                            href="/client/assets/images/products/lady-1.png",
+                            class="mfp-link lg-item"
+                          )
+                            i(
+                              class="feather icon-maximize dz-maximize absolute top-5 right-5 size-10 flex items-center justify-center bg-white text-2xl rounded-xl duration-500 opacity-0 group-hover:opacity-100"
+                            )
+                          img(
+                            alt="image",
+                            src="/client/assets/images/products/lady-1.png"
+                          )
+                      div(class="swiper-slide")
+                        div(class="relative overflow-hidden DZoomImage group")
+                          a(
+                            data-src="/client/assets/images/products/lady-2.png",
+                            href="/client/assets/images/products/lady-2.png",
+                            class="mfp-link lg-item"
+                          )
+                            i(
+                              class="feather icon-maximize dz-maximize absolute top-5 right-5 size-10 flex items-center justify-center bg-white text-2xl rounded-xl duration-500 opacity-0 group-hover:opacity-100"
+                            )
+                          img(
+                            alt="image",
+                            src="/client/assets/images/products/lady-2.png"
+                          )
+                      div(class="swiper-slide")
+                        div(class="relative overflow-hidden DZoomImage group")
+                          a(
+                            data-src="/client/assets/images/products/lady-3.png",
+                            href="/client/assets/images/products/lady-3.png",
+                            class="mfp-link lg-item"
+                          )
+                            i(
+                              class="feather icon-maximize dz-maximize absolute top-5 right-5 size-10 flex items-center justify-center bg-white text-2xl rounded-xl duration-500 opacity-0 group-hover:opacity-100"
+                            )
+                          img(
+                            alt="image",
+                            src="/client/assets/images/products/lady-3.png"
+                          )
+                  div(
+                    class="swiper quick-modal-swiper thumb-swiper-lg swiper-vertical absolute top-7.5 left-7.5"
+                  )
+                    div(class="swiper-wrapper")
+                      div(class="swiper-slide mb-3.6 !size-13.5")
+                        img(
+                          alt="image",
+                          src="/client/assets/images/products//thumb-img/lady-1.png",
+                          class="border border-white"
+                        )
+                      div(class="swiper-slide mb-3.6 !size-13.5")
+                        img(
+                          alt="image",
+                          src="/client/assets/images/products//thumb-img/lady-2.png",
+                          class="border border-white"
+                        )
+                      div(class="swiper-slide mb-3.6 !size-13.5")
+                        img(
+                          alt="image",
+                          src="/client/assets/images/products//thumb-img/lady-3.png",
+                          class="border border-white"
+                        )
+            div(class="w-full md:w-1/2")
+              div(class="dz-product-detail style-2 pt-2 mb-0 xl:pl-4")
+                div(class="dz-content")
+                  div(class="flex mb-3.6")
+                    div(class="flex-[1]")
+                      span(
+                        class="inline-block font-Lufga text-xs uppercase text-center font-semibold rounded-md bg-secondary text-white mb-2 py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px]"
+                      ) SALE 20% Off
+                      h4(class="text-2xl font-bold mb-1 sm:text-2.5xl")
+                        a(href="shop-list.html") Cozy Knit Cardigan Sweater
+                      div(class="flex")
+                        ul(class="flex items-center mr-2 gap-0.5")
+                          li(class="text-sm star-fill text-[#ff8a00]")
+                            i(class="flaticon-star-1")
+                          li(class="text-sm star-fill text-[#ff8a00]")
+                            i(class="flaticon-star-1")
+                          li(class="text-sm star-fill text-[#ff8a00]")
+                            i(class="flaticon-star-1")
+                          li(class="text-sm text-[#e4e5e8]")
+                            i(class="flaticon-star-1")
+                          li(class="text-sm text-[#e4e5e8]")
+                            i(class="flaticon-star-1")
+                        span(class="text-2xs mr-2") 4.7 Rating
+                        a(href="javascript:void(0);", class="text-2xs") (5 customer reviews)
+                  p(class="text-2sm mb-4")
+                    | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has.
+                  div(class="meta-content mb-5 flex items-end")
+                    div(class="meta-content mr-4")
+                      label(class="text-base font-bold block font-Lufga mb-2.5") Price
+                      span(class="font-medium text-2xl font-Lufga")
+                        | $125.75
+                        del(class="opacity-60 text-lg text-body py-1.1") $132.17
+                    div(class="input-group")
+                      label(class="text-base font-bold block font-Lufga mb-2.5") Quantity
+                      span(class="flex")
+                        input(
+                          class="button-minus size-10 rounded-full text-center text-3xl border border-secondary bg-secondary text-white leading-[27px] mr-2.5 mb-1.1",
+                          data-field="quantity",
+                          value="-",
+                          type="button"
+                        )
+                        input(
+                          class="touchspin size-10 rounded-full text-center border border-secondary bg-light outline-none leading-[27px] mr-2.5 mb-1.1",
+                          name="quantity",
+                          value="1",
+                          step="1",
+                          type="number"
+                        )
+                        input(
+                          class="button-plus size-10 rounded-full text-center text-3xl border border-secondary bg-secondary text-white leading-[27px] mr-2.5 mb-1.1",
+                          data-field="quantity",
+                          value="+",
+                          type="button"
+                        )
+                  div(class="flex flex-wrap mb-2.5")
+                    a(
+                      class="btn py-3 px-5 text-base font-Lufga inline-block font-medium border border-secondary bg-secondary text-white rounded-xl duration-700 uppercase relative overflow-hidden leading-[1.2] m-1.1",
+                      href="shop-cart.html"
+                    ) Add To Cart
+                    a(
+                      class="btn py-3 px-5 text-base inline-flex items-center justify-center font-medium font-Lufga border border-secondary rounded-xl duration-700 relative overflow-hidden gap-2.5 leading-[1.2] hover:bg-secondary hover:text-white m-1.1",
+                      href="shop-wishlist.html"
+                    )
+                      i(class="icon feather icon-heart")
+                      | Add To Wishlist
+                  div(class="pt-5 border-t border-border relative")
+                    ul(class="flex flex-wrap items-center mb-2.5")
+                      li(class="text-sm mr-2.5")
+                        strong(class="text-2sm font-Lufga") SKU:
+                      li(class="text-sm mr-2.5") PRT584E63A
+                    ul(class="flex flex-wrap items-center mb-2.5")
+                      li(class="text-sm mr-2.5")
+                        strong(class="text-2sm font-Lufga") Category:
+                      li(class="text-sm mr-2.5")
+                        a(href="shop-standard.html") Dresses,
+                      li(class="text-sm mr-2.5")
+                        a(href="shop-standard.html") Jeans,
+                      li(class="text-sm mr-2.5")
+                        a(href="shop-standard.html") Swimwear,
+                      li(class="text-sm mr-2.5")
+                        a(href="shop-standard.html") Summer,
+                      li(class="text-sm mr-2.5")
+                        a(href="shop-standard.html") Clothing,
+                    ul(class="flex flex-wrap items-center mb-2.5")
+                      li(class="text-sm mr-2.5")
+                        strong(class="text-2sm font-Lufga") Tags:
+                      li(class="text-sm mr-2.5")
+                        a(href="shop-standard.html") Casual,
+                      li(class="text-sm mr-2.5")
+                        a(href="shop-standard.html") Athletic,
+                      li(class="text-sm mr-2.5")
+                        a(href="shop-standard.html") Workwear,
+                      li(class="text-sm mr-2.5")
+                        a(href="shop-standard.html") Accessories,
+                    ul(class="flex flex-wrap items-center mb-2.5")
+                      li(class="text-sm mr-2.5")
+                        a(
+                          target="_blank",
+                          href="https://www.facebook.com/dexignzone",
+                          class="hover:text-primary"
+                        )
+                          i(class="fa-brands fa-facebook-f")
+                      li(class="text-sm mr-2.5")
+                        a(
+                          target="_blank",
+                          href="https://www.linkedin.com/showcase/3686700/admin/",
+                          class="hover:text-primary"
+                        )
+                          i(class="fa-brands fa-linkedin-in")
+                      li(class="text-sm mr-2.5")
+                        a(
+                          target="_blank",
+                          href="https://www.instagram.com/dexignzone/",
+                          class="hover:text-primary"
+                        )
+                          i(class="fa-brands fa-instagram")
+                      li(class="text-sm mr-2.5")
+                        a(
+                          target="_blank",
+                          href="https://twitter.com/dexignzones",
+                          class="hover:text-primary"
+                        )
+                          i(class="fa-brands fa-twitter")
+// Quick Modal End

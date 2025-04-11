@@ -1,0 +1,102 @@
+// Right Sidebar (Theme Settings)
+div
+     #theme-settings-offcanvas.offcanvas.offcanvas-end.border-0(tabindex="-1")
+          .d-flex.align-items-center.bg-primary.p-3.offcanvas-header
+               h5.text-white.m-0 Theme Settings
+               button.btn-close.btn-close-white.ms-auto(
+                    aria-label="Close" 
+                    data-bs-dismiss="offcanvas" 
+                    type="button"
+                    )
+          .offcanvas-body.p-0
+               .h-100(data-simplebar="")
+                    .p-3.settings-bar
+                         div
+                              h5.mb-3.font-16.fw-semibold Color Scheme
+                              .form-check.mb-2
+                                   input#layout-color-light.form-check-input(
+                                        value="light" 
+                                        name="data-bs-theme" 
+                                        type="radio"
+                                        )
+                                   label.form-check-label(for="layout-color-light") Light
+                              .form-check.mb-2
+                                   input#layout-color-dark.form-check-input(
+                                        value="dark" 
+                                        name="data-bs-theme" 
+                                        type="radio"
+                                        )
+                                   label.form-check-label(for="layout-color-dark") Dark
+                         div
+                              h5.my-3.font-16.fw-semibold Topbar Color
+                              .form-check.mb-2
+                                   input#topbar-color-light.form-check-input(
+                                        value="light" 
+                                        name="data-topbar-color" 
+                                        type="radio"
+                                        )
+                                   label.form-check-label(for="topbar-color-light") Light
+                              .form-check.mb-2
+                                   input#topbar-color-dark.form-check-input(
+                                        value="dark" 
+                                        name="data-topbar-color" 
+                                        type="radio"
+                                        )
+                                   label.form-check-label(for="topbar-color-dark") Dark
+                         div
+                              h5.my-3.font-16.fw-semibold Menu Color
+                              .form-check.mb-2
+                                   input#leftbar-color-light.form-check-input(
+                                        value="light" 
+                                        name="data-menu-color" 
+                                        type="radio"
+                                        )
+                                   label.form-check-label(for="leftbar-color-light") Light
+                              .form-check.mb-2
+                                   input#leftbar-color-dark.form-check-input(
+                                        value="dark" 
+                                        name="data-menu-color" 
+                                        type="radio"
+                                        )
+                                   label.form-check-label(for="leftbar-color-dark") Dark
+                         div
+                              h5.my-3.font-16.fw-semibold Sidebar Size
+                              .form-check.mb-2
+                                   input#leftbar-size-default.form-check-input(
+                                        value="default" 
+                                        name="data-menu-size" 
+                                        type="radio"
+                                        )
+                                   label.form-check-label(for="leftbar-size-default") Default
+                              .form-check.mb-2
+                                   input#leftbar-size-small.form-check-input(
+                                        value="condensed" 
+                                        name="data-menu-size" 
+                                        type="radio"
+                                        )
+                                   label.form-check-label(for="leftbar-size-small") Condensed
+                              .form-check.mb-2
+                                   input#leftbar-hidden.form-check-input(
+                                        value="hidden" 
+                                        name="data-menu-size" 
+                                        type="radio"
+                                        )
+                                   label.form-check-label(for="leftbar-hidden") Hidden
+                              .form-check.mb-2
+                                   input#leftbar-size-small-hover-active.form-check-input(
+                                        value="sm-hover-active" 
+                                        name="data-menu-size" 
+                                        type="radio"
+                                        )
+                                   label.form-check-label(for="leftbar-size-small-hover-active") Small Hover Active
+                              .form-check.mb-2
+                                   input#leftbar-size-small-hover.form-check-input(
+                                        value="sm-hover" 
+                                        name="data-menu-size" 
+                                        type="radio"
+                                        )
+                                   label.form-check-label(for="leftbar-size-small-hover") Small Hover
+          .offcanvas-footer.border-top.p-3.text-center
+               .row
+                    .col
+                         button#reset-layout.btn.btn-danger.w-100(type="button") Reset

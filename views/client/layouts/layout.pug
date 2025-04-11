@@ -1,0 +1,58 @@
+doctype html
+html(lang="en")
+  include ../partials/head.pug
+  body#bgdiv(class="font-Sans selection:bg-primary selection:text-white")
+    div(class="page-wraper")
+      #loading-areadiv(
+        class="items-center fixed left-0 top-0 size-full flex justify-center duration-1000 bg-center bg-no-repeat backdrop-blur-md bg-white z-[999999] bg-[length:150px]"
+      )
+        img(alt="", src="/client/assets/images/loading.gif")
+      include ../partials/header.pug
+      block main
+      include ../partials/footer.pug
+      include ../partials/scroltop.pug
+
+    // JAVASCRIPT FILES =========================================
+    script(src="/client/assets/js/jquery.min.js")
+    // JQUERY MIN JS
+    script(src="/client/assets/vendor/wow/wow.min.js")
+    // WOW JS
+    script(src="/client/assets/vendor/counter/waypoints-min.js")
+    // WAYPOINTS JS
+    script(src="/client/assets/vendor/counter/counterup.min.js")
+    // COUNTERUP JS
+    script(src="/client/assets/vendor/swiper/swiper-bundle.min.js")
+    // SWIPER JS
+    script(src="/client/assets/vendor/magnific-popup/magnific-popup.js")
+    // MAGNIFIC POPUP JS
+    script(src="/client/assets/vendor/imagesloaded/imagesloaded.js")
+    // IMAGESLOADED
+    script(src="/client/assets/vendor/masonry/masonry-4.2.2.js")
+    // MASONRY
+    script(src="/client/assets/vendor/masonry/isotope.pkgd.min.js")
+    // ISOTOPE
+    script(src="/client/assets/vendor/countdown/jquery.countdown.js")
+    // COUNTDOWN FUCTIONS
+    script(src="/client/assets/vendor/wnumb/wNumb.js")
+    // WNUMB
+    script(src="/client/assets/vendor/nouislider/nouislider.min.js")
+    // NOUSLIDER MIN JS
+    script(src="/client/assets/vendor/slick/slick.min.js")
+    // CAROUSEL MIN JS
+    script(src="/client/assets/vendor/lightgallery/dist/lightgallery.min.js")
+    script(
+      src="/client/assets/vendor/lightgallery/dist/plugins/thumbnail/lg-thumbnail.min.js"
+    )
+    script(
+      src="/client/assets/vendor/lightgallery/dist/plugins/zoom/lg-zoom.min.js"
+    )
+    script(src="/client/assets/vendor/niceselect/js/jquery.nice-select.js")
+    script(src="/client/assets/vendor/alpine/alpineplugin.js")
+    script(src="/client/assets/vendor/alpine/alpine.js")
+    // Alpine JS
+    script(src="/client/assets/js/dz.carousel.js")
+    // DZ CAROUSEL JS
+    script(src="/client/assets/js/dz.ajax.js")
+    // AJAX
+    script(src="/client/assets/js/custom.js")
+    // CUSTOM JS
