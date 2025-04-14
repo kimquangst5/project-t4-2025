@@ -87,11 +87,140 @@ sl-option::part(base):hover {
 sl-details::part(summary) {
      font-weight: bolder;
      color: #626262;
-     font-size: 20px;
-     letter-spacing: 2px;
+     font-size: 15px;
 }
 
 sl-details::part(header) {
      padding-block: 10px;
      border-bottom: 1px solid #e0e0e0;
 }
+
+sl-radio-group::part(form-control-input) {
+     display: flex;
+     column-gap: 30px;
+}
+
+sl-switch::part(control) {
+     background-color: transparent;
+     border-color: #10A786;
+}
+
+sl-switch::part(thumb) {
+     /* border-color: #10A786; */
+}
+
+/* sl-switch:not(.switch--checked)::part(thumb) {
+     background-color: #10A786 !important;
+     border-color: red;
+} */
+
+sl-switch[checked]::part(thumb) {
+     background-color: #10A786 !important;
+     border: none;
+     background-image: url("/assets/images/tick.svg");
+     background-size: contain;
+}
+
+
+/* Tom Select */
+
+.ts-control{
+     box-shadow: none;
+     padding: 0px;
+     padding-inline: 10px;
+     padding-block: 5px;
+}
+
+.ts-wrapper.single .ts-control {
+     box-shadow: none;
+     background-color: white;
+     background-image: none;
+     background-repeat: repeat-x;
+}
+
+.ts-wrapper.multi .ts-control [data-value].active {
+     background-color: #f2f2f2;
+     background-image: none;
+     background-repeat: repeat-x;
+     color: #626262;
+     border: none;
+}
+
+.ts-dropdown .active {
+     background-color: #f2f2f2;
+     color: #626262;
+}
+
+.ts-wrapper.multi .ts-control [data-value] {
+     display: flex;
+     flex-direction: row-reverse;
+     border-radius: 3px;
+     background-color: none;
+     background-image: none;
+     background-repeat: unset;
+     box-shadow: none;
+     text-shadow: none;
+}
+
+.focus .ts-control{
+     box-shadow: none;
+    
+}
+
+.ts-wrapper{
+ min-height: 0px;
+}
+
+.ts-wrapper.plugin-remove_button:not(.rtl) .item .remove {
+     border-left: 0px;
+     margin-right: 6px;
+     margin-left: 0px;
+     font-size: large;
+     color: #E69DB8;
+}
+
+
+.ts-wrapper.multi .ts-control>div {
+     background: none;
+     color: #626262;
+     border: none;
+}
+
+/* Hết Tom Select */
+
+/* Table */
+table, th, td{
+     border: 1px solid #e0e0e0;
+}
+/* Hết Table */
+
+/* File Upload Preview */
+
+[data-upload-id] .label-container,
+[data-upload-id] .input-visible,
+[data-upload-id] .input-container {
+     display: none;
+}
+
+[data-upload-id] .image-preview{
+     min-height: 70px;
+     height: auto !important;
+     background-image: none !important;
+     padding: 0px !important;
+     background-color: #F6F6F6 !important;
+     border-radius: 10px !important;
+}
+
+[data-upload-id] .image-preview-item{
+     aspect-ratio: 1/1;
+     width: auto !important;
+     border-radius: 15px;
+     margin: 5px !important;
+     height: 70px;
+}
+[data-upload-id] .image-preview-item-clear {
+     bottom: 0px !important;
+     left: auto !important;
+     right: -6px !important;
+}
+/* Hết File Upload Preview */

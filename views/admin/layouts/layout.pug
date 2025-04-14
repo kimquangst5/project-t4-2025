@@ -1,15 +1,15 @@
 doctype html
-html(lang="en" class="")
+html(lang="en" class="truncate")
 	include ../partials/head.pug
 	body
 		//- include ../partials/header.pug
 		//- include ../partials/activity-timeline.pug
 		//- include ../partials/sider-right.pug
-		div(class="")
-			sl-split-panel(class="" position="25")
-				div(class="" slot="start")
+		div(class="truncate")
+			sl-split-panel(class="h-screen truncate" position="25")
+				div(class="h-full overflow-y-auto flex flex-col" slot="start")
 					include ../partials/sider.pug
-				div(class="h-screen overflow-y-auto flex flex-col" slot="end")
+				div(class="h-full overflow-y-auto flex flex-col" slot="end")
 					include ../partials/header.pug
 					include ../partials/header-sub.pug
 					div(class="bg-[#EBECF3] p-5 flex-1") 
