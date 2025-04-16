@@ -82,7 +82,7 @@ const initSortable = () => {
 };
 initSortable();
 
-const formatPrice = () => {
+const formatPrice = (document) => {
      const moneyInput = document.querySelectorAll("[money-input]");
      if (moneyInput && moneyInput.length > 0) {
           moneyInput.forEach((input) => {
@@ -94,7 +94,7 @@ const formatPrice = () => {
           });
      }
 };
-formatPrice();
+formatPrice(document);
 
 const main = () => {
      // const btn = document.querySelector("[type='submit']")
@@ -126,31 +126,33 @@ const initTomSelectMultiple = () => {
 };
 initTomSelectMultiple();
 
-const initTomSelectSingle = () => {
-     document.querySelectorAll("[select-single]").forEach((el) => {
-          if (el.tomselect) return;
-          let settings = {
-               // plugins: {
-               //      remove_button: {
-               //           title: 'Xóa lựa chọn này',
-               //      }
-               // },
-               persist: false,
-               maxItems: 1,
-               create: true,
-               sortField: {
-                    field: "text",
-                    direction: "asc",
-               },
+const initTomSelectSingle = (item) => {
+     let settings = {
+          // plugins: {
+          //      remove_button: {
+          //           title: 'Xóa lựa chọn này',
+          //      }
+          // },
+          persist: false,
+          maxItems: 1,
+          create: true,
+          sortField: {
+               field: "text",
+               direction: "asc",
+          },
 
-               // onDelete: function (values) {
-               //      return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
-               // }
-          };
-          new TomSelect(el, settings);
+          // onDelete: function (values) {
+          //      return confirm(values.length > 1 ? 'Are you sure you want to remove these ' + values.length + ' items?' : 'Are you sure you want to remove "' + values[0] + '"?');
+          // }
+     };
+     new TomSelect(item, settings);
+     // document.querySelectorAll("[select-single]").forEach((el) => {
+     //      if (el.tomselect) return;
 
-     });
+
+     // });
 };
+
 
 
 const openImage = () => {
@@ -208,11 +210,13 @@ const addGroup = () => {
                <div class="grid grid-cols-5 gap-[20px]">
                     <div class="flex items-center gap-x-[10px]">
                          <div class="text-[14px]">Tùy chọn</div>
-                         <sl-icon class="cursor-pointer text-[#8F87F1]" name="plus-circle">
+                         <sl-icon sl - icon btn-add-option = ${ parentGroup.children.length + 1 } class = "cursor-pointer text-[#8F87F1]"
+                         name = "plus-circle" >
                          </sl-icon>
                     </div>
                     <div class="col-span-4 grid grid-cols-2 gap-[20px]" keo-tha="">
-                         <div class="flex gap-x-[5px] items-center">
+                         <div div class = "flex gap-x-[5px] items-center"
+                         colume-attribute-value = '${parentGroup.children.length + 1}' >
                               <sl-icon class="cursor-move hover:text-[#8F87F1]" name="arrows-move"></sl-icon>
                               <div class="w-full">
                               <select class="w-full" placeholder="Chọn giá trị..." multiple="" select-single=""
@@ -235,7 +239,10 @@ const addGroup = () => {
           </button>
      `;
      parentGroup.appendChild(newDiv);
-     initTomSelectSingle()
+     const listItemSelect = newDiv.querySelectorAll('select');
+     for (const it of listItemSelect) {
+          initTomSelectSingle(it)
+     }
      actionGroupAttribute(newDiv)
 };
 
@@ -270,13 +277,20 @@ const addColumeTbody = (table) => {
      const parentGroup = document.querySelector("[parent-group]")
      if (parentGroup.children.length > 2) return
      const tbody = table.querySelector('tbody')
-     const tr = tbody.querySelector('tr')
-     const sku = tbody.querySelector('[insert-attr-before]')
-     const newTd = document.createElement("td");
-     newTd.classList.add('px-[10px')
-     newTd.setAttribute("colume", parentGroup.children.length)
-     // newTd.innerHTML = `Gía trị ${parentGroup.children.length}`
-     tr.insertBefore(newTd, sku)
+     const listRow = tbody.querySelectorAll('tr')
+     if (listRow.length > 0) {
+          for (const row of listRow) {
+               const sku = row.querySelector('[insert-attr-before]')
+               const newTd = document.createElement("td");
+               newTd.classList.add('px-[10px')
+               newTd.setAttribute("colume", parentGroup.children.length)
+               if (parentGroup.children.length == 1)
+                    newTd.setAttribute("rowspan", 1)
+               // newTd.innerHTML = `Gía trị ${parentGroup.children.length}`
+               row.insertBefore(newTd, sku)
+          }
+     }
+
 }
 
 const addColumeAttribute = () => {
@@ -293,7 +307,7 @@ const btnAddGroup = () => {
           addGroup();
           addNameValuePreviewImage();
           addColumeAttribute();
-          
+
      });
 };
 btnAddGroup();
@@ -305,30 +319,28 @@ const updateNameAttributePreviewImage = (value, text) => {
      for (const it of listName) {
           it.innerHTML = text + ':'
           it.setAttribute('name-attribute', value)
-          
-          
+
+
      }
-     
+
 }
 const updateThead = (table, value, text, number) => {
      const thead = table.querySelector('thead')
      const tr = thead.querySelector('tr');
      const th = tr.querySelector(`[colume = '${number}']`)
      th.innerHTML = text;
-     if (!value){
+     if (!value) {
           th.classList.add('border-[2px]', 'border-[red]')
-     }
-     else{
+     } else {
           if (th.className.includes('border-[2px]', 'border-[red]'))
                th.classList.remove('border-[2px]', 'border-[red]')
      }
      th.setAttribute('attribute', value)
-     
+
 }
 
 const updateBody = (table, value, text, number) => {
-     console.log(number);
-     
+
 }
 const updateNameAttributeTable = (value, text, number) => {
      const table = document.querySelector('[table-attribute]')
@@ -341,25 +353,319 @@ const changeAttribute = (group) => {
      attribute.addEventListener('change', () => {
           const number = parseInt(attribute.getAttribute("select-attribute"))
           const option = attribute.querySelector(`option[value='${attribute.value}']`)
-          if (number == 1){
+          if (number == 1) {
                updateNameAttributePreviewImage(attribute.value, option.innerHTML)
           }
           updateNameAttributeTable(attribute.value, option.innerHTML, number)
 
      })
-     
+
+}
+
+
+const updateColumeAttributeValue = (item, row) => {
+     const select = item.querySelector('select')
+     select.addEventListener('change', () => {
+          const option = item.querySelector(`option[value='${select.value}']`)
+          const value = parseInt(item.getAttribute('colume-attribute-value'))
+          if (value == 1) {
+               const td = row.querySelector(`td[colume='${value}']`)
+               if (!select.value) {
+                    td.classList.add('border-[2px]', 'border-[red]')
+               } else {
+                    if (td.className.includes('border-[2px]', 'border-[red]'))
+                         td.classList.remove('border-[2px]', 'border-[red]')
+               }
+               td.setAttribute('value', select.value)
+               td.innerHTML = option.innerHTML
+          } else if (value == 2) {
+               const table = document.querySelector('[table-attribute]')
+               const tbody = table.querySelector('tbody')
+               const listRow = tbody.querySelectorAll(`td[colume='${value}']`)
+               
+               // làm lại
+               const attributeValueGroup1 = document.querySelectorAll('[keo-tha]')[0]
+               const attributeValueGroup2 = document.querySelectorAll('[keo-tha]')[1]
+               const childrenArray = Array.from(attributeValueGroup2.children);
+               const index = childrenArray.indexOf(item);
+               for (let i = 1; i <= attributeValueGroup1.children.length; i++){
+                    // console.log(i * attributeValueGroup2.children.length - attributeValueGroup2.children.length + index);
+                    let current = i
+                    const tdCurrent = tbody.children[((childrenArray.length * i) - childrenArray.length) + index].querySelector(`[colume="${value}"]`)
+                    tdCurrent.innerHTML = option.innerHTML
+                    tdCurrent.setAttribute('value', select.value)
+                    if (!select.value) {
+                         tdCurrent.classList.add('border-[2px]', 'border-[red]')
+                    } else {
+                         if (tdCurrent.className.includes('border-[2px]', 'border-[red]'))
+                              tdCurrent.classList.remove('border-[2px]', 'border-[red]')
+                    }
+                    // console.log(`attributeValueGroup2.children: ${childrenArray.length}`)
+                    // console.log(`i: ${i}`)
+                    // console.log(`current: ${index}`)
+                    
+                    // tbody.children[attributeValueGroup2.children.length + index].querySelector(`[colume="${value}"]`).innerHTML = option.innerHTML
+                    
+               }
+
+               // console.log(attributeValueGroup1.children.length);
+               // for (let i = 0; i <= attributeValueGroup2.children.length - 1; i++) {
+               //      if (!tbody) return;
+               //      // console.log(`Hàng chính: ${ (i * parent.children.length) - parent.children.length}`);
+               //      const childrenArray = Array.from(attributeValueGroup2.children);
+               //      const index = childrenArray.indexOf(item);
+
+               //      console.log('Vị trí trong list là:', index); // Vị trí bắt đầu từ 0
+
+                    
+               //      // console.log(tbody.children[(i * parent.children.length) - parent.children.length]);
+               // }
+               // hết làm lại
+               // if (listRow.length > 0) {
+               //      for (const td of listRow) {
+               //           if (!select.value) {
+               //                td.classList.add('border-[2px]', 'border-[red]')
+               //           } else {
+               //                if (td.className.includes('border-[2px]', 'border-[red]'))
+               //                     td.classList.remove('border-[2px]', 'border-[red]')
+               //           }
+               //           td.setAttribute('value', select.value)
+               //           td.innerHTML = option.innerHTML
+               //      }
+               // }
+
+          }
+
+
+
+
+     })
+
 }
 
 const changeAttributeValue = (group) => {
      const numberGroup = group.querySelector('[select-attribute]').getAttribute('select-attribute') // lấy ra thuộc tính 1 hay 2
-     const countChild = group.querySelector('[keo-tha]').children.length; // đây là số lượng các tùy chọn
-     console.log(numberGroup);
-     console.log(countChild);
-     
+     const countChild = group.querySelector('[keo-tha]'); // đây là số lượng các tùy chọn
+     const table = document.querySelector("[table-attribute]")
+     if (!table) return;
+     const body = table.querySelector('tbody')
+     updateColumeAttributeValue(countChild.children[0], body.children[0])
+
+}
+
+const addAttributeValueInGroup = (group) => {
+     const parent = group.querySelector('[keo-tha]')
+     const newOption = document.createElement('div')
+     newOption.classList.add('flex', 'gap-x-[5px]', 'items-center')
+     newOption.innerHTML = `
+               <sl-icon class="cursor-move hover:text-[#8F87F1]" name="arrows-move"></sl-icon>
+               <div class="w-full">
+                    <select class="w-full" placeholder="Chọn giá trị..." multiple=""
+                         select-single="" name="select-attribute">
+                         <option value="1">Ví dụ 1</option>
+                         <option value="2">Ví dụ 2</option>
+                         <option value=""></option>
+                    </select>
+               </div>
+               <sl-icon class="cursor-pointer text-[#F7374F]" name="trash"></sl-icon>
+          `
+     parent.appendChild(newOption)
+     initTomSelectSingle(newOption.querySelector('select'))
+     // return newOption
+}
+
+const addAttributeValueInTable = (group) => {
+     const table = document.querySelector("[table-attribute]")
+     if (!table) return;
+     const body = table.querySelector('tbody')
+     if (!body) return;
+     const newRows = document.createElement('tr');
+     newRows.classList.add('h-[50px]', 'text-center')
+
+     newRows.innerHTML = body.children[0].innerHTML
+     const listColume = newRows.querySelectorAll('[colume]')
+     if (listColume && listColume.length > 0) {
+          for (const it of listColume) {
+               it.innerHTML = ''
+          }
+     }
+     body.appendChild(newRows)
+     // const item = addAttributeValueInGroup(group)
+     // console.log((item));
+
+     // updateColumeAttributeValue(item, newRows)
+}
+
+const addAttributeValue = (group) => {
+     const btnAdd = group.querySelector('[btn-add-option]')
+     if (!btnAdd) return
+     btnAdd.addEventListener('click', () => {
+          // addAttributeValueInGroup(group)
+          const parent = group.querySelector('[keo-tha]')
+          const newOption = document.createElement('div')
+          newOption.setAttribute('colume-attribute-value', parseInt(btnAdd.getAttribute('btn-add-option')))
+          newOption.classList.add('flex', 'gap-x-[5px]', 'items-center')
+          newOption.innerHTML = `
+               <sl-icon class="cursor-move hover:text-[#8F87F1]" name="arrows-move"></sl-icon>
+               <div class="w-full">
+                    <select class="w-full" placeholder="Chọn giá trị..." multiple="" select-single="" name="select-attribute">
+                         <option value="1">Ví dụ 1</option>
+                         <option value="2">Ví dụ 2</option>
+                    </select>
+               </div>
+               <sl-icon class="cursor-pointer text-[#F7374F]" name="trash"></sl-icon>
+          `
+          parent.appendChild(newOption)
+          initTomSelectSingle(newOption.querySelector('select'))
+          // addAttributeValueInTable(group)
+          // Hết addAttributeValueInGroup(group)
+
+          // addAttributeValueInTable
+          if (parseInt(btnAdd.getAttribute('btn-add-option')) == 1) {
+               //Nếu group là 1
+               const table = document.querySelector("[table-attribute]")
+               if (!table) return;
+               const body = table.querySelector('tbody')
+               if (!body) return;
+               // console.log(body.children[0]);
+               const rowSpan = body.children[0].querySelector("[rowspan]")
+               const valueRowSpan = parseInt(rowSpan.getAttribute('rowspan'))
+               console.log(valueRowSpan);
+               for (let i = 0; i < valueRowSpan; i++){
+                    // console.log(body.children[i]);
+                    const newRows = document.createElement('tr');
+                    newRows.classList.add('h-[50px]', 'text-center')
+
+                    newRows.innerHTML = body.children[i].innerHTML
+                    const td = newRows.querySelector("[colume = '1']")
+                    if (td){
+                         td.innerHTML = '';
+                         td.setAttribute('value', '');
+                    }
+                    
+                    formatPrice(newRows)
+                    body.appendChild(newRows)
+                    updateColumeAttributeValue(newOption, newRows)
+               }
+               
+               // const newRows = document.createElement('tr');
+               // newRows.classList.add('h-[50px]', 'text-center')
+
+               // newRows.innerHTML = body.children[0].innerHTML
+               // const listColume = newRows.querySelectorAll('[colume]')
+               // if (listColume && listColume.length > 0) {
+               //      for (const it of listColume) {
+               //           it.innerHTML = ''
+               //           it.setAttribute('value', '')
+               //      }
+               // }
+               
+          } else if (parseInt(btnAdd.getAttribute('btn-add-option')) == 2) {
+               // console.log(parseInt(btnAdd.getAttribute('btn-add-option')));
+               // console.log(parent.children.length);
+               const attributeValueGroup1 = document.querySelector('[keo-tha]');
+               // console.log(attributeValueGroup1.children.length);
+               for (let i = 1; i <= attributeValueGroup1.children.length; i++){ 
+                    const tbody = document.querySelector('[table-attribute] tbody')
+                    if (!tbody) return;
+                    // console.log(`Hàng chính: ${ (i * parent.children.length) - parent.children.length}`);
+                    tbody.children[(i * parent.children.length) - parent.children.length].querySelector("[rowspan]").setAttribute('rowspan', parent.children.length)
+                    // console.log(tbody.children[(i * parent.children.length) - parent.children.length]);
+                    
+                    const newRow = document.createElement('tr');
+                    newRow.classList.add('h-[50px]', 'text-center')
+                    newRow.innerHTML = `
+                         <td class="text-left w-[1%]">
+                         <sl-switch
+                              checked=""
+                              style="--width: 50px; --height: 25px"
+                              size="medium"
+                              form=""
+                         >
+                         </sl-switch>
+                         </td>
+                         <td class="px-[10px]" colume="2" value=""></td>
+                         <td class="text-left w-auto px-[10px]" insert-attr-before="">
+                         <sl-input
+                              class="w-[80%] mx-[auto]"
+                              required=""
+                              placeholder="Nhập SKU"
+                              type="text"
+                              value=""
+                              size="small"
+                              form=""
+                         ></sl-input>
+                         </td>
+                         <td class="text-left w-auto px-[10px]">
+                         <input
+                              class="w-[10rem] mx-auto block input input-xs outline-none px-[0.75rem] border-[1px] border-[hsl(240 5.3% 26.1%)]"
+                              money-input=""
+                              required=""
+                              placeholder="Nhập giá"
+                              type="text"
+                              value=""
+                              size="small"
+                              style="
+                                   height: calc(
+                                        var(--sl-input-height-small) - var(--sl-input-border-width) * 2
+                                   );
+                              "
+                         />
+                         </td>
+                         <td class="text-left w-auto px-[10px]">
+                         <input
+                              class="w-[80%] mx-auto block input input-xs outline-none px-[0.75rem] border-[1px] border-[hsl(240 5.3% 26.1%)]"
+                              money-input=""
+                              required=""
+                              placeholder="Nhập tồn kho"
+                              type="text"
+                              value="0"
+                              size="small"
+                              style="
+                                   height: calc(
+                                        var(--sl-input-height-small) - var(--sl-input-border-width) * 2
+                                   );
+                              "
+                         />
+                         </td>
+                         <td class="text-left w-fit">
+                         <sl-input
+                              class="w-[80%] mx-auto"
+                              required=""
+                              placeholder="Nhập tồn kho"
+                              type="text"
+                              value="0"
+                              size="small"
+                              form=""
+                         ></sl-input>
+                         </td>
+
+                    `
+                    if (tbody.children[i * parent.children.length - 1]) {
+                         tbody.insertBefore(newRow, tbody.children[i * parent.children.length - 1]);
+                         formatPrice(newRow)
+                    } else {
+                         // console.log('ok');
+                         
+                         tbody.appendChild(newRow);
+                         formatPrice(newRow)
+
+                    }
+                    
+                    
+               }
+               updateColumeAttributeValue(newOption, undefined)
+               
+
+          }
+
+          // Hết addAttributeValueInTable
+     })
 }
 
 const actionGroupAttribute = (group) => {
      changeAttribute(group);
      changeAttributeValue(group);
+     addAttributeValue(group)
      // deleteGroupAtrribute()
 }
