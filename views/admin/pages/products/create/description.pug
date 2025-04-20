@@ -1,0 +1,25 @@
+sl-details(
+     summary="Mô tả sản phẩm",
+     open,
+     class="hover:border-[1px] border-dashed rounded-[10px] truncate border-[#357D02]"
+)
+     div(class="flex flex-col gap-y-[15px]")
+          div(class="flex flex-col gap-y-[5px]") 
+               h4(class="text-[var(--color-text)] text-[13px]") Mô tả ngắn
+               textarea(tiny-mce)
+          div(class="flex flex-col gap-y-[5px]") 
+               h4(class="text-[var(--color-text)] text-[13px]") Nội dung
+               textarea(tiny-mce)
+          div(class="flex flex-col gap-y-[3px]")
+               label(for="tag" class="text-[var(--color-text)] text-[0.875rem]") Thẻ bài viết
+               select(
+                    id="tag"
+                    placeholder="Nhập để thêm mới thẻ bài viết...",
+                    multiple,
+                    value="",
+                    name="categories",
+                    select-multiple
+                    class="focus:border-[1px] focus:border-[var(--sl-input-border-color-focus)]"
+               )
+               span(class="text-[var(--color-text)] text-[12px]") Chỉ hỗ trợ 10 thẻ và độ dài mỗi thẻ không quá 45 ký tự
+          

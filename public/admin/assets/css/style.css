@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 body {
-     font-family: "Play", sans-serif;
+     font-family: "Be Vietnam Pro", sans-serif;
      font-weight: 400;
      font-style: normal;
 }
@@ -51,22 +50,22 @@ sl-select::part(tag__base) {
 }
 
 sl-tag[variant="neutral"]::part(base) {
-     background-color: red;
+     background-color: var(--red);
 }
 
 sl-select::part(tag__remove-button) {
-     color: #E69DB8;
+     color: var(--pink);
 }
 
 sl-option::part(base) {
      font-size: 14px;
      background-color: transparent;
-     color: #626262;
+     color: var(--color-text);
 }
 
 sl-option::part(base):hover {
      background-color: transparent;
-     background-color: #f2f2f2;
+     background-color: var(--light);
 }
 
 *[required]::part(form-control-label)::after {
@@ -76,17 +75,17 @@ sl-option::part(base):hover {
 *[required]::part(form-control-label)::before {
      content: '*';
      margin-right: 10px;
-     color: red;
+     color: var(--red);
      font-size: 15px;
 }
 
-*[required]::part(form-control-label) {
-     color: #626262;
+*::part(form-control-label) {
+     color: var(--color-text);
 }
 
 sl-details::part(summary) {
      font-weight: bolder;
-     color: #626262;
+     color: var(--color-text);
      font-size: 15px;
 }
 
@@ -139,16 +138,16 @@ sl-switch[checked]::part(thumb) {
 }
 
 .ts-wrapper.multi .ts-control [data-value].active {
-     background-color: #f2f2f2;
+     background-color: var(--light);
      background-image: none;
      background-repeat: repeat-x;
-     color: #626262;
+     color: var(--color-text);
      border: none;
 }
 
 .ts-dropdown .active {
-     background-color: #f2f2f2;
-     color: #626262;
+     background-color: var(--light);
+     color: var(--color-text);
 }
 
 .ts-wrapper.multi .ts-control [data-value] {
@@ -160,6 +159,7 @@ sl-switch[checked]::part(thumb) {
      background-repeat: unset;
      box-shadow: none;
      text-shadow: none;
+     text-wrap: wrap;
 }
 
 .focus .ts-control{
@@ -176,13 +176,13 @@ sl-switch[checked]::part(thumb) {
      margin-right: 6px;
      margin-left: 0px;
      font-size: large;
-     color: #E69DB8;
+     color: var(--pink);
 }
 
 
 .ts-wrapper.multi .ts-control>div {
      background: none;
-     color: #626262;
+     color: var(--color-text);
      border: none;
 }
 
@@ -190,7 +190,7 @@ sl-switch[checked]::part(thumb) {
 
 /* Table */
 table, th, td{
-     border: 1px solid #e0e0e0;
+     border: 1px solid var(--light);
 }
 /* Hết Table */
 
@@ -203,11 +203,11 @@ table, th, td{
 }
 
 [data-upload-id] .image-preview{
-     min-height: 70px;
+     min-height: 75px;
      height: auto !important;
      background-image: none !important;
      padding: 0px !important;
-     background-color: #F6F6F6 !important;
+     background-color: var(--light) !important;
      border-radius: 10px !important;
 }
 
@@ -216,7 +216,7 @@ table, th, td{
      width: auto !important;
      border-radius: 15px;
      margin: 5px !important;
-     height: 70px;
+     height: 65px;
 }
 [data-upload-id] .image-preview-item-clear {
      bottom: 0px !important;
@@ -224,3 +224,25 @@ table, th, td{
      right: -6px !important;
 }
 /* Hết File Upload Preview */
+
+.ts-dropdown [data-selectable].option{
+     text-wrap: auto;
+}
+
+[count-character]{
+     background-color:  var(--green);
+     color: var(--white);
+     border-top-left-radius: 5px;
+     border-bottom-left-radius: 5px;
+     height: 100%;
+     aspect-ratio: 1/1;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+}
+
+sl-button[variant = "success"]::part(base) {
+     background-color: var(--green);
+     border: none;
+}

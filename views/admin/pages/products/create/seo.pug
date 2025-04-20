@@ -1,0 +1,54 @@
+sl-details(
+     summary="Từ khóa SEO",
+     open,
+     class="hover:border-[1px] border-dashed rounded-[10px] truncate border-[#357D02]"
+)
+     div(class="flex flex-col gap-y-[20px]")
+          div(class="flex flex-col") 
+               div(class="flex items-center gap-[12px]")
+                    div(class="bg-[#f3f5f6] w-[26px] h-[26px] border-[1px] border-[#d2d2d2] rounded-full inline-flex justify-center items-center flex-shrink-0")
+                    div(class="flex flex-col") 
+                         div(class="text-[#202124] text-[14px] block leading-[20px] whitespace-nowrap overflow-x-hidden text-ellipsis w-full") wede.com
+                         cite(class="text-[12px] leading-[18px] max-w-max overflow-x-hidden text-ellipsis w-full")
+                              | https://www.wede.com
+                              span(class="text-[#4d5156]")  › ... › Danh mục
+               h3(class="break-all text-wrap pt-[5px] inline-block mb-[3px] text-[20px] font-[400] text-[#1a0dab]" seo-title)
+               div(class="flex items-center") 
+                    span(class="text-[14px] font-[400] text-[#474747]") 20 thg 4, 2025 — 
+                    h4(class="text-[14px] font-[400] text-[#474747]" seo-description)
+               
+          sl-input(
+               label="Tiêu đề SEO",
+               help-text="Tiêu đề SEO là yếu tố quan trọng nhất, quyết định tỉ lệ click từ người dùng và chứa từ khóa chính",
+               placeholder="Độ dài tiêu đề tối ưu trong khoảng từ 30 ký tự (đảm bảo ý nghĩa) đến 60 ký tự (tránh bị cắt trên công cụ tìm kiếm).",
+               name="seo-title",
+               type="text",
+               value="",
+               size="small"
+          )
+               div(slot="suffix" count-character class="px-[10px]")
+                    
+          sl-input(
+               label="Mô tả SEO",
+               help-text="Thu hút người dùng click vào trang, tóm tắt nội dung và chứa từ khóa.",
+               placeholder="",
+               name="seo-description",
+               type="text",
+               value="",
+               size="small"
+          )
+               div(slot="suffix" count-character class="px-[10px]")
+          div(class="flex flex-col gap-y-[3px]")
+               label(for="keyword" class="text-[var(--color-text)] text-[0.875rem]") Từ khóa SEO
+               select(
+                    id="keyword"
+                    label="Từ khóa SEO",
+                    placeholder="Chọn từ khóa SEO...",
+                    multiple,
+                    value="",
+                    name="categories",
+                    select-multiple
+                    class="focus:border-[1px] focus:border-[var(--sl-input-border-color-focus)]"
+               )
+               span(class="text-[var(--color-text)] text-[12px]") Chỉ hỗ trợ 10 từ khóa và độ dài mỗi từ khóa không quá 45 ký tự
+          

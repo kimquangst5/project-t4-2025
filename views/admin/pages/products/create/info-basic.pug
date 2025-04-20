@@ -1,0 +1,79 @@
+div(
+     summary="Thông tin cơ bản",
+     open,
+     class="hover:border-[1px] border-dashed rounded-[10px] border-[#357D02] bg-[white]"
+)
+     div(class="px-[16px] py-[10px] border-b-[1px] border-[#e0e0e0]")
+          div(class="text-[15px] text-[var(--color-text)] font-[900]") Thông tin cơ bản
+     div(class="px-[16px] py-[10px]")
+          form(class="flex flex-col gap-y-[10px]")
+               div(class="")
+                    sl-input(
+                         required,
+                         label="Tên sản phẩm",
+                         help-text="Tên sản phẩm + Thương hiệu + Model + Thông số kỹ thuật",
+                         placeholder="Nhập tên sản phẩm",
+                         name="name",
+                         type="text",
+                         value="",
+                         size="small"
+                    )
+                         div(slot="suffix" count-character class="px-[10px]")
+               div(class="")
+                    sl-input(
+                         required,
+                         label="Đường dẫn",
+                         help-text="Độ dài lý tưởng của một URL cho SEO là 50 đến 60 ký tự.",
+                         placeholder="Nhập đường dẫn",
+                         type="text",
+                         value="",
+                         size="small",
+                         name="slug"
+                    )
+                         div(slot="suffix" count-character class="px-[10px]")
+               
+               div(class="flex flex-col gap-y-[3px]")
+                    label(for="categories" class="text-[var(--color-text)] text-[0.875rem] before:content-['*'] before:text-[var(--red)] before:mr-[10px]") Danh mục sản phẩm
+                    select(
+                         id="categories"
+                         required,
+                         label="Danh mục",
+                         clearable,
+                         placeholder="Chọn danh mục...",
+                         value="",
+                         size="small",
+                         name="categories",
+                         multiple
+                         select-multiple
+                    )
+                         option(value="1") Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, laboriosam! Quae voluptatibus, officiis dignissimos in delectus quis dolores minima autem beatae dolor aut fugit corrupti magni velit sunt natus a.
+                         option(value="2") Danh mục 2
+                         option(value="3") Danh mục 3
+                         option(value="4") Danh mục 4
+                         option(value="5") Danh mục 5
+                         option(value="6") Danh mục 6
+                         option(value="7") Danh mục 7
+                         option(value="8") Danh mục 8
+                         option(value="9") Danh mục 9
+                         option(value="10") Danh mục 10
+                         option(value="11") Danh mục 11
+                         option(value="12") Danh mục 12
+                         option(value="13") Danh mục 13
+                         option(value="14") Danh mục 14
+                         option(value="15") Danh mục 15
+                    //- sl-select(hoist)
+                         sl-option(value="2") Danh mục 2
+                         sl-option(value="3") Danh mục 3
+                         sl-option(value="4") Danh mục 4
+                         sl-option(value="5") Danh mục 5
+                         sl-option(value="6") Danh mục 6
+               div(class="")
+                    sl-radio-group(
+                         required,
+                         label="Sản phẩm nổi bật",
+                         value="",
+                         size="small",
+                         name="featured"
+                    )
+                         sl-radio(value="1" class="") Có
+                         sl-radio(value="2" class="") Không

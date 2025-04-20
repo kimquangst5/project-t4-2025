@@ -1,0 +1,147 @@
+div(
+     summary="Ảnh và giá sản phẩm",
+     open,
+     class="bg-[white] hover:border-[1px] border-dashed rounded-[10px] border-[#357D02] "
+)
+     div(class="px-[16px] py-[10px] border-b-[1px] border-[#e0e0e0]")
+          div(class="text-[15px] text-[var(--color-text)] font-[900]") Giá và ảnh sản phẩm
+     div(class="px-[16px] py-[10px]" )
+
+          sl-button(variant='primary' size='small' outline btn-add-group) Thêm nhóm thuộc tính
+               sl-icon(slot="prefix" name="plus-circle")
+          div Lưu ý: Khi thêm nhóm thuộc tính thì nhóm thuộc tính đầu tiên sẽ chứa các hình ảnh.
+          
+          div(parent-group) 
+               //- div(class="bg-[#F6F6F6] rounded-[10px] relative")
+                    div(class="py-[10px] px-[20px] flex flex-col gap-y-[10px] my-[10px]") 
+                         div(class="grid grid-cols-5 gap-[20px] mb-[10px]")
+                              div(class="flex items-center gap-x-[10px]") 
+                                   div(class="text-[14px]") Thuộc tính 1
+                                   //- sl-button(variant="default" size="small" circle)
+                              div(class="col-span-4 grid grid-cols-2 gap-[20px]") 
+                                   div(class="flex gap-x-[5px] items-center")
+                                        div(class="w-full") 
+                                             select(placeholder="Chọn thuộc tính..." multiple select-single class="w-full" name='select-attribute' select-attribute)
+                                                  option(value='color') Màu sắc
+                                                  option(value='size') Kích thước
+                         div(class="grid grid-cols-5 gap-[20px]")
+                              div(class="flex items-center gap-x-[10px]") 
+                                   div(class="text-[14px]") Tùy chọn
+                                   //- sl-button(variant="default" size="small" circle)
+                                   sl-icon(name="plus-circle" class="cursor-pointer text-[#8F87F1]")
+                              div(class="col-span-4 grid grid-cols-2 gap-[20px]" keo-tha) 
+                                   div(class="flex gap-x-[5px] items-center")
+                                        sl-icon(
+                                             name="arrows-move",
+                                             class="cursor-move hover:text-[#8F87F1]"
+                                        )
+                                        div(class="w-full") 
+                                             select(placeholder="Chọn giá trị..." multiple select-single class="w-full" name='select-attribute')
+                                                  option(value='1') Ví dụ 1
+                                                  option(value='2') Ví dụ 2
+                                        sl-icon(name="trash" class="cursor-pointer text-[#F7374F]")
+                    button(class="absolute top-[10px] right-[10px] aspect-square  flex items-center justify-center h-[30px] w-[30px]  rounded-[7px] hover:bg-[#EBECF3]")
+                         sl-icon(name="x-lg" class="")
+               //- div(class="bg-[#F6F6F6] rounded-[10px] relative")
+                    div(class="py-[10px] px-[20px] flex flex-col gap-y-[10px] my-[10px]") 
+                         div(class="grid grid-cols-5 gap-[20px] mb-[10px]")
+                              div(class="flex items-center gap-x-[10px]") 
+                                   div(class="text-[14px]") Thuộc tính 1
+                                   //- sl-button(variant="default" size="small" circle)
+                              div(class="col-span-4 grid grid-cols-2 gap-[20px]") 
+                                   div(class="flex gap-x-[5px] items-center")
+                                        div(class="w-full") 
+                                             select(placeholder="Chọn thuộc tính..." multiple select-single class="w-full" name='select-attribute' select-attribute)
+                                                  option(value='color') Màu sắc
+                                                  option(value='size') Kích thước
+                         div(class="grid grid-cols-5 gap-[20px]")
+                              div(class="flex items-center gap-x-[10px]") 
+                                   div(class="text-[14px]") Tùy chọn
+                                   //- sl-button(variant="default" size="small" circle)
+                                   sl-icon(name="plus-circle" class="cursor-pointer text-[#8F87F1]")
+                              div(class="col-span-4 grid grid-cols-2 gap-[20px]" keo-tha) 
+                                   div(class="flex gap-x-[5px] items-center")
+                                        sl-icon(
+                                             name="arrows-move",
+                                             class="cursor-move hover:text-[#8F87F1]"
+                                        )
+                                        div(class="w-full") 
+                                             select(placeholder="Chọn giá trị..." multiple select-single class="w-full" name='select-attribute')
+                                                  option(value='1') Ví dụ 1
+                                                  option(value='2') Ví dụ 2
+                                        sl-icon(name="trash" class="cursor-pointer text-[#F7374F]")
+                    button(class="absolute top-[10px] right-[10px] aspect-square  flex items-center justify-center h-[30px] w-[30px]  rounded-[7px] hover:bg-[#EBECF3]")
+                         sl-icon(name="x-lg" class="")  
+
+          div(class="" parent-preview-image) 
+               div(class="flex flex-col gap-[5px] my-[10px]" upload-image) 
+                    div(class="flex items-center gap-x-[10px]") 
+                         h4(class="text-[var(--color-text)] text-[13px]") Ảnh sản phẩm
+                         h4(class="text-[var(--color-text)] text-[13px]" name-attribute)
+                         h4(class="text-[var(--color-text)] text-[13px]" value-atribute)
+                    div(class="flex items-start gap-x-[40px]" )
+                         div(class="custom-file-container w-[70%]" data-upload-id="upload-image-1")
+                         div(class="flex items-center gap-x-[10px] w-[25%]")
+                              sl-icon(name="trash" class="cursor-pointer text-[#FA4F64]")
+                              
+                              sl-button(variant="success" class="flex-1") Chọn ảnh
+                                   sl-icon(slot="prefix" name="images" class="text-[white]")
+               
+          
+          table(class="overflow-x-auto block border-collapse" table-attribute)
+               thead
+                    tr(class="bg-[#ECEEF0] !h-[35px]")
+                         th(class="text-center px-[10px] w-[1%] ") Trạng thái
+                         th(class="text-center px-[10px]" insert-attr-before) SKU
+                         th(class="text-center px-[10px]") Giá ban đầu (VNĐ)
+                         th(class="text-center px-[10px]") Giá bán (VNĐ)
+                         th(class="text-center px-[10px] w-[1%]") Tồn kho
+               tbody(class="")
+                    tr(class="h-[50px] text-center")
+                         td(class="text-left w-[1%]")
+                              sl-switch(
+                                   checked,
+                                   class="",
+                                   style="--width: 50px; --height: 25px"
+                              )
+                         td(class="text-left w-auto px-[10px]" insert-attr-before)
+                              sl-input(
+                                   required,
+                                   class="w-[80%] mx-[auto]",
+                                   placeholder="Nhập SKU",
+                                   type="text",
+                                   value="",
+                                   size="small"
+                              )
+                         td(class="text-left w-auto px-[10px]")
+                              input(
+                                   money-input,
+                                   required,
+                                   placeholder="Nhập giá",
+                                   type="text",
+                                   value="",
+                                   size="small",
+                                   class="w-[10rem] mx-auto block input input-xs outline-none px-[0.75rem] border-[1px] border-[hsl(240 5.3% 26.1%)]" 
+                                   style="height: calc(var(--sl-input-height-small) - var(--sl-input-border-width) * 2)" 
+                              )
+                         td(class="text-left w-auto px-[10px]")
+                              input(
+                                   money-input,
+                                   required,
+                                   placeholder="Giá bán sau khi giảm",
+                                   type="text",
+                                   value="",
+                                   size="small",
+                                   class="w-[12rem] mx-auto block input input-xs outline-none px-[0.75rem] border-[1px] border-[hsl(240 5.3% 26.1%)]" 
+                                   style="height: calc(var(--sl-input-height-small) - var(--sl-input-border-width) * 2)" 
+                              )
+                         td(class="text-left w-fit")
+                              sl-input(
+                                   required,
+                                   placeholder="Nhập tồn kho",
+                                   type="text",
+                                   value="0",
+                                   size="small",
+                                   class="w-[80%] mx-auto"
+                              )
+               

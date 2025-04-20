@@ -1,7 +1,22 @@
 head
 	// Title Meta
 	meta(charset="utf-8")
-	title Dashboard | Larkon - Responsive Admin Dashboard Template
+	script(type="application/ld+json").
+		{
+		"@context": "https://schema.org",
+		"@type": "Product",
+		"name": "Tên Sản Phẩm",
+		"description": "Mô tả chi tiết",
+		"image": "image.jpg",
+		"brand": "Thương Hiệu",
+		"offers": {
+		"@type": "Offer",
+		"price": "1000000",
+		"priceCurrency": "VND"
+		}
+		}
+
+	//- title Dashboard | Larkon - Responsive Admin Dashboard Template
 	meta(content="width=device-width, initial-scale=1.0", name="viewport")
 	meta(
 		content="A fully responsive premium admin dashboard template",
@@ -9,6 +24,7 @@ head
 	)
 	meta(content="Techzaa", name="author")
 	meta(content="IE=edge", http-equiv="X-UA-Compatible")
+	link(rel="stylesheet", href="/admin/assets/css/variable.css")
 	block css
 	link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/daisyui@5" type="text/css" )
 	script(src="https://cdn.tailwindcss.com")
