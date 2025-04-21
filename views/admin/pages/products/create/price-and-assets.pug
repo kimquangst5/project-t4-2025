@@ -1,14 +1,16 @@
 div(
-     summary="Ảnh và giá sản phẩm",
+     summary="",
      open,
      class="bg-[white] hover:border-[1px] border-dashed rounded-[10px] border-[#357D02] "
 )
-     div(class="px-[16px] py-[10px] border-b-[1px] border-[#e0e0e0]")
-          div(class="text-[15px] text-[var(--color-text)] font-[900]") Giá và ảnh sản phẩm
-     div(class="px-[16px] py-[10px]" )
-
+     div(class="px-[16px] py-[10px] border-b-[1px] border-[#e0e0e0] flex justify-between items-center")
+          div(class="text-[15px] text-[var(--color-text)] font-[700]") Giá và ảnh sản phẩm
           sl-button(variant='primary' size='small' outline btn-add-group) Thêm nhóm thuộc tính
                sl-icon(slot="prefix" name="plus-circle")
+     div(class="px-[16px] py-[10px]" )
+
+          //- sl-button(variant='primary' size='small' outline btn-add-group) Thêm nhóm thuộc tính
+          //-      sl-icon(slot="prefix" name="plus-circle")
           div Lưu ý: Khi thêm nhóm thuộc tính thì nhóm thuộc tính đầu tiên sẽ chứa các hình ảnh.
           
           div(parent-group) 
@@ -88,15 +90,15 @@ div(
                                    sl-icon(slot="prefix" name="images" class="text-[white]")
                
           
-          table(class="overflow-x-auto block border-collapse" table-attribute)
-               thead
-                    tr(class="bg-[#ECEEF0] !h-[35px]")
+          table(class="block max-h-[600px] overflow-auto border-collapse no-scrollbar" table-attribute)
+               thead(class="z-30 sticky top-0 bg-[#ECEEF0] !h-[35px]")
+                    tr(class="")
                          th(class="text-center px-[10px] w-[1%] ") Trạng thái
                          th(class="text-center px-[10px]" insert-attr-before) SKU
                          th(class="text-center px-[10px]") Giá ban đầu (VNĐ)
                          th(class="text-center px-[10px]") Giá bán (VNĐ)
                          th(class="text-center px-[10px] w-[1%]") Tồn kho
-               tbody(class="")
+               tbody(class="overflow-y-auto max-h-[500px]")
                     tr(class="h-[50px] text-center")
                          td(class="text-left w-[1%]")
                               sl-switch(
@@ -144,4 +146,22 @@ div(
                                    size="small",
                                    class="w-[80%] mx-auto"
                               )
-               
+          
+          div(class="flex flex-col gap-[5px] my-[10px]") 
+               div(class="flex items-center gap-x-[10px]") 
+                    h4(class="text-[var(--color-text)] text-[13px]") Video sản phẩm
+               div(class="flex items-start gap-x-[40px] flex-1" )
+                    video(controls, crossorigin, playsinline, poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" controlsList="nodownload")
+                         //- source(src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4", type="video/mp4", size="576")
+                         //- source(src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4", type="video/mp4", size="720")
+                         source(src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4", type="video/mp4", size="1080")
+                         track(kind="captions", label="English", srclang="en", src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt", default)
+                         track(kind="captions", label="Français", srclang="fr", src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt")
+                         // Fallback for browsers that don't support the <video> element
+                         //- a(href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4", download) Download
+
+                    div(class="flex items-center gap-x-[10px] w-[25%]")
+                         sl-icon(name="trash" class="cursor-pointer text-[#FA4F64]")
+                         
+                         sl-button(variant="success" class="flex-1") Chọn video
+                              sl-icon(slot="prefix" name="images" class="text-[white]")

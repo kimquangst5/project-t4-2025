@@ -246,3 +246,6 @@ sl-button[variant = "success"]::part(base) {
      background-color: var(--green);
      border: none;
 }
+.tox .tox-statusbar__branding a{
+     display: none !important;
+}

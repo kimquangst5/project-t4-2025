@@ -1,16 +1,35 @@
+var controls = [
+     'play-large', // Nút phát lớn ở giữa
+     'restart', // Khởi động lại phát lại
+     'rewind', // Tua lại theo thời gian tìm kiếm (mặc định là 10 giây)
+     'play', // Phát/tạm dừng phát lại
+     'fast-forward', // Tua nhanh theo thời gian tìm kiếm (mặc định là 10 giây)
+     'progress', // Thanh tiến trình và thanh trượt để phát lại và lưu vào bộ đệm
+     'current-time', // Thời gian phát lại hiện tại
+     'duration', // Thời lượng đầy đủ của phương tiện
+     'mute', // Bật tắt tiếng
+     'volume', // Điều khiển âm lượng
+     'captions', // Bật tắt chú thích
+     'settings', // Menu cài đặt
+     'pip', // Hình trong hình (hiện chỉ có Safari)
+     'airplay', // Airplay (hiện chỉ có Safari)
+     'download', // Hiển thị nút tải xuống có liên kết đến nguồn hiện tại hoặc URL tùy chỉnh mà bạn chỉ định trong tùy chọn của mình
+     'fullscreen' // Bật toàn màn hình
+];
+
+const player = new Plyr('video', {
+     controls
+});
+
+// Expose player so it can be used from the console
+window.player = player;
+
 const upload = new FileUploadWithPreview.FileUploadWithPreview(
      "upload-image-1", {
           multiple: true,
           maxFileCount: 6,
      },
 );
-
-// const upload2 = new FileUploadWithPreview.FileUploadWithPreview(
-//      "upload-image-2", {
-//           multiple: true,
-//           maxFileCount: 6,
-//      },
-// );
 
 const validator = new JustValidate("form", {
      validateBeforeSubmitting: true,
@@ -174,29 +193,45 @@ const initTomSelectSingle = (item) => {
 
 
 
-const openImage = () => {
-     const listUploadImage = document.querySelectorAll("[upload-image]");
-     if (!listUploadImage || listUploadImage.length === 0) return;
-     listUploadImage.forEach((it) => {
-          const btn = it.querySelector("sl-button");
-          if (!btn) return;
-          btn.addEventListener("click", () => {
-               const input = it.querySelector("input");
-               if (!input) return;
-               input.click();
-          });
+// const openImage = () => {
+//      const listUploadImage = document.querySelectorAll("[upload-image]");
+//      if (!listUploadImage || listUploadImage.length === 0) return;
+//      listUploadImage.forEach((it) => {
+//           const btn = it.querySelector("sl-button");
+//           if (!btn) return;
+//           btn.addEventListener("click", () => {
+//                const input = it.querySelector("input");
+//                if (!input) return;
+//                input.click();
+//           });
 
-          const trash = it.querySelector("[name='trash']");
-          if (!trash) return;
-          trash.addEventListener("click", () => {
-               const clearButton = it.querySelector(".clear-button");
-               if (!clearButton) return;
-               clearButton.click();
-          });
+//           const trash = it.querySelector("[name='trash']");
+//           if (!trash) return;
+//           trash.addEventListener("click", () => {
+//                const clearButton = it.querySelector(".clear-button");
+//                if (!clearButton) return;
+//                clearButton.click();
+//           });
+//      });
+// };
+const openImage = (element) => {
+     const btn = element.querySelector("sl-button");
+     if (!btn || !element) return;
+     btn.addEventListener("click", () => {
+          const input = element.querySelector("input");
+          if (!input) return;
+          input.click();
+     });
+
+     const trash = element.querySelector("[name='trash']");
+     if (!trash) return;
+     trash.addEventListener("click", () => {
+          const clearButton = element.querySelector(".clear-button");
+          if (!clearButton) return;
+          clearButton.click();
      });
 };
-
-openImage();
+openImage(document.querySelector("[upload-image]"));
 
 const addGroup = () => {
      const parentGroup = document.querySelector("[parent-group]");
@@ -226,7 +261,7 @@ const addGroup = () => {
                          </div>
                     </div>
                </div>
-               <div class="grid grid-cols-5 gap-[20px]">
+               <div class="grid grid-cols-5 items-start gap-[20px]">
                     <div class="flex items-center gap-x-[10px]">
                          <div class="text-[14px]">Tùy chọn</div>
                          <sl-icon  btn-add-option = ${ parentGroup.children.length + 1 } class = "cursor-pointer text-[#8F87F1]"
@@ -322,7 +357,11 @@ const addColumeAttribute = () => {
 const btnAddGroup = () => {
      const btn = document.querySelector("[btn-add-group]");
      if (!btn) return;
+     
      btn.addEventListener("click", () => {
+          const parentGroup = document.querySelector("[parent-group]");
+          if (!parentGroup) return;
+          if (parentGroup.children.length >= 2) return;
           addGroup();
           addNameValuePreviewImage();
           addColumeAttribute();
@@ -669,7 +708,7 @@ const addAttributeValue = (group) => {
                     const input = newPreview.querySelector('input');
                     input.setAttribute('accept', 'image/*')
 
-                    openImage()
+                    openImage(newPreview)
                     // initSortableSwap(newPreview.querySelector(".image-preview"));
                     window.addEventListener(FileUploadWithPreview.Events.IMAGE_ADDED, (event) => {
                          initSortable(newPreview.querySelector(`[data-upload-id = '${event.detail.uploadId}'] .image-preview`))
