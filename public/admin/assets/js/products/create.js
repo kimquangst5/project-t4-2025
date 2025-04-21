@@ -1,4 +1,6 @@
-var controls = [
+
+var listUploadPreview = []
+let controls = [
      'play-large', // Nút phát lớn ở giữa
      'restart', // Khởi động lại phát lại
      'rewind', // Tua lại theo thời gian tìm kiếm (mặc định là 10 giây)
@@ -17,19 +19,51 @@ var controls = [
      'fullscreen' // Bật toàn màn hình
 ];
 
-const player = new Plyr('video', {
-     controls
-});
 
-// Expose player so it can be used from the console
-window.player = player;
 
 const upload = new FileUploadWithPreview.FileUploadWithPreview(
      "upload-image-1", {
+          showFileSize: true,
+          accept: "image/*",
+
           multiple: true,
           maxFileCount: 6,
      },
 );
+listUploadPreview.push(upload)
+const addImageFromPath = (element) => {
+     const id = element.querySelector("[data-upload-id]")?.getAttribute('data-upload-id')
+     const form = element.querySelector('form')
+     form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          for (const upload of listUploadPreview) {
+               if (upload.uploadId == id){
+                    console.log(form.querySelector('sl-input').value);
+                    
+                    upload.addImagesFromPath([form.querySelector('sl-input').value])
+                    form.querySelector('sl-input').value = ''
+               }
+          }
+          
+     })
+     
+     
+}
+
+
+
+const UploadVideo1 = document.querySelector("[data-upload-id = 'upload-video-1']")
+if (UploadVideo1) {
+     const upload = new FileUploadWithPreview.FileUploadWithPreview(
+          'upload-video-1', {
+               showFileSize: true,
+
+               multiple: true,
+               maxFileCount: 6,
+          },
+     );
+     
+}
 
 const validator = new JustValidate("form", {
      validateBeforeSubmitting: true,
@@ -103,7 +137,13 @@ const initSortable = (group) => {
           animation: 250,
      });
 };
-initSortable(document?.querySelector(`[data-upload-id] .image-preview`))
+if (document?.querySelector(`[data-upload-id = 'upload-image-1' ]`)){
+     initSortable(document?.querySelector(`[data-upload-id = 'upload-image-1' ] .image-preview`))
+     addImageFromPath(document?.querySelector(`[data-upload-id = 'upload-image-1' ]`).parentElement.parentElement)
+
+}
+if (document ?.querySelector(`[data-upload-id = 'upload-video-1' ] .image-preview`))
+     initSortable(document ?.querySelector(`[data-upload-id = 'upload-video-1' ] .image-preview`))
 
 const formatPrice = (document) => {
      const moneyInput = document.querySelectorAll("[money-input]");
@@ -143,7 +183,7 @@ const initTomSelectMultiple = () => {
                     // Thay đổi phần “Add <value>…”
                     option_create: function (data, escape) {
                          // data.input là text người dùng gõ
-                         return '<div class="create">Ấn Enter để Thêm mới<strong>'+ ' ' +
+                         return '<div class="create">Ấn Enter để Thêm mới<strong>' + ' ' +
                               escape(data.input) +
                               '</strong>&hellip;</div>';
                     },
@@ -232,6 +272,8 @@ const openImage = (element) => {
      });
 };
 openImage(document.querySelector("[upload-image]"));
+if (document.querySelector("[data-upload-id='upload-video-1']"))
+openImage(document.querySelector("[data-upload-id='upload-video-1']").parentElement);
 
 const addGroup = () => {
      const parentGroup = document.querySelector("[parent-group]");
@@ -357,7 +399,7 @@ const addColumeAttribute = () => {
 const btnAddGroup = () => {
      const btn = document.querySelector("[btn-add-group]");
      if (!btn) return;
-     
+
      btn.addEventListener("click", () => {
           const parentGroup = document.querySelector("[parent-group]");
           if (!parentGroup) return;
@@ -705,6 +747,7 @@ const addAttributeValue = (group) => {
                               maxFileCount: 6,
                          },
                     );
+                    listUploadPreview.push(upload)
                     const input = newPreview.querySelector('input');
                     input.setAttribute('accept', 'image/*')
 
@@ -712,11 +755,11 @@ const addAttributeValue = (group) => {
                     // initSortableSwap(newPreview.querySelector(".image-preview"));
                     window.addEventListener(FileUploadWithPreview.Events.IMAGE_ADDED, (event) => {
                          initSortable(newPreview.querySelector(`[data-upload-id = '${event.detail.uploadId}'] .image-preview`))
-                         
+
 
                     })
 
-                    
+
                }
 
           }
@@ -730,22 +773,37 @@ const addAttributeValue = (group) => {
 window.addEventListener(
      FileUploadWithPreview.Events.IMAGE_MULTI_ITEM_CLICKED,
      (e) => {
-          console.log(e.detail);
-          const previewImage = document.createElement("div");
-          for (const file of e.detail.cachedFileArray) {
-               const img = document.createElement("img");
-               img.src = URL.createObjectURL(file);
-               previewImage.appendChild(img)
+          if (e.detail.uploadId == "upload-video-1"){
+               const drawer = document.querySelector('[drawer-preview-video]')
+               drawer.innerHTML = `
+                    <video id="player" playsinline controls data-poster="">
+                         <source src="${URL.createObjectURL(e.detail.file)}" type="video/mp4" />
+                    </video>
+               `
+               const player = new Plyr('video', {
+                    controls
+               });
+
+               window.player = player;
+               drawer.show()
+               
           }
-          console.log(previewImage);
-          const viewer = new Viewer(previewImage, {
-               navbar: true, // hiển thị ảnh phụ ở dưới
-               toolbar: true, // hiển thị toolbar
-               initialViewIndex: e.detail.index // mở vào ảnh thứ 3 (index = 2)
-          });
-          viewer.show();
-          
-          
+          else{
+               const previewImage = document.createElement("div");
+               for (const file of e.detail.cachedFileArray) {
+                    const img = document.createElement("img");
+                    img.src = URL.createObjectURL(file);
+                    previewImage.appendChild(img)
+               }
+               const viewer = new Viewer(previewImage, {
+                    navbar: true, // hiển thị ảnh phụ ở dưới
+                    toolbar: true, // hiển thị toolbar
+                    initialViewIndex: e.detail.index // mở vào ảnh thứ 3 (index = 2)
+               });
+               viewer.show();
+          }
+
+
      }
 );
 
@@ -764,7 +822,7 @@ const actionGroupAttribute = (group) => {
 const renderSeo = (input, element) => {
      if (!input) return;
      if (input.getAttribute('value')) element.innerHTML = input.getAttribute('value')
-     
+
      input.addEventListener('sl-input', () => {
           if (!element) return;
           element.innerHTML = input.value

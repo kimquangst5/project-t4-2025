@@ -1,3 +1,6 @@
+sl-drawer(label="Video sản phẩm", class="drawer-overview" style="--size: 100vw;)" drawer-preview-video)
+     
+
 div(
      summary="",
      open,
@@ -9,71 +12,28 @@ div(
                sl-icon(slot="prefix" name="plus-circle")
      div(class="px-[16px] py-[10px]" )
 
-          //- sl-button(variant='primary' size='small' outline btn-add-group) Thêm nhóm thuộc tính
-          //-      sl-icon(slot="prefix" name="plus-circle")
-          div Lưu ý: Khi thêm nhóm thuộc tính thì nhóm thuộc tính đầu tiên sẽ chứa các hình ảnh.
+          div(class="flex flex-col gap-[5px] my-[10px]") 
+               div(class="flex items-center gap-x-[10px]") 
+                    h4(class="text-[var(--color-text)] text-[13px]") Video sản phẩm
+               div(class="flex items-start gap-x-[40px] flex-1" )
+                    div(class="custom-file-container w-[70%]" data-upload-id="upload-video-1")
+                    //- video#player(playsinline, controls, data-poster="/path/to/poster.jpg" class="flex-1 w-[70%]")
+                    //-      source(src="/path/to/video.mp4", type="video/mp4")
+                    //-      source(src="/path/to/video.webm", type="video/webm")
+                    //-      // Captions are optional
+                    //-      track(kind="captions", label="English captions", src="/path/to/captions.vtt", srclang="en", default)
+
+                    //- div#player(class="flex-1 w-[70%]")
+                    //-      iframe(src="https://player.vimeo.com/video/76979871?loop=false&amp;byline=false&amp;portrait=false&amp;title=false&amp;speed=true&amp;transparent=0&amp;gesture=media", allowfullscreen, allowtransparency, allow="autoplay")
+
+                    div(class="flex items-center gap-x-[10px] w-[25%]")
+                         sl-icon(name="trash" class="cursor-pointer text-[#FA4F64]")
+                         
+                         sl-button(variant="success" class="flex-1") Chọn video
+                              sl-icon(slot="prefix" name="images" class="text-[white]")
+          div(class="text-[var(--color-text)] text-[13px] italic") Lưu ý: Khi thêm nhóm thuộc tính thì nhóm thuộc tính đầu tiên sẽ chứa các hình ảnh.
           
           div(parent-group) 
-               //- div(class="bg-[#F6F6F6] rounded-[10px] relative")
-                    div(class="py-[10px] px-[20px] flex flex-col gap-y-[10px] my-[10px]") 
-                         div(class="grid grid-cols-5 gap-[20px] mb-[10px]")
-                              div(class="flex items-center gap-x-[10px]") 
-                                   div(class="text-[14px]") Thuộc tính 1
-                                   //- sl-button(variant="default" size="small" circle)
-                              div(class="col-span-4 grid grid-cols-2 gap-[20px]") 
-                                   div(class="flex gap-x-[5px] items-center")
-                                        div(class="w-full") 
-                                             select(placeholder="Chọn thuộc tính..." multiple select-single class="w-full" name='select-attribute' select-attribute)
-                                                  option(value='color') Màu sắc
-                                                  option(value='size') Kích thước
-                         div(class="grid grid-cols-5 gap-[20px]")
-                              div(class="flex items-center gap-x-[10px]") 
-                                   div(class="text-[14px]") Tùy chọn
-                                   //- sl-button(variant="default" size="small" circle)
-                                   sl-icon(name="plus-circle" class="cursor-pointer text-[#8F87F1]")
-                              div(class="col-span-4 grid grid-cols-2 gap-[20px]" keo-tha) 
-                                   div(class="flex gap-x-[5px] items-center")
-                                        sl-icon(
-                                             name="arrows-move",
-                                             class="cursor-move hover:text-[#8F87F1]"
-                                        )
-                                        div(class="w-full") 
-                                             select(placeholder="Chọn giá trị..." multiple select-single class="w-full" name='select-attribute')
-                                                  option(value='1') Ví dụ 1
-                                                  option(value='2') Ví dụ 2
-                                        sl-icon(name="trash" class="cursor-pointer text-[#F7374F]")
-                    button(class="absolute top-[10px] right-[10px] aspect-square  flex items-center justify-center h-[30px] w-[30px]  rounded-[7px] hover:bg-[#EBECF3]")
-                         sl-icon(name="x-lg" class="")
-               //- div(class="bg-[#F6F6F6] rounded-[10px] relative")
-                    div(class="py-[10px] px-[20px] flex flex-col gap-y-[10px] my-[10px]") 
-                         div(class="grid grid-cols-5 gap-[20px] mb-[10px]")
-                              div(class="flex items-center gap-x-[10px]") 
-                                   div(class="text-[14px]") Thuộc tính 1
-                                   //- sl-button(variant="default" size="small" circle)
-                              div(class="col-span-4 grid grid-cols-2 gap-[20px]") 
-                                   div(class="flex gap-x-[5px] items-center")
-                                        div(class="w-full") 
-                                             select(placeholder="Chọn thuộc tính..." multiple select-single class="w-full" name='select-attribute' select-attribute)
-                                                  option(value='color') Màu sắc
-                                                  option(value='size') Kích thước
-                         div(class="grid grid-cols-5 gap-[20px]")
-                              div(class="flex items-center gap-x-[10px]") 
-                                   div(class="text-[14px]") Tùy chọn
-                                   //- sl-button(variant="default" size="small" circle)
-                                   sl-icon(name="plus-circle" class="cursor-pointer text-[#8F87F1]")
-                              div(class="col-span-4 grid grid-cols-2 gap-[20px]" keo-tha) 
-                                   div(class="flex gap-x-[5px] items-center")
-                                        sl-icon(
-                                             name="arrows-move",
-                                             class="cursor-move hover:text-[#8F87F1]"
-                                        )
-                                        div(class="w-full") 
-                                             select(placeholder="Chọn giá trị..." multiple select-single class="w-full" name='select-attribute')
-                                                  option(value='1') Ví dụ 1
-                                                  option(value='2') Ví dụ 2
-                                        sl-icon(name="trash" class="cursor-pointer text-[#F7374F]")
-                    button(class="absolute top-[10px] right-[10px] aspect-square  flex items-center justify-center h-[30px] w-[30px]  rounded-[7px] hover:bg-[#EBECF3]")
-                         sl-icon(name="x-lg" class="")  
 
           div(class="" parent-preview-image) 
                div(class="flex flex-col gap-[5px] my-[10px]" upload-image) 
@@ -85,9 +45,14 @@ div(
                          div(class="custom-file-container w-[70%]" data-upload-id="upload-image-1")
                          div(class="flex items-center gap-x-[10px] w-[25%]")
                               sl-icon(name="trash" class="cursor-pointer text-[#FA4F64]")
-                              
-                              sl-button(variant="success" class="flex-1") Chọn ảnh
-                                   sl-icon(slot="prefix" name="images" class="text-[white]")
+                              div(class="flex flex-col flex-1 gap-y-[10px]") 
+                                   sl-button(variant="success" class="flex-1") Chọn ảnh
+                                        sl-icon(slot="prefix" name="images" class="text-[white]")
+                                   form(class="flex items-center gap-x-[5px]") 
+                                        sl-input(variant="success" class="flex-1" size='small' placeholder="Dán link ảnh có sẵn...") Link ảnh
+                                        button(type="submit")
+                                             sl-icon(name="check-lg" class="text-[var(--green)] cursor-pointer")
+                                   
                
           
           table(class="block max-h-[600px] overflow-auto border-collapse no-scrollbar" table-attribute)
@@ -147,21 +112,3 @@ div(
                                    class="w-[80%] mx-auto"
                               )
           
-          div(class="flex flex-col gap-[5px] my-[10px]") 
-               div(class="flex items-center gap-x-[10px]") 
-                    h4(class="text-[var(--color-text)] text-[13px]") Video sản phẩm
-               div(class="flex items-start gap-x-[40px] flex-1" )
-                    video(controls, crossorigin, playsinline, poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg" controlsList="nodownload")
-                         //- source(src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4", type="video/mp4", size="576")
-                         //- source(src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4", type="video/mp4", size="720")
-                         source(src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4", type="video/mp4", size="1080")
-                         track(kind="captions", label="English", srclang="en", src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt", default)
-                         track(kind="captions", label="Français", srclang="fr", src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt")
-                         // Fallback for browsers that don't support the <video> element
-                         //- a(href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4", download) Download
-
-                    div(class="flex items-center gap-x-[10px] w-[25%]")
-                         sl-icon(name="trash" class="cursor-pointer text-[#FA4F64]")
-                         
-                         sl-button(variant="success" class="flex-1") Chọn video
-                              sl-icon(slot="prefix" name="images" class="text-[white]")
