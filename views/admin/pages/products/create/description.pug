@@ -5,11 +5,11 @@ sl-details(
 )
      div(class="flex flex-col gap-y-[15px]")
           div(class="flex flex-col gap-y-[5px]") 
-               h4(class="text-[var(--color-text)] text-[13px]") Mô tả ngắn
-               textarea(tiny-mce)
+               label(class="text-[var(--color-text)] text-[13px]" for='description-short') Mô tả ngắn
+               sl-textarea(tiny-mce id = 'description-short')
           div(class="flex flex-col gap-y-[5px]") 
-               h4(class="text-[var(--color-text)] text-[13px]") Nội dung
-               textarea(tiny-mce)
+               h4(class="text-[var(--color-text)] text-[13px]" ) Nội dung
+               sl-textarea(tiny-mce id = 'description-content')
           div(class="flex flex-col gap-y-[3px]")
                label(for="tag" class="text-[var(--color-text)] text-[0.875rem]") Thẻ bài viết
                select(
@@ -17,7 +17,7 @@ sl-details(
                     placeholder="Nhập để thêm mới thẻ bài viết...",
                     multiple,
                     value="",
-                    name="categories",
+                    name="tags",
                     select-multiple
                     class="focus:border-[1px] focus:border-[var(--sl-input-border-color-focus)]"
                )

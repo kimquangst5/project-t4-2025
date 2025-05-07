@@ -962,7 +962,7 @@ var Pixio = function() {
         var modalBox = `<div class="modal modal-subscribe bg-black/60 z-9999999 fixed top-0 lef-0 size-full overflow-x-hidden overflow-y-auto hidden" id="myModal">
 			<div class="modal-dialog max-w-[800px] max-sm:w-[350px] flex min-h-auto bg-white rounded-3.5xl relative w-auto pointer-events-none mx-auto sm:my-7" role="document">
 				<div class="max-w-[50%] max-md:hidden">
-					<img src="assets/images/adv-2.png" alt=""/ class="size-full object-cover">
+					<img src="/client/assets/images/adv-2.png" alt=""/ class="size-full object-cover">
 				</div>
 				<div class="relative flex flex-col w-full pointer-events-auto rounded-3.5xl bg-white py-10 px-14.5 max-md:p-5 max-w-[50%] max-sm:max-w-full items-center justify-center">
 					<button type="button" class="modal-close absolute right-0 bg-secondary top-0 text-white text-2xl size-10 leading-[1] z-9999999">

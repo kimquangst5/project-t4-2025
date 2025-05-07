@@ -1,25 +1,22 @@
-
-var listUploadPreview = []
+var listUploadPreview = [];
 let controls = [
-     'play-large', // Nút phát lớn ở giữa
-     'restart', // Khởi động lại phát lại
-     'rewind', // Tua lại theo thời gian tìm kiếm (mặc định là 10 giây)
-     'play', // Phát/tạm dừng phát lại
-     'fast-forward', // Tua nhanh theo thời gian tìm kiếm (mặc định là 10 giây)
-     'progress', // Thanh tiến trình và thanh trượt để phát lại và lưu vào bộ đệm
-     'current-time', // Thời gian phát lại hiện tại
-     'duration', // Thời lượng đầy đủ của phương tiện
-     'mute', // Bật tắt tiếng
-     'volume', // Điều khiển âm lượng
-     'captions', // Bật tắt chú thích
-     'settings', // Menu cài đặt
-     'pip', // Hình trong hình (hiện chỉ có Safari)
-     'airplay', // Airplay (hiện chỉ có Safari)
-     'download', // Hiển thị nút tải xuống có liên kết đến nguồn hiện tại hoặc URL tùy chỉnh mà bạn chỉ định trong tùy chọn của mình
-     'fullscreen' // Bật toàn màn hình
+     "play-large", // Nút phát lớn ở giữa
+     "restart", // Khởi động lại phát lại
+     "rewind", // Tua lại theo thời gian tìm kiếm (mặc định là 10 giây)
+     "play", // Phát/tạm dừng phát lại
+     "fast-forward", // Tua nhanh theo thời gian tìm kiếm (mặc định là 10 giây)
+     "progress", // Thanh tiến trình và thanh trượt để phát lại và lưu vào bộ đệm
+     "current-time", // Thời gian phát lại hiện tại
+     "duration", // Thời lượng đầy đủ của phương tiện
+     "mute", // Bật tắt tiếng
+     "volume", // Điều khiển âm lượng
+     "captions", // Bật tắt chú thích
+     "settings", // Menu cài đặt
+     "pip", // Hình trong hình (hiện chỉ có Safari)
+     "airplay", // Airplay (hiện chỉ có Safari)
+     "download", // Hiển thị nút tải xuống có liên kết đến nguồn hiện tại hoặc URL tùy chỉnh mà bạn chỉ định trong tùy chọn của mình
+     "fullscreen", // Bật toàn màn hình
 ];
-
-
 
 const upload = new FileUploadWithPreview.FileUploadWithPreview(
      "upload-image-1", {
@@ -30,75 +27,148 @@ const upload = new FileUploadWithPreview.FileUploadWithPreview(
           maxFileCount: 6,
      },
 );
-listUploadPreview.push(upload)
-const addImageFromPath = (element) => {
-     const id = element.querySelector("[data-upload-id]")?.getAttribute('data-upload-id')
-     const form = element.querySelector('form')
-     form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          for (const upload of listUploadPreview) {
-               if (upload.uploadId == id){
-                    console.log(form.querySelector('sl-input').value);
-                    
-                    upload.addImagesFromPath([form.querySelector('sl-input').value])
-                    form.querySelector('sl-input').value = ''
-               }
-          }
-          
-     })
-     
-     
+listUploadPreview.push(upload);
+
+function checkImageByLoad(url) {
+     return new Promise(resolve => {
+          const img = new Image();
+          img.onload = () => resolve(true);
+          img.onerror = () => resolve(false);
+          img.src = url;
+     });
 }
 
+const addImageFromPath = (element) => {
 
+     const id = element
+          .querySelector("[data-upload-id]")
+          .getAttribute("data-upload-id");
+     const addImage = element.querySelector("[add-image-from-path]");
+     const input = addImage.querySelector("sl-input");
+     if (!addImage || !input) return;
 
-const UploadVideo1 = document.querySelector("[data-upload-id = 'upload-video-1']")
+     input.addEventListener("keydown", async (e) => {
+          if (e.key === 'Enter') {
+               e.preventDefault();
+               if (input.value.length == 0) {
+                    alert_quick('Vui lòng nhập hoặc dán\n link ảnh!', 'warning')
+                    return;
+               }
+               for (const upload of listUploadPreview) {
+                    if (upload.uploadId == id) {
+                         const checkImage = await checkImageByLoad(input.value);
+                         if (checkImage) {
+                              upload.addImagesFromPath([
+                                   input.value,
+                              ]);
+                              input.value = "";
+                              alert_quick('Thêm ảnh thành công!', 'success')
+                         } else {
+                              alert_quick('Link ảnh không hợp lệ!', 'warning')
+
+                         }
+
+                    }
+               }
+          }
+
+     });
+};
+
+const UploadVideo1 = document.querySelector(
+     "[data-upload-id = 'upload-video-1']",
+);
 if (UploadVideo1) {
      const upload = new FileUploadWithPreview.FileUploadWithPreview(
-          'upload-video-1', {
+          "upload-video-1", {
                showFileSize: true,
 
                multiple: true,
                maxFileCount: 6,
+               accept: "video/*",
           },
      );
-     
 }
 
-const validator = new JustValidate("form", {
+const viewVideo = () => {
+     const viewVideo = document.querySelector("[view-video]");
+     if (!viewVideo) return;
+     viewVideo.addEventListener("click", () => {
+          const drawer = document.querySelector("[drawer-preview-video]");
+          if (!drawer) return;
+          drawer.show();
+     });
+};
+
+const validator = new JustValidate("form[form-validate]", {
      validateBeforeSubmitting: true,
+     // submitFormAutomatically: false,
 });
-validator
-     .addField(document.querySelector("[name = 'name']"), [{
+
+const validate = () => {
+     const name = document.querySelector("[name = 'name']");
+     const slug = document.querySelector("[name = 'slug']");
+     const categories = document.querySelector("[id = 'categories']");
+     const brand = document.querySelector("[id = 'brand']");
+
+     if (!name || !slug || !brand || !categories) return;
+     validator
+          .addField(name, [{
+                    rule: "required",
+                    errorMessage: "Vui lòng nhập tên sản phẩm",
+               },
+               {
+                    rule: "minLength",
+                    value: 20,
+                    errorMessage: `Ít nhất 20 ký tự`,
+               },
+               {
+                    rule: "maxLength",
+                    value: 255,
+                    errorMessage: "Tối đa 255 kí tự",
+               },
+          ])
+          .addField(slug, [{
+                    rule: "required",
+                    errorMessage: "Vui lòng nhập đường dẫn",
+               },
+               {
+                    rule: "minLength",
+                    value: 3,
+                    errorMessage: "Ít nhất 3 ký tự",
+               },
+               {
+                    rule: "maxLength",
+                    value: 255,
+                    errorMessage: "Tối đa 255 kí tự",
+               },
+          ])
+          .addField(categories, [{
                rule: "required",
-               errorMessage: "Vui lòng nhập tên sản phẩm",
-          },
-          {
-               rule: "minLength",
-               value: 20,
-               errorMessage: `Ít nhất 20 ký tự`,
-          },
-          {
-               rule: "maxLength",
-               value: 255,
-               errorMessage: "Tối đa 255 kí tự",
-          },
-     ])
-     .addField(document.querySelector("[name = 'slug']"), [{
+               errorMessage: "Vui lòng chọn hoặc nhập danh mục",
+          }, ])
+          .addField(brand, [{
                rule: "required",
-               errorMessage: "Vui lòng nhập đường dẫn",
-          },
-          {
-               rule: "minLength",
-               value: 3,
-               errorMessage: "Ít nhất 3 ký tự",
-          },
-          {
-               rule: "maxLength",
-               value: 255,
-               errorMessage: "Tối đa 255 kí tự",
-          },
-     ]);
+               errorMessage: "Vui lòng chọn hoặc nhập thương hiệu",
+          }, ]);
+     // validator
+     //      .showSuccessLabels(name, [{
+     //                rule: "required",
+     //                errorMessage: "Vui lòng nhập tên sản phẩm",
+     //           },
+     //           {
+     //                rule: "minLength",
+     //                value: 20,
+     //                errorMessage: `Ít nhất 20 ký tự`,
+     //           },
+     //           {
+     //                rule: "maxLength",
+     //                value: 255,
+     //                errorMessage: "Tối đa 255 kí tự",
+     //           },
+     //      ])
+};
+validate();
 
 document
      .querySelectorAll("select[name='select-attribute']")
@@ -116,20 +186,43 @@ const validateSelectAttribute = (element) => {
      }, ]);
 };
 
-// dragula([document.querySelector('[keo-tha]')], {
-//      moves: function (el, container, handle) {
-//           return handle.classList.contains('cursor-move');
-//      }
-// });
+const table = document.querySelector('[table-attribute] tbody')
+const sortable_table = Sortable.create(table, {
+     animation: 400,
+     sort: true,
+     dataIdAttr: 'data-id',
+     // disabled: true
+});
+
+const swapTwo = (i, j) => {
+     const order = sortable_table.toArray(); // [ 'a','b','c','d', ... ]
+     [order[i], order[j]] = [order[j], order[i]]; // hoán đổi trong mảng
+     sortable_table.sort(order); // SortableJS tự animate & cập nhật DOM
+     sortable_table.animateAll(); // chạy animation từ cũ → mới
+
+};
+
+const test = document.querySelector('[test-swap-table]')
+test.addEventListener('click', () => {
+     swapTwo(0, 2)
+})
+
 
 const initSortableSwap = (group) => {
      new Sortable(group, {
           animation: 250,
           ghostClass: "blue-background-class",
           handle: ".cursor-move",
-          swap: true, // Enable swap plugin
-          swapClass: "highlight", // The class applied to the hovered swap item
-     });
+          swap: true,
+          swapClass: "highlight",
+          onStart: (evt) => {
+               console.log(evt.oldIndex);
+          },
+          onEnd: (evt) => {
+               console.log(evt.newIndex);
+          }
+
+     })
 };
 
 const initSortable = (group) => {
@@ -137,13 +230,27 @@ const initSortable = (group) => {
           animation: 250,
      });
 };
-if (document?.querySelector(`[data-upload-id = 'upload-image-1' ]`)){
-     initSortable(document?.querySelector(`[data-upload-id = 'upload-image-1' ] .image-preview`))
-     addImageFromPath(document?.querySelector(`[data-upload-id = 'upload-image-1' ]`).parentElement.parentElement)
-
+if (document.querySelector(`[data-upload-id = 'upload-image-1' ]`)) {
+     initSortable(
+          document.querySelector(
+               `[data-upload-id = 'upload-image-1' ] .image-preview`,
+          ),
+     );
+     addImageFromPath(
+          document.querySelector(`[data-upload-id = 'upload-image-1' ]`)
+          .parentElement.parentElement,
+     );
 }
-if (document ?.querySelector(`[data-upload-id = 'upload-video-1' ] .image-preview`))
-     initSortable(document ?.querySelector(`[data-upload-id = 'upload-video-1' ] .image-preview`))
+if (
+     document.querySelector(
+          `[data-upload-id = 'upload-video-1' ] .image-preview`,
+     )
+)
+     initSortable(
+          document.querySelector(
+               `[data-upload-id = 'upload-video-1' ] .image-preview`,
+          ),
+     );
 
 const formatPrice = (document) => {
      const moneyInput = document.querySelectorAll("[money-input]");
@@ -159,16 +266,6 @@ const formatPrice = (document) => {
 };
 formatPrice(document);
 
-const main = () => {
-     // const btn = document.querySelector("[type='submit']")
-     // if (!btn) return
-     // btn.addEventListener('click', () => {
-     //      const errors = validator.isValid;
-     // })
-};
-
-main();
-
 const initTomSelectMultiple = () => {
      document.querySelectorAll("[select-multiple]").forEach((el) => {
           let settings = {
@@ -178,23 +275,34 @@ const initTomSelectMultiple = () => {
                     },
                },
                persist: true,
-               create: true,
+               create: function (input) {
+                    // Trả về một object option, với flag isNew = true
+                    return {
+                         value: input,
+                         text: input,
+                         isNew: true
+                    };
+               },
                render: {
-                    // Thay đổi phần “Add <value>…”
                     option_create: function (data, escape) {
-                         // data.input là text người dùng gõ
-                         return '<div class="create">Ấn Enter để Thêm mới<strong>' + ' ' +
+                         return (
+                              '<div class="create">Ấn Enter để Thêm mới<strong>' +
+                              " " +
                               escape(data.input) +
-                              '</strong>&hellip;</div>';
+                              "</strong>&hellip;</div>"
+                         );
                     },
                     // Thay đổi phần “No results found”
                     no_results: function (data, escape) {
                          return '<div class="no-results">Không có kết quả nào trong các kết quả có sẵn.</div>';
-                    }
-               }
-
+                    },
+               },
           };
-          new TomSelect(el, settings);
+          const tom = new TomSelect(el, settings);
+
+          tom.on("item_add", (value, itemEl) => {
+               initSortable(itemEl.parentElement);
+          });
      });
 };
 initTomSelectMultiple();
@@ -203,7 +311,15 @@ const initTomSelectSingle = (item) => {
      let settings = {
           persist: true,
           maxItems: 1,
-          create: true,
+          // create: true,
+          create: function (input) {
+               // Trả về một object option, với flag isNew = true
+               return {
+                    value: input,
+                    text: input,
+                    isNew: true
+               };
+          },
           sortField: {
                field: "text",
                direction: "asc",
@@ -213,25 +329,25 @@ const initTomSelectSingle = (item) => {
                // Thay đổi phần “Add <value>…”
                option_create: function (data, escape) {
                     // data.input là text người dùng gõ
-                    return '<div class="create">Ấn Enter để Thêm mới<strong>' + ' ' +
+                    return (
+                         '<div class="create">Ấn Enter để Thêm mới<strong>' +
+                         " " +
                          escape(data.input) +
-                         '</strong>&hellip;</div>';
+                         "</strong>&hellip;</div>"
+                    );
                },
                // Thay đổi phần “No results found”
                no_results: function (data, escape) {
                     return '<div class="no-results">Không có kết quả nào trong các kết quả có sẵn.</div>';
-               }
-          }
+               },
+          },
      };
      new TomSelect(item, settings);
      // document.querySelectorAll("[select-single]").forEach((el) => {
      //      if (el.tomselect) return;
 
-
      // });
 };
-
-
 
 // const openImage = () => {
 //      const listUploadImage = document.querySelectorAll("[upload-image]");
@@ -273,15 +389,55 @@ const openImage = (element) => {
 };
 openImage(document.querySelector("[upload-image]"));
 if (document.querySelector("[data-upload-id='upload-video-1']"))
-openImage(document.querySelector("[data-upload-id='upload-video-1']").parentElement);
+     openImage(
+          document.querySelector("[data-upload-id='upload-video-1']")
+          .parentElement,
+     );
 
-const addGroup = () => {
+const attribute_change = (element) => {
+     const select = element.querySelector(`[name = 'select-attribute']`);
+     select.addEventListener('change', async () => {
+          const select_id = extractItems(select.tomselect)[0];
+          const list_options = element.querySelectorAll(`[keo-tha] select`);
+          for await (const it of list_options) {
+               const ts = it.tomselect;
+               ts.clearOptions();
+               ts.clear(true)
+               if (select_id.id && extractItems(select.tomselect)[0].new == false) {
+                    await axios.get(`/api/attributes/detail/${select_id.id}`)
+                         .then(async (res) => {
+                              if (res.data.attributes) {
+                                   let array_option = []
+                                   for (const it of res.data.attributes.array_value) {
+                                        array_option.push({
+                                             value: it._id,
+                                             text: it.value
+                                        })
+                                   }
+
+                                   await ts.addOption(array_option);
+                              }
+
+                         })
+
+
+
+               }
+               ts.refreshOptions(false);
+          }
+     })
+
+}
+
+const addGroup = async () => {
      const parentGroup = document.querySelector("[parent-group]");
      if (!parentGroup) return;
      if (parentGroup.children.length >= 2) return;
      const newDiv = document.createElement("div");
      newDiv.classList.add("bg-[#F6F6F6]", "rounded-[10px]", "relative");
-     newDiv.innerHTML = `
+
+     let parent_html = ''
+     parent_html += `
           <div class="py-[10px] px-[20px] flex flex-col gap-y-[10px] my-[20px]">
                <div class="grid grid-cols-5 gap-[20px] mb-[10px]">
                     <div class="flex items-center gap-x-[10px]">
@@ -290,15 +446,20 @@ const addGroup = () => {
                     <div class="col-span-4 grid grid-cols-2 gap-[20px]">
                          <div class="flex gap-x-[5px] items-center">
                               <div class="w-full">
-                              <select select class = "w-full"
+                              <select  class = "w-full"
                               placeholder = "Chọn thuộc tính ${parentGroup.children.length + 1}..."
                               multiple = ""
-                              select-single = ''
-                                   name="select-attribute" select-attribute="${parentGroup.children.length + 1}">
-                                   <option value="color">Màu sắc</option>
-                                   <option value="size">Kích thước</option>
-                                   <option value=""></option>
-                              </select>
+                              select-single = '' name="select-attribute" select-attribute="${parentGroup.children.length + 1}">`
+     await axios.get('http://localhost:3000/api/attributes/list?select=name')
+          .then(res => {
+               if (res.data && res.data.attributes.length > 0) {
+                    for (const it of res.data.attributes) {
+                         parent_html += `<option value="${it._id}">${it.name}</option>`
+                    }
+
+               }
+          })
+     parent_html += `</select>
                               </div>
                          </div>
                     </div>
@@ -306,7 +467,7 @@ const addGroup = () => {
                <div class="grid grid-cols-5 items-start gap-[20px]">
                     <div class="flex items-center gap-x-[10px]">
                          <div class="text-[14px]">Tùy chọn</div>
-                         <sl-icon  btn-add-option = ${ parentGroup.children.length + 1 } class = "cursor-pointer text-[#8F87F1]"
+                         <sl-icon  btn-add-option = ${parentGroup.children.length + 1} class = "cursor-pointer text-[#8F87F1]"
                          name = "plus-circle" >
                          </sl-icon>
                     </div>
@@ -334,207 +495,210 @@ const addGroup = () => {
           <sl-icon name="x-lg"></sl-icon>
           </button>
      `;
+
+     newDiv.innerHTML = parent_html;
      parentGroup.appendChild(newDiv);
-     const listItemSelect = newDiv.querySelectorAll('select');
+     const listItemSelect = newDiv.querySelectorAll("select");
      for (const it of listItemSelect) {
-          initTomSelectSingle(it)
+          initTomSelectSingle(it);
      }
-     actionGroupAttribute(newDiv)
+     actionGroupAttribute(newDiv);
+     attribute_change(newDiv)
 };
 
 const addNameValuePreviewImage = () => {
-     const parentPreviewImage = document.querySelector('[parent-preview-image]')
+     const parentPreviewImage = document.querySelector("[parent-preview-image]");
      if (!parentPreviewImage) return;
      if (parentPreviewImage.children.length == 1) {
-          const nameAtribute = parentPreviewImage.children[0].querySelector("[name-attribute]")
-          nameAtribute.innerHTML = 'Thuộc tính 1:'
-
-     } else if (parentPreviewImage.children.length > 1) {
-
-     }
-
-
-}
+          const nameAtribute =
+               parentPreviewImage.children[0].querySelector("[name-attribute]");
+          nameAtribute.innerHTML = "Thuộc tính 1:";
+     } else if (parentPreviewImage.children.length > 1) {}
+};
 
 const addColumeThead = (table) => {
-     const parentGroup = document.querySelector("[parent-group]")
-     if (parentGroup.children.length > 2) return
-     const thead = table.querySelector('thead')
-     const tr = thead.querySelector('tr')
-     const sku = thead.querySelector('[insert-attr-before]')
+     const parentGroup = document.querySelector("[parent-group]");
+     if (parentGroup.children.length > 2) return;
+     const thead = table.querySelector("thead");
+     const tr = thead.querySelector("tr");
+     const sku = thead.querySelector("[insert-attr-before]");
      const newTh = document.createElement("th");
-     newTh.setAttribute("colume", parentGroup.children.length)
-     newTh.className = 'px-[10px] min-w-[150px] sticky left-0 bg-[#ECEEF0]';
-     newTh.innerHTML = `Thuộc tính ${parentGroup.children.length}`
-     tr.insertBefore(newTh, sku)
-}
+     newTh.setAttribute("colume", parentGroup.children.length);
+     newTh.className = "px-[10px] min-w-[150px] sticky left-0 bg-[#ECEEF0]";
+     newTh.innerHTML = `Thuộc tính ${parentGroup.children.length}`;
+     tr.insertBefore(newTh, sku);
+};
 
 const addColumeTbody = (table) => {
-     const parentGroup = document.querySelector("[parent-group]")
-     if (parentGroup.children.length > 2) return
-     const tbody = table.querySelector('tbody')
-     const listRow = tbody.querySelectorAll('tr')
+     const parentGroup = document.querySelector("[parent-group]");
+     if (parentGroup.children.length > 2) return;
+     const tbody = table.querySelector("tbody");
+     const listRow = tbody.querySelectorAll("tr");
      if (listRow.length > 0) {
           for (const row of listRow) {
-               const sku = row.querySelector('[insert-attr-before]')
+               const sku = row.querySelector("[insert-attr-before]");
                const newTd = document.createElement("td");
-               newTd.className = 'px-[10px] sticky z-20 left-0 bg-[white]';
-               newTd.setAttribute("colume", parentGroup.children.length)
+               newTd.className = "px-[10px] sticky z-20 left-0 bg-[white]";
+               newTd.setAttribute("colume", parentGroup.children.length);
                if (parentGroup.children.length == 1)
-                    newTd.setAttribute("rowspan", 1)
+                    newTd.setAttribute("rowspan", 1);
                // newTd.innerHTML = `Gía trị ${parentGroup.children.length}`
-               row.insertBefore(newTd, sku)
+               row.insertBefore(newTd, sku);
           }
      }
-
-}
+};
 
 const addColumeAttribute = () => {
-     const table = document.querySelector('[table-attribute]')
+     const table = document.querySelector("[table-attribute]");
      if (!table) return;
-     addColumeThead(table)
-     addColumeTbody(table)
-}
+     addColumeThead(table);
+     addColumeTbody(table);
+};
 
 const btnAddGroup = () => {
      const btn = document.querySelector("[btn-add-group]");
      if (!btn) return;
 
-     btn.addEventListener("click", () => {
+     btn.addEventListener("click", async () => {
           const parentGroup = document.querySelector("[parent-group]");
           if (!parentGroup) return;
           if (parentGroup.children.length >= 2) return;
-          addGroup();
+          await addGroup();
           addNameValuePreviewImage();
           addColumeAttribute();
-
      });
 };
 btnAddGroup();
 
 const updateNameAttributePreviewImage = (value, text) => {
-     const parentPreview = document.querySelector("[parent-preview-image]")
+     const parentPreview = document.querySelector("[parent-preview-image]");
      if (!parentPreview) return;
-     const listName = parentPreview.querySelectorAll('[name-attribute]')
+     const listName = parentPreview.querySelectorAll("[name-attribute]");
      for (const it of listName) {
-          it.innerHTML = text + ':'
-          it.setAttribute('name-attribute', value)
-
-
+          it.innerHTML = text + ":";
+          it.setAttribute("name-attribute", value);
      }
-
-}
+};
 const updateThead = (table, value, text, number) => {
-     const thead = table.querySelector('thead')
-     const tr = thead.querySelector('tr');
-     const th = tr.querySelector(`[colume = '${number}']`)
+     const thead = table.querySelector("thead");
+     const tr = thead.querySelector("tr");
+     const th = tr.querySelector(`[colume = '${number}']`);
      th.innerHTML = text;
      if (!value) {
-          th.classList.add('border-[2px]', 'border-[red]')
+          th.classList.add("border-[2px]", "border-[red]");
      } else {
-          if (th.className.includes('border-[2px]', 'border-[red]'))
-               th.classList.remove('border-[2px]', 'border-[red]')
+          if (th.className.includes("border-[2px]", "border-[red]"))
+               th.classList.remove("border-[2px]", "border-[red]");
      }
-     th.setAttribute('attribute', value)
+     th.setAttribute("attribute", value);
+};
 
-}
-
-const updateBody = (table, value, text, number) => {
-
-}
+const updateBody = (table, value, text, number) => {};
 const updateNameAttributeTable = (value, text, number) => {
-     const table = document.querySelector('[table-attribute]')
-     updateThead(table, value, text, number)
-}
+     const table = document.querySelector("[table-attribute]");
+     updateThead(table, value, text, number);
+};
 
 const changeAttribute = (group) => {
-     const attribute = group.querySelector('[select-attribute]')
-     if (!attribute) return
-     attribute.addEventListener('change', () => {
-          const number = parseInt(attribute.getAttribute("select-attribute"))
-          const option = attribute.querySelector(`option[value='${attribute.value}']`)
+     const attribute = group.querySelector("[select-attribute]");
+     if (!attribute) return;
+     attribute.addEventListener("change", () => {
+          const number = parseInt(attribute.getAttribute("select-attribute"));
+          const option = attribute.querySelector(
+               `option[value='${attribute.value}']`,
+          );
           if (number == 1) {
-               updateNameAttributePreviewImage(attribute.value, option.innerHTML)
+               updateNameAttributePreviewImage(attribute.value, option.innerHTML);
           }
-          updateNameAttributeTable(attribute.value, option.innerHTML, number)
-
-     })
-
-}
+          updateNameAttributeTable(attribute.value, option.innerHTML, number);
+     });
+};
 
 const updateAttributeValueInPreviewImage = (item, select) => {
-     const group1 = document.querySelector("[parent-group]").children[0]
-     const listOption = group1.querySelector("[keo-tha]")
-     const arrayList = Array.from(listOption.children)
-     const index = arrayList.indexOf(item)
-     const parentImage = document.querySelector('[parent-preview-image]')
-     const itemImage = parentImage.children[index].querySelector('[value-atribute]')
-     const option = select.querySelector(`[value='${select.value}']`)
+     const group1 = document.querySelector("[parent-group]").children[0];
+     const listOption = group1.querySelector("[keo-tha]");
+     const arrayList = Array.from(listOption.children);
+     const index = arrayList.indexOf(item);
+     const parentImage = document.querySelector("[parent-preview-image]");
+     const itemImage =
+          parentImage.children[index].querySelector("[value-atribute]");
+     const option = select.querySelector(`[value='${select.value}']`);
      if (parentImage.children[index]) {
-          itemImage.setAttribute('value', select.value)
-          itemImage.innerHTML = option.innerHTML
+          itemImage.setAttribute("value", select.value);
+          itemImage.innerHTML = option.innerHTML;
      } else {}
-
-
-}
+};
 
 const updateColumeAttributeValue = (item, row) => {
-     const select = item.querySelector('select')
-     select.addEventListener('change', () => {
-          const option = item.querySelector(`option[value='${select.value}']`)
-          const value = parseInt(item.getAttribute('colume-attribute-value'))
-          validateSelectAttribute(select)
+     const select = item.querySelector("select");
+     select.addEventListener("change", () => {
+          const option = item.querySelector(`option[value='${select.value}']`);
+          const value = parseInt(item.getAttribute("colume-attribute-value"));
+          validateSelectAttribute(select);
           if (value == 1) {
-               const td = row.querySelector(`td[colume='${value}']`)
+               const td = row.querySelector(`td[colume='${value}']`);
                if (!select.value) {
-                    td.classList.add('border-[2px]', 'border-[red]')
+                    td.classList.add("border-[2px]", "border-[red]");
                } else {
-                    if (td.className.includes('border-[2px]', 'border-[red]'))
-                         td.classList.remove('border-[2px]', 'border-[red]')
+                    if (td.className.includes("border-[2px]", "border-[red]"))
+                         td.classList.remove("border-[2px]", "border-[red]");
                }
-               td.setAttribute('value', select.value)
+               td.setAttribute("value", select.value);
                td.innerHTML = option.innerHTML;
-               updateAttributeValueInPreviewImage(item, select)
+               updateAttributeValueInPreviewImage(item, select);
           } else if (value == 2) {
-               const table = document.querySelector('[table-attribute]')
-               const tbody = table.querySelector('tbody')
-               const listRow = tbody.querySelectorAll(`td[colume='${value}']`)
+               const table = document.querySelector("[table-attribute]");
+               const tbody = table.querySelector("tbody");
+               const listRow = tbody.querySelectorAll(`td[colume='${value}']`);
 
                // làm lại
-               const attributeValueGroup1 = document.querySelectorAll('[keo-tha]')[0]
-               const attributeValueGroup2 = document.querySelectorAll('[keo-tha]')[1]
+               const attributeValueGroup1 =
+                    document.querySelectorAll("[keo-tha]")[0];
+               const attributeValueGroup2 =
+                    document.querySelectorAll("[keo-tha]")[1];
                const childrenArray = Array.from(attributeValueGroup2.children);
                const index = childrenArray.indexOf(item);
                for (let i = 1; i <= attributeValueGroup1.children.length; i++) {
-                    let current = i
-                    const tdCurrent = tbody.children[((childrenArray.length * i) - childrenArray.length) + index].querySelector(`[colume="${value}"]`)
-                    tdCurrent.innerHTML = option.innerHTML
-                    tdCurrent.setAttribute('value', select.value)
+                    let current = i;
+                    const tdCurrent = tbody.children[
+                         childrenArray.length * i - childrenArray.length + index
+                    ].querySelector(`[colume="${value}"]`);
+                    tdCurrent.innerHTML = option.innerHTML;
+                    tdCurrent.setAttribute("value", select.value);
                     if (!select.value) {
-                         tdCurrent.classList.add('border-[2px]', 'border-[red]')
+                         tdCurrent.classList.add("border-[2px]", "border-[red]");
                     } else {
-                         if (tdCurrent.className.includes('border-[2px]', 'border-[red]'))
-                              tdCurrent.classList.remove('border-[2px]', 'border-[red]')
+                         if (
+                              tdCurrent.className.includes(
+                                   "border-[2px]",
+                                   "border-[red]",
+                              )
+                         )
+                              tdCurrent.classList.remove(
+                                   "border-[2px]",
+                                   "border-[red]",
+                              );
                     }
                }
           }
-     })
-}
+     });
+};
 
 const changeAttributeValue = (group) => {
-     const numberGroup = group.querySelector('[select-attribute]').getAttribute('select-attribute') // lấy ra thuộc tính 1 hay 2
-     const countChild = group.querySelector('[keo-tha]'); // đây là số lượng các tùy chọn
-     const table = document.querySelector("[table-attribute]")
+     const numberGroup = group
+          .querySelector("[select-attribute]")
+          .getAttribute("select-attribute"); // lấy ra thuộc tính 1 hay 2
+     const countChild = group.querySelector("[keo-tha]"); // đây là số lượng các tùy chọn
+     const table = document.querySelector("[table-attribute]");
      if (!table) return;
-     const body = table.querySelector('tbody')
-     updateColumeAttributeValue(countChild.children[0], body.children[0])
-
-}
+     const body = table.querySelector("tbody");
+     updateColumeAttributeValue(countChild.children[0], body.children[0]);
+};
 
 const addAttributeValueInGroup = (group) => {
-     const parent = group.querySelector('[keo-tha]')
-     const newOption = document.createElement('div')
-     newOption.classList.add('flex', 'gap-x-[5px]', 'items-center')
+     const parent = group.querySelector("[keo-tha]");
+     const newOption = document.createElement("div");
+     newOption.classList.add("flex", "gap-x-[5px]", "items-center");
      newOption.innerHTML = `
                <sl-icon class="cursor-move hover:text-[#8F87F1]" name="arrows-move"></sl-icon>
                <div class="w-full">
@@ -546,86 +710,109 @@ const addAttributeValueInGroup = (group) => {
                     </select>
                </div>
                <sl-icon class="cursor-pointer text-[#F7374F]" name="trash"></sl-icon>
-          `
-     parent.appendChild(newOption)
-     initTomSelectSingle(newOption.querySelector('select'))
+          `;
+     parent.appendChild(newOption);
+     initTomSelectSingle(newOption.querySelector("select"));
      // return newOption
-}
+};
 
 const addAttributeValueInTable = (group) => {
-     const table = document.querySelector("[table-attribute]")
+     const table = document.querySelector("[table-attribute]");
      if (!table) return;
-     const body = table.querySelector('tbody')
+     const body = table.querySelector("tbody");
      if (!body) return;
-     const newRows = document.createElement('tr');
-     newRows.classList.add('h-[50px]', 'text-center')
+     const newRows = document.createElement("tr");
+     newRows.classList.add("h-[50px]", "text-center");
 
-     newRows.innerHTML = body.children[0].innerHTML
-     const listColume = newRows.querySelectorAll('[colume]')
+     newRows.innerHTML = body.children[0].innerHTML;
+     const listColume = newRows.querySelectorAll("[colume]");
      if (listColume && listColume.length > 0) {
           for (const it of listColume) {
-               it.innerHTML = ''
+               it.innerHTML = "";
           }
      }
-     body.appendChild(newRows)
-}
+     body.appendChild(newRows);
+};
 
 const addAttributeValue = (group) => {
-     const btnAdd = group.querySelector('[btn-add-option]')
-     if (!btnAdd) return
-     btnAdd.addEventListener('click', () => {
+     const btnAdd = group.querySelector("[btn-add-option]");
+     if (!btnAdd) return;
+     btnAdd.addEventListener("click", async () => {
           // addAttributeValueInGroup(group)
-          const parent = group.querySelector('[keo-tha]')
-          const newOption = document.createElement('div')
-          newOption.setAttribute('colume-attribute-value', parseInt(btnAdd.getAttribute('btn-add-option')))
-          newOption.classList.add('flex', 'gap-x-[5px]', 'items-center')
-          newOption.innerHTML = `
+          const parent = group.querySelector("[keo-tha]");
+          const newOption = document.createElement("div");
+          newOption.setAttribute(
+               "colume-attribute-value",
+               parseInt(btnAdd.getAttribute("btn-add-option")),
+          );
+          newOption.classList.add("flex", "gap-x-[5px]", "items-center");
+          let html_new_options = ''
+          html_new_options += `
                <sl-icon class="cursor-move hover:text-[#8F87F1]" name="arrows-move"></sl-icon>
                <div class="w-full">
-                    <select class="w-full" placeholder="Chọn giá trị..." multiple="" select-single="" name="select-attribute">
-                         <option value="1">Ví dụ 1</option>
-                         <option value="2">Ví dụ 2</option>
-                    </select>
+                    <select class="w-full" placeholder="Chọn giá trị..." multiple="" select-single="" name="select-attribute">`
+          const ts = extractItems(group.querySelector(`[name = 'select-attribute']`).tomselect)[0]
+          if (ts && ts.new == false) {
+               await axios.get(`/api/attributes/detail/${ts.id}`)
+                    .then(res => {
+                         if (res.data && res.data.attributes.array_value.length > 0) {
+                              for (const it of res.data.attributes.array_value) {
+                                   html_new_options += `
+                                                       <option value="${it._id}">${it.value}</option>
+                                                  `
+                              }
+                         }
+
+                    })
+          }
+          html_new_options += `</select>
                </div>
                <sl-icon class="cursor-pointer text-[#F7374F]" name="trash"></sl-icon>
-          `
-          parent.appendChild(newOption)
-          initTomSelectSingle(newOption.querySelector('select'))
+          `;
+          newOption.innerHTML = html_new_options;
+          parent.appendChild(newOption);
+          initTomSelectSingle(newOption.querySelector("select"));
+
+
           // addAttributeValueInTable(group)
           // Hết addAttributeValueInGroup(group)
 
           // addAttributeValueInTable
-          if (parseInt(btnAdd.getAttribute('btn-add-option')) == 1) {
+          if (parseInt(btnAdd.getAttribute("btn-add-option")) == 1) {
                //Nếu group là 1
-               const table = document.querySelector("[table-attribute]")
+               const table = document.querySelector("[table-attribute]");
                if (!table) return;
-               const body = table.querySelector('tbody')
+               const body = table.querySelector("tbody");
                if (!body) return;
-               const rowSpan = body.children[0].querySelector("[rowspan]")
-               const valueRowSpan = parseInt(rowSpan.getAttribute('rowspan'))
+               const rowSpan = body.children[0].querySelector("[rowspan]");
+               const valueRowSpan = parseInt(rowSpan.getAttribute("rowspan"));
                for (let i = 0; i < valueRowSpan; i++) {
-                    const newRows = document.createElement('tr');
-                    newRows.classList.add('h-[50px]', 'text-center')
+                    const newRows = document.createElement("tr");
+                    newRows.classList.add("h-[50px]", "text-center");
 
-                    newRows.innerHTML = body.children[i].innerHTML
-                    const td = newRows.querySelector("[colume = '1']")
+                    newRows.innerHTML = body.children[i].innerHTML;
+                    const td = newRows.querySelector("[colume = '1']");
                     if (td) {
-                         td.innerHTML = '';
-                         td.setAttribute('value', '');
+                         td.innerHTML = "";
+                         td.setAttribute("value", "");
                     }
 
-                    formatPrice(newRows)
-                    body.appendChild(newRows)
-                    updateColumeAttributeValue(newOption, newRows)
+                    formatPrice(newRows);
+                    body.appendChild(newRows);
+                    updateColumeAttributeValue(newOption, newRows);
                }
-          } else if (parseInt(btnAdd.getAttribute('btn-add-option')) == 2) {
-               const attributeValueGroup1 = document.querySelector('[keo-tha]');
+          } else if (parseInt(btnAdd.getAttribute("btn-add-option")) == 2) {
+               const attributeValueGroup1 = document.querySelector("[keo-tha]");
                for (let i = 1; i <= attributeValueGroup1.children.length; i++) {
-                    const tbody = document.querySelector('[table-attribute] tbody')
+                    const tbody = document.querySelector("[table-attribute] tbody");
                     if (!tbody) return;
-                    tbody.children[(i * parent.children.length) - parent.children.length].querySelector("[rowspan]").setAttribute('rowspan', parent.children.length)
-                    const newRow = document.createElement('tr');
-                    newRow.classList.add('h-[50px]', 'text-center')
+                    tbody.children[
+                              i * parent.children.length - parent.children.length
+                         ]
+                         .querySelector("[rowspan]")
+                         .setAttribute("rowspan", parent.children.length);
+                    const newRow = document.createElement("tr");
+                    newRow.classList.add("h-[50px]", "text-center");
                     newRow.innerHTML = `
                          <td class="text-left w-[1%]">
                          <sl-switch
@@ -692,38 +879,52 @@ const addAttributeValue = (group) => {
                          ></sl-input>
                          </td>
 
-                    `
+                    `;
                     if (tbody.children[i * parent.children.length - 1]) {
-                         tbody.insertBefore(newRow, tbody.children[i * parent.children.length - 1]);
-                         formatPrice(newRow)
+                         tbody.insertBefore(
+                              newRow,
+                              tbody.children[i * parent.children.length - 1],
+                         );
+                         formatPrice(newRow);
                     } else {
                          tbody.appendChild(newRow);
-                         formatPrice(newRow)
-
+                         formatPrice(newRow);
                     }
-
-
                }
-               updateColumeAttributeValue(newOption, undefined)
-
-
+               updateColumeAttributeValue(newOption, undefined);
           }
           // Hết addAttributeValueInTable
 
           // Add Item Image
 
-          const arrayList = Array.from(parent.children)
-          const index = arrayList.indexOf(newOption)
+          const arrayList = Array.from(parent.children);
+          const index = arrayList.indexOf(newOption);
 
-          const parentImage = document.querySelector('[parent-preview-image]')
-          if (parseInt(btnAdd.getAttribute('btn-add-option')) == 1 && !parentImage.children[index]) {
+          const parentImage = document.querySelector("[parent-preview-image]");
+          if (
+               parseInt(btnAdd.getAttribute("btn-add-option")) == 1 &&
+               !parentImage.children[index]
+          ) {
                const newPreview = document.createElement("div");
-               newPreview.setAttribute('upload-image', '');
-               newPreview.className = 'flex flex-col gap-[5px] my-[10px]'
+               newPreview.setAttribute("upload-image", "");
+               newPreview.className = "flex flex-col gap-[5px] my-[10px]";
+               let name_attribute = '';
+               const tom_select_att = group.querySelector(`[name = 'select-attribute']`).tomselect
+               let {
+                    options
+               } = tom_select_att
+               if (extractItems(tom_select_att)[0]) {
+                    console.log(extractItems(tom_select_att)[0]);
+                    console.log(options[extractItems(tom_select_att)[0].id].text);
+                    name_attribute = options[extractItems(tom_select_att)[0].id].text
+
+               }
+
+
                newPreview.innerHTML = `
                     <div class="flex items-center gap-x-[10px]">
-                         <h4 class="text-[#626262] text-[13px]">Ảnh sản phẩm</h4>
-                         <h4 class="text-[#626262] text-[13px]" name-attribute=""></h4>
+                         <h4 class="text-[#626262] text-[13px]">Ảnh sản phẩm (Tối đa 6 ảnh)</h4>
+                         <h4 class="text-[#626262] text-[13px]" name-attribute="">${name_attribute}</h4>
                          <h4 class="text-[#626262] text-[13px]" value-atribute=""></h4>
                     </div>
                     <div class="flex items-start gap-x-[40px]">
@@ -732,106 +933,387 @@ const addAttributeValue = (group) => {
                          </div>
                          <div class="flex items-center gap-x-[10px] w-[25%]">
                               <sl-icon class="cursor-pointer text-[#FA4F64]" name="trash"></sl-icon>
-                              <sl-button class="flex-1" variant="success" size="medium">Chọn ảnh<sl-icon
-                                        class="text-[white]" slot="prefix" name="images"></sl-icon>
-                              </sl-button>
+                              <div class="flex flex-col flex-1 gap-y-[10px]">
+                                   <sl-button class="flex-1" variant="success" size="small">Chọn ảnh<sl-icon
+                                             class="text-[white]" slot="prefix" name="images"></sl-icon>
+                                   </sl-button>
+                                   <div class = "flex items-center gap-x-[5px]"
+                                   add-image-from-path = ''>
+                                        <sl-input class="flex-1" variant="success" size="small" placeholder="Dán link ảnh có sẵn..." type="text"></sl-input>
+                                        <button type="submit">
+                                             <sl-icon class="text-[var(--green)] cursor-pointer" name="check-lg">
+                                             </sl-icon>
+                                        </button>
+                                   </div>
+                              </div>
+                              
                          </div>
                     </div>
-               `
-               parentImage.appendChild(newPreview)
-               const check = newPreview.querySelector(`[data-upload-id]`)
+               `;
+               parentImage.appendChild(newPreview);
+               const check = newPreview.querySelector(`[data-upload-id]`);
                if (check) {
+                    addImageFromPath(newPreview);
                     const upload = new FileUploadWithPreview.FileUploadWithPreview(
                          `upload-image-${index + 1}`, {
                               multiple: true,
                               maxFileCount: 6,
                          },
                     );
-                    listUploadPreview.push(upload)
-                    const input = newPreview.querySelector('input');
-                    input.setAttribute('accept', 'image/*')
+                    listUploadPreview.push(upload);
+                    const input = newPreview.querySelector("input");
+                    input.setAttribute("accept", "image/*");
 
-                    openImage(newPreview)
+                    openImage(newPreview);
                     // initSortableSwap(newPreview.querySelector(".image-preview"));
-                    window.addEventListener(FileUploadWithPreview.Events.IMAGE_ADDED, (event) => {
-                         initSortable(newPreview.querySelector(`[data-upload-id = '${event.detail.uploadId}'] .image-preview`))
-
-
-                    })
-
-
+                    window.addEventListener(
+                         FileUploadWithPreview.Events.IMAGE_ADDED,
+                         async (event) => {
+                              const uploadId = event.detail.uploadId;
+                              const intervalId = setInterval(() => {
+                                   const previewEl = document.querySelector(
+                                        `[data-upload-id="${uploadId}"] .image-preview`
+                                   );
+                                   if (previewEl) {
+                                        initSortable(previewEl);
+                                        clearInterval(intervalId);
+                                   }
+                              }, 1000);
+                         },
+                    );
                }
-
           }
           //  Hết Add Item Image
           initSortableSwap(group.querySelector("[keo-tha]"));
-
-
-     })
-}
+     });
+};
 
 window.addEventListener(
      FileUploadWithPreview.Events.IMAGE_MULTI_ITEM_CLICKED,
      (e) => {
-          if (e.detail.uploadId == "upload-video-1"){
-               const drawer = document.querySelector('[drawer-preview-video]')
+          if (e.detail.uploadId == "upload-video-1") {
+               const drawer = document.querySelector("[drawer-preview-video]");
+               if (drawer.children[0]) {}
+
                drawer.innerHTML = `
-                    <video id="player" playsinline controls data-poster="">
+                    <video video id = "player"
+                    playsinline controls autoplay loop>
                          <source src="${URL.createObjectURL(e.detail.file)}" type="video/mp4" />
                     </video>
-               `
-               const player = new Plyr('video', {
-                    controls
+               `;
+               const player = new Plyr("video", {
+                    controls,
                });
 
                window.player = player;
-               drawer.show()
-               
-          }
-          else{
+               drawer.show();
+               viewVideo();
+          } else {
                const previewImage = document.createElement("div");
                for (const file of e.detail.cachedFileArray) {
                     const img = document.createElement("img");
                     img.src = URL.createObjectURL(file);
-                    previewImage.appendChild(img)
+                    previewImage.appendChild(img);
                }
                const viewer = new Viewer(previewImage, {
                     navbar: true, // hiển thị ảnh phụ ở dưới
                     toolbar: true, // hiển thị toolbar
-                    initialViewIndex: e.detail.index // mở vào ảnh thứ 3 (index = 2)
+                    initialViewIndex: e.detail.index, // mở vào ảnh thứ 3 (index = 2)
                });
                viewer.show();
           }
-
-
-     }
+     },
 );
 
-
-
 const input = document.querySelector("[parent-preview-image] input[accept]");
-if (input) input.setAttribute('accept', 'image/*')
+if (input) input.setAttribute("accept", "image/*");
 
 const actionGroupAttribute = (group) => {
      changeAttribute(group);
      changeAttributeValue(group);
-     addAttributeValue(group)
+     addAttributeValue(group);
      // deleteGroupAtrribute()
-}
+};
 
 const renderSeo = (input, element) => {
      if (!input) return;
-     if (input.getAttribute('value')) element.innerHTML = input.getAttribute('value')
+     if (input.getAttribute("value"))
+          element.innerHTML = input.getAttribute("value");
 
-     input.addEventListener('sl-input', () => {
+     input.addEventListener("sl-input", () => {
           if (!element) return;
-          element.innerHTML = input.value
-     })
-}
-const seoDescription = document.querySelector("[name='seo-description']")
-const elementSeoDescription = document.querySelector('[seo-description]')
-const seoTitle = document.querySelector("[name='seo-title']")
-const elementSeoTitle = document.querySelector('[seo-title]')
+          element.innerHTML = input.value;
+     });
+};
+const seoDescription = document.querySelector("[name='seo-description']");
+const elementSeoDescription = document.querySelector("[seo-description]");
+const seoTitle = document.querySelector("[name='seo-title']");
+const elementSeoTitle = document.querySelector("[seo-title]");
 
-renderSeo(seoDescription, elementSeoDescription)
-renderSeo(seoTitle, elementSeoTitle)
+renderSeo(seoDescription, elementSeoDescription);
+renderSeo(seoTitle, elementSeoTitle);
+
+const initSlug = (string) => {
+     const result = slugify(string, {
+          replacement: "-", // replace spaces with replacement character, defaults to `-`
+          remove: undefined, // remove characters that match regex, defaults to `undefined`
+          lower: true, // convert to lower case, defaults to `false`
+          strict: true, // strip special characters except replacement, defaults to `false`
+          locale: "vi", // language code of the locale to use
+          trim: true, // trim leading and trailing replacement chars, defaults to `true`
+     });
+     return result;
+};
+
+const btnSlug = () => {
+     const btnSlug = document.querySelector("[btn-slug");
+     if (!btnSlug) return;
+     btnSlug.addEventListener("click", () => {
+          const name = document.querySelector(`[name = 'name' ]`);
+          const slug = document.querySelector(`[name = 'slug' ]`);
+          if (name.value) {
+               const result = initSlug(name.value);
+               slug.value = result;
+               alert_quick("Đã đồng bộ đường dẫn", "success");
+          } else {
+               alert(
+                    "Bạn chưa nhập tên sản phẩm?",
+                    "warning",
+                    "center",
+                    "Vui lòng nhập tên sản phẩm để đồng bộ đường dẫn!",
+                    false,
+               );
+          }
+     });
+};
+btnSlug();
+
+const extractItems = (tomselect) => {
+     let {
+          items,
+          options
+     } = tomselect;
+     return items.map((id) => ({
+          id: options[id].value,
+          new: options[id].isNew == true,
+     }));
+};
+
+const main = () => {
+     const form = document.querySelector("form[form-validate]");
+     if (!form) return;
+     form.addEventListener("submit", (e) => {
+          e.preventDefault();
+     });
+     const btnSubmit = document.querySelector("[btn-submit]");
+     btnSubmit.addEventListener("click", () => {
+          const parentGroup = document.querySelector("[parent-group]");
+          const formData = new FormData();
+
+          const name = form.querySelector(`[name = 'name']`);
+          const slug = form.querySelector(`[name = 'slug']`);
+          const categories =
+               form.querySelector(`[id = 'categories']`);
+          const brand = form.querySelector(`[id = 'brand']`);
+          const featured =
+               form.querySelector(`[name = 'featured']`);
+          const tags = form.querySelector(`[name = 'tags']`);
+          if (
+               !name ||
+               !slug ||
+               !categories ||
+               !brand ||
+               !featured ||
+               !tags
+          )
+               return;
+          const array_categories = extractItems(
+               categories.tomselect,
+          );
+
+          const array_brands = extractItems(brand.tomselect);
+          let array_image_preview_id = []
+          let tier_variations = [];
+          if (parentGroup.childElementCount == 0) {
+               // Ảnh
+               const uploadId = document.querySelector(`[data-upload-id = '${listUploadPreview[0].uploadId}'] .image-preview`)
+               let index = 1;
+               for (const element of uploadId.children) {
+                    const file = listUploadPreview[0].cachedFileArray.find(file => file.name == element.getAttribute('data-upload-name'))
+                    array_image_preview_id.push({
+                         preview_id: file.name.split(":upload:")[1],
+                         position: index++
+                    });
+                    formData.append(
+                         "images",
+                         file,
+                    );
+               }
+               // Hết Ảnh
+
+               // Giá và số lượng
+
+               const status = document.querySelector('table tbody tr sl-switch');
+               const SKU = document.querySelector(`table tbody tr [insert-attr-before] sl-input`);
+               const price_before_discount = document.querySelector(`table tbody tr [name = 'price-before-discount']`);
+               const price_after_discount = document.querySelector(`table tbody tr [name = 'price-after-discount']`);
+               const stock = document.querySelector(`table tbody tr [name = 'stock']`);
+               tier_variations.push({
+                    status: status.checked,
+                    SKU: SKU.value,
+                    price_before_discount: +price_before_discount.value.replace(/,/g, ''),
+                    price_after_discount: +price_after_discount.value.replace(/,/g, ''),
+                    stock: +stock.value,
+               })
+
+               // Hết Giá và số lượng
+
+          } else if (parentGroup.childElementCount == 1) {
+               const attribute = parentGroup.children[0].querySelector('[select-attribute]');
+               if (!attribute) return;
+               formData.append("atribute_1_status", JSON.stringify(extractItems(attribute.tomselect)[0]));
+               // tier_variations.push({
+               //      atribute_value_1: mongoose.SchemaTypes.ObjectId,
+               //      status: Boolean,
+               //      SKU: String,
+               //      price_before_discount: Number,
+               //      price_after_discount: Number,
+               //      stock: Number,
+               // })
+               const parent_child = parentGroup.children[0].querySelector('[keo-tha]');
+               const list_child = parent_child.querySelectorAll('select');
+               let index = 0;
+               const tbody = document.querySelector('[table-attribute] tbody')
+               for (const select of list_child) {
+                    const tr = tbody.children[index]
+
+                    tier_variations.push({
+                         status: tr.querySelector('sl-switch').checked,
+                         atribute_value_1_status: extractItems(select.tomselect)[0],
+                         SKU: tr.querySelector("[name = 'sku']").value,
+                         price_before_discount: +tr.querySelector("[name = 'price-before-discount']").value.replace(/,/g, ''),
+                         price_after_discount: +tr.querySelector("[name = 'price-after-discount']").value.replace(/,/g, ''),
+                         stock: +tr.querySelector("[name = 'stock']").value,
+                         position: index + 1
+                    })
+                    index++;
+               }
+
+               // Ảnh
+               // for (const upload of listUploadPreview) {
+               //      const element = document.querySelector(`[data-upload-id = '${upload.uploadId}'] .image-preview`)
+
+               // }
+               const list_upload_element = document.querySelectorAll('[upload-image]')
+               let cnt = 0
+               for (const it of list_upload_element) {
+                    const image_preview = it.querySelector('.image-preview');
+                    const data_upload_id = it.querySelector('[data-upload-id]');
+                    let res = 1;
+                    for (const image of image_preview.children) {
+                         const ele = parent_child.children[cnt]
+                         const select = ele.querySelector('select')
+
+                         const upload = listUploadPreview.find(it => it.uploadId === data_upload_id.getAttribute('data-upload-id'))
+                         const file = upload.cachedFileArray.find(file => file.name == image.getAttribute('data-upload-name'));
+                         array_image_preview_id.push({
+                              preview_id: file.name.split(":upload:")[1],
+                              position: res,
+                              attribute_value_id: extractItems(select.tomselect)[0].id
+                         });
+                         formData.append(
+                              "images",
+                              file,
+                         );
+                         res++;
+                    }
+                    cnt++;
+                    // const data_upload_id = it.querySelector('[data-upload-id]');
+                    // const upload = listUploadPreview.find(it => it.uploadId === data_upload_id.getAttribute('data-upload-id'))
+
+                    // let res = 1;
+                    // for (const file of upload.cachedFileArray) {
+                    //      const ele = parent_child.children[cnt]
+
+                    //      const select = ele.querySelector('select')
+                    //      array_image_preview_id.push({
+                    //           preview_id: file.name.split(":upload:")[1],
+                    //           position: res,
+                    //           attribute_value_id: extractItems(select.tomselect)[0].id
+                    //      });
+                    //      formData.append(
+                    //           "images",
+                    //           file,
+                    //      );
+                    //      res++;
+                    // }
+                    // cnt++;
+               }
+
+
+               // Hết Ảnh
+
+
+
+
+
+          }
+
+          formData.append("array_tier_variations", JSON.stringify(tier_variations));
+          formData.append("array_image_preview_id", JSON.stringify(array_image_preview_id));
+          formData.append("name", name.value);
+          formData.append("slug", slug.value);
+          formData.append("featured", JSON.parse(featured.value));
+          formData.append(
+               "array_categories",
+               JSON.stringify(array_categories),
+          );
+          formData.append(
+               "array_brands",
+               JSON.stringify(array_brands),
+          );
+          formData.append(
+               "array_brands_tags",
+               JSON.stringify(tags.tomselect.items),
+          );
+          formData.append(
+               "number_of_attributes",
+               parentGroup.childElementCount,
+          );
+
+
+
+
+          axios
+               .post("/admin/products/create", formData, {
+                    headers: {
+                         'Content-Type': 'multipart/form-data'
+                    }
+               })
+               .then((res) => {
+                    if (res.data.success == true) {
+                         alert_quick("Thêm thành công!");
+                    }
+               });
+          // validator.revalidate().then((isValid) => {
+          //      if (isValid) {
+          //           alert(
+          //                "Thêm mới sản phẩm?",
+          //                "warning",
+          //                "center",
+          //                "Bạn có chắc muốn thêm mới sản phẩm này?",
+          //                true,
+          //                () => {
+          //                     // Dán vào đây
+          //                },
+          //           );
+          //      } else {
+          //           form.requestSubmit();
+          //           alert_quick("Vui lòng điền trường màu đỏ!", "warning");
+          //      }
+          //      // Nếu không, onFail/onSuccess sẽ được gọi tương ứng
+          // });
+     });
+};
+
+main();

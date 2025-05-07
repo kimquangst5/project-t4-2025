@@ -26,7 +26,7 @@ sl-details(
                value="",
                size="small"
           )
-               div(slot="suffix" count-character class="px-[10px]")
+               div(slot="suffix" count-character class="px-[10px]") 0
                     
           sl-input(
                label="Mô tả SEO",
@@ -37,16 +37,15 @@ sl-details(
                value="",
                size="small"
           )
-               div(slot="suffix" count-character class="px-[10px]")
+               div(slot="suffix" count-character class="px-[10px]") 0
           div(class="flex flex-col gap-y-[3px]")
                label(for="keyword" class="text-[var(--color-text)] text-[0.875rem]") Từ khóa SEO
                select(
                     id="keyword"
-                    label="Từ khóa SEO",
                     placeholder="Nhập để thêm mới từ khóa SEO...",
                     multiple,
                     value="",
-                    name="categories",
+                    name="seo-keyword",
                     select-multiple
                     class="focus:border-[1px] focus:border-[var(--sl-input-border-color-focus)]"
                )

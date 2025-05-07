@@ -1,7 +1,7 @@
-sl-drawer(label="Video sản phẩm", class="drawer-overview" style="--size: 100vw;)" drawer-preview-video)
+sl-drawer(label="Video sản phẩm", class="drawer-overview" style="--size: 50vw;)" drawer-preview-video)
      
 
-div(
+fieldset(
      summary="",
      open,
      class="bg-[white] hover:border-[1px] border-dashed rounded-[10px] border-[#357D02] "
@@ -14,23 +14,17 @@ div(
 
           div(class="flex flex-col gap-[5px] my-[10px]") 
                div(class="flex items-center gap-x-[10px]") 
-                    h4(class="text-[var(--color-text)] text-[13px]") Video sản phẩm
+                    h4(class="text-[var(--color-text)] text-[13px]") Video sản phẩm (Tối đa 1 video)
                div(class="flex items-start gap-x-[40px] flex-1" )
                     div(class="custom-file-container w-[70%]" data-upload-id="upload-video-1")
-                    //- video#player(playsinline, controls, data-poster="/path/to/poster.jpg" class="flex-1 w-[70%]")
-                    //-      source(src="/path/to/video.mp4", type="video/mp4")
-                    //-      source(src="/path/to/video.webm", type="video/webm")
-                    //-      // Captions are optional
-                    //-      track(kind="captions", label="English captions", src="/path/to/captions.vtt", srclang="en", default)
-
-                    //- div#player(class="flex-1 w-[70%]")
-                    //-      iframe(src="https://player.vimeo.com/video/76979871?loop=false&amp;byline=false&amp;portrait=false&amp;title=false&amp;speed=true&amp;transparent=0&amp;gesture=media", allowfullscreen, allowtransparency, allow="autoplay")
-
                     div(class="flex items-center gap-x-[10px] w-[25%]")
                          sl-icon(name="trash" class="cursor-pointer text-[#FA4F64]")
                          
-                         sl-button(variant="success" class="flex-1") Chọn video
-                              sl-icon(slot="prefix" name="images" class="text-[white]")
+                         div(class="flex flex-col flex-1  gap-y-[5px]") 
+                              sl-button(variant="success" size='small') Chọn video
+                                   sl-icon(slot="prefix" name="images" class="text-[white]")
+                              sl-button(variant="neutral" size='small' view-video) Xem video đang phát
+                                   sl-icon(slot="prefix" name="eye" class="text-[white]")
           div(class="text-[var(--color-text)] text-[13px] italic") Lưu ý: Khi thêm nhóm thuộc tính thì nhóm thuộc tính đầu tiên sẽ chứa các hình ảnh.
           
           div(parent-group) 
@@ -38,7 +32,7 @@ div(
           div(class="" parent-preview-image) 
                div(class="flex flex-col gap-[5px] my-[10px]" upload-image) 
                     div(class="flex items-center gap-x-[10px]") 
-                         h4(class="text-[var(--color-text)] text-[13px]") Ảnh sản phẩm
+                         h4(class="text-[var(--color-text)] text-[13px]") Ảnh sản phẩm (Tối đa 6 ảnh)
                          h4(class="text-[var(--color-text)] text-[13px]" name-attribute)
                          h4(class="text-[var(--color-text)] text-[13px]" value-atribute)
                     div(class="flex items-start gap-x-[40px]" )
@@ -46,15 +40,15 @@ div(
                          div(class="flex items-center gap-x-[10px] w-[25%]")
                               sl-icon(name="trash" class="cursor-pointer text-[#FA4F64]")
                               div(class="flex flex-col flex-1 gap-y-[10px]") 
-                                   sl-button(variant="success" class="flex-1") Chọn ảnh
+                                   sl-button(variant="success" class="flex-1" size='small') Chọn ảnh
                                         sl-icon(slot="prefix" name="images" class="text-[white]")
-                                   form(class="flex items-center gap-x-[5px]") 
-                                        sl-input(variant="success" class="flex-1" size='small' placeholder="Dán link ảnh có sẵn...") Link ảnh
-                                        button(type="submit")
+                                   div(class="flex items-center gap-x-[5px]" add-image-from-path) 
+                                        sl-input(variant="success" class="flex-1" size='small' placeholder="Dán link ảnh có sẵn...")
+                                        button()
                                              sl-icon(name="check-lg" class="text-[var(--green)] cursor-pointer")
                                    
                
-          
+          button(test-swap-table) ok nha
           table(class="block max-h-[600px] overflow-auto border-collapse no-scrollbar" table-attribute)
                thead(class="z-30 sticky top-0 bg-[#ECEEF0] !h-[35px]")
                     tr(class="")
@@ -78,7 +72,8 @@ div(
                                    placeholder="Nhập SKU",
                                    type="text",
                                    value="",
-                                   size="small"
+                                   size="small",
+                                   name='sku'
                               )
                          td(class="text-left w-auto px-[10px]")
                               input(
@@ -87,6 +82,7 @@ div(
                                    placeholder="Nhập giá",
                                    type="text",
                                    value="",
+                                   name='price-before-discount'
                                    size="small",
                                    class="w-[10rem] mx-auto block input input-xs outline-none px-[0.75rem] border-[1px] border-[hsl(240 5.3% 26.1%)]" 
                                    style="height: calc(var(--sl-input-height-small) - var(--sl-input-border-width) * 2)" 
@@ -98,6 +94,7 @@ div(
                                    placeholder="Giá bán sau khi giảm",
                                    type="text",
                                    value="",
+                                   name='price-after-discount'
                                    size="small",
                                    class="w-[12rem] mx-auto block input input-xs outline-none px-[0.75rem] border-[1px] border-[hsl(240 5.3% 26.1%)]" 
                                    style="height: calc(var(--sl-input-height-small) - var(--sl-input-border-width) * 2)" 
@@ -109,6 +106,7 @@ div(
                                    type="text",
                                    value="0",
                                    size="small",
+                                   name='stock'
                                    class="w-[80%] mx-auto"
                               )
           

@@ -1,9 +1,8 @@
 tinymce.init({
-     selector: "textarea[tiny-mce]",
-     plugins: 'autoresize',
-     // resize: 'both',
+     selector: "[tiny-mce]",
      license_key: "gpl",
      plugins: [
+          "quickbars",
           "advlist",
           "autolink",
           "link",
@@ -26,8 +25,7 @@ tinymce.init({
           "help",
           "autoresize",
      ],
-     toolbar1: "undo redo | fontfamily fontsize  | fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify alignnone  | bullist numlist outdent indent | forecolor backcolor | removeformat | link image | preview fullscreen code",
-
+     toolbar1: "undo redo | fontfamily fontsize  | fontsizeselect | bold italic underline | alignleft aligncenter alignright alignjustify alignnone  | bullist numlist outdent indent | forecolor backcolor | removeformat | link image | preview fullscreen code wordcount",
      images_upload_url: `/admin/upload`,
      language: "vi",
      language_url: "/assets/langs/vi.js",
