@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js"></script>
+     <title>TEST KEO THA</title>
+     <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <button click-me class="my-[30px]">Click me</button>
+     <table class="w-full">
+          <thead>
+               <tr>
+                    <th>STT</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+               </tr>
+          </thead>
+          <tbody>
+               
+               <tr>
+                    <td>1</td>
+                    <td>Sản phẩm abc</td>
+                    <td>120.000</td>
+                    <td>50</td>
+               </tr>
+               <tr>
+                    <td>2</td>
+                    <td rowspan = 2>Sản phẩm abc</td>
+                    <td>120.000</td>
+                    <td>50</td>
+               </tr>
+               <tr>
+                    <td>3</td>
+                    <td>120.000</td>
+                    <td>50</td>
+               </tr>
+               <tr>
+                    <td>4</td>
+                    <td>Sản phẩm abc</td>
+                    <td>120.000</td>
+                    <td>50</td>
+               </tr>
+               <tr>
+                    <td>5</td>
+                    <td>Sản phẩm abc</td>
+                    <td>120.000</td>
+                    <td>50</td>
+               </tr>
+               <tr>
+                    <td>6</td>
+                    <td>Sản phẩm abc</td>
+                    <td>120.000</td>
+                    <td>50</td>
+               </tr>
+               <tr>
+                    <td>7</td>
+                    <td rowspan="2">Sản phẩm 78</td>
+                    <td>120.000</td>
+                    <td>50</td>
+               </tr><tr>
+                    <td>8</td>
+                    <td>120.000</td>
+                    <td>50</td>
+               </tr>
+               <tr>
+                    <td>9</td>
+                    <td>Sản phẩm abc</td>
+                    <td>120.000</td>
+                    <td>50</td>
+               </tr><tr>
+                    <td>10</td>
+                    <td>Sản phẩm abc</td>
+                    <td>120.000</td>
+                    <td>50</td>
+               </tr>
+               <tr>
+                    <td>11</td>
+                    <td>Sản phẩm abc</td>
+                    <td>120.000</td>
+                    <td>50</td>
+               </tr>
+               <tr>
+                    <td>12</td>
+                    <td>Sản phẩm abc</td>
+                    <td>120.000</td>
+                    <td>50</td>
+               </tr>
+          </tbody>
+     </table>
+     <script src="script.js"></script>
+     <script>
+          const form = document.querySelector('form#form-login');
+          form.addEventListener('submit', (event) => {
+               console.log('ok')
+          event.preventDefault()
+          })
+     </script>
+</body>
+</html>

@@ -7,10 +7,10 @@ const productsSchema = new Schema(
         categories: [mongoose.SchemaTypes.ObjectId],
         brands: [mongoose.SchemaTypes.ObjectId],
         featured: Boolean,
-        description: String,
+        description_content: String,
         description_short: String,
-        tags: [String],
-        seo: {
+        post_tags: [String],
+        seo_information: {
             title: String,
             description: String,
             keyword: [String],

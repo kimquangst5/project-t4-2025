@@ -1,0 +1,28 @@
+extends ../../layouts/layout.pug
+
+block title
+     div Quản lí đường dẫn
+
+block action
+     sl-button(type="submit" size="small" variant="primary" btn-submit = `/${router_admin.management_variable}/routers/update`) Cập nhật
+
+block script
+     script(src="/admin/assets/js/routers/index.js")
+
+block main
+     sl-details(summary="Danh sách" open box-admin)
+          form(class="flex flex-col gap-y-[20px]") 
+               div(class="")
+                    sl-input(label="Biến quản trị" size='small' value=router_admin.management_variable name="management_variable")
+                    span(id = 'management_variable'  class="text-[12px] text-[var(--color-text)]") localhost:3000/admin
+                    sl-copy-button(from="management_variable" class="text-[12px]")
+               div(class="")
+                    sl-input(label="Biến sản phẩm" size='small' value = 'products')
+                    span(id="my-phone" class="text-[12px] text-[var(--color-text)]") localhost:3000/admin/products
+                    sl-copy-button(from="my-phone" class="text-[12px]")
+               div(class="relative")
+                    sl-input(label="Trang thêm mới sản phẩm" size='small' value = 'create')
+                    sl-badge(variant="success" size='small' class="absolute top-0 right-0") GET
+                    span(id="my-phone" class="text-[12px] text-[var(--color-text)]") localhost:3000/admin/products/create
+                    sl-copy-button(from="my-phone" class="text-[12px]" copy-label="Sao chép" success-label="Đã sao chép!")
+               button pk

@@ -186,45 +186,148 @@ const validateSelectAttribute = (element) => {
      }, ]);
 };
 
-const table = document.querySelector('[table-attribute] tbody')
-const sortable_table = Sortable.create(table, {
-     animation: 400,
-     sort: true,
-     dataIdAttr: 'data-id',
-     // disabled: true
-});
+let sortable_table;
+let sortable_preview_image;
 
-const swapTwo = (i, j) => {
-     const order = sortable_table.toArray(); // [ 'a','b','c','d', ... ]
+const init_sortable_table = () => {
+     const tbody = document.querySelector('[table-attribute] tbody')
+     if (sortable_table) sortable_table.destroy();
+
+     sortable_table = Sortable.create(tbody, {
+          animation: 400,
+          sort: true,
+          multiDrag: true,
+          // dataIdAttr: 'data-id',
+          disabled: true
+     });
+}
+
+const init_sortable_preview_image = () => {
+     const parent_preview_image = document.querySelector('[parent-preview-image]')
+     if (sortable_preview_image) sortable_preview_image.destroy();
+
+     sortable_preview_image = Sortable.create(parent_preview_image, {
+          animation: 400,
+          sort: true,
+          // dataIdAttr: 'data-id',
+          disabled: true
+     });
+}
+// init_sortable_table()
+
+const swap_two_table = (i, j) => {
+     const order = sortable_table.toArray();
+     sortable_table.captureAnimationState();
+
      [order[i], order[j]] = [order[j], order[i]]; // hoán đổi trong mảng
      sortable_table.sort(order); // SortableJS tự animate & cập nhật DOM
      sortable_table.animateAll(); // chạy animation từ cũ → mới
 
 };
 
-const test = document.querySelector('[test-swap-table]')
-test.addEventListener('click', () => {
-     swapTwo(0, 2)
-})
+function swap_nodes(sortable, a, b) {
+     sortable.captureAnimationState();
+     const parent = a.parentNode;
+     const sibling = a.nextSibling === b ? a : a.nextSibling;
+     parent.insertBefore(a, b);
+     parent.insertBefore(b, sibling);
+     sortable.animateAll(); // chạy animation từ cũ → mới
+}
 
+const swap_two_preview_image = (i, j) => {
+     const order = sortable_preview_image.toArray(); // [ 'a','b','c','d', ... ]
+     sortable_preview_image.captureAnimationState();
+     [order[i], order[j]] = [order[j], order[i]]; // hoán đổi trong mảng
+     sortable_preview_image.sort(order); // SortableJS tự animate & cập nhật DOM
+     sortable_preview_image.animateAll(); // chạy animation từ cũ → mới
+
+};
 
 const initSortableSwap = (group) => {
+     let old_index;
      new Sortable(group, {
-          animation: 250,
+          animation: 400,
           ghostClass: "blue-background-class",
           handle: ".cursor-move",
           swap: true,
           swapClass: "highlight",
           onStart: (evt) => {
-               console.log(evt.oldIndex);
+               old_index = evt.oldIndex
           },
           onEnd: (evt) => {
-               console.log(evt.newIndex);
+               const parent_group = document.querySelector('[parent-group]')
+               const tbody = document.querySelector('[table-attribute] tbody')
+               const parent_preview_images = document.querySelector('[parent-preview-image]')
+               const select = evt.from.parentElement.parentElement.querySelector(`[select-attribute]`)
+               if (select && parseInt(select.getAttribute('select-attribute')) == 1) {
+                    init_sortable_preview_image()
+                    swap_nodes(sortable_preview_image, parent_preview_images.children[old_index], parent_preview_images.children[evt.newIndex])
+               }
+               if (parent_group.children.length == 1) {
+                    init_sortable_table()
+                    swap_nodes(sortable_table, tbody.children[old_index], tbody.children[evt.newIndex])
+               } else if (parent_group.children.length == 2) {
+                    if (parseInt(select.getAttribute('select-attribute')) == 1) {
+                         const childrent_2 = parent_group.children[1].querySelector('[keo-tha]').children;
+                         init_sortable_table()
+                         for (let i = 0; i < childrent_2.length; i++) {
+                              swap_nodes(sortable_table, tbody.children[old_index * childrent_2.length + i], tbody.children[evt.newIndex * childrent_2.length + i]);
+                         }
+
+                    } else if (parseInt(select.getAttribute('select-attribute')) == 2) {
+                         const childrent_1 = parent_group.children[0].querySelector('[keo-tha]').children;
+                         const childrent_2 = parent_group.children[1].querySelector('[keo-tha]').children;
+                         init_sortable_table();
+                         let cnt_old = +old_index,
+                              cnt_new = +evt.newIndex;
+                         for (let i = 0; i < childrent_1.length; i++) {
+                              if (old_index == 0) {
+                                   const td_current = tbody.children[cnt_old].children[1];
+                                   const td_current_new = tbody.children[cnt_new].children[1];
+                                   let cut_td = td_current
+                                   td_current.remove()
+                                   // td_current_new.setAttribute('rowspan', rowspan_current);
+                                   td_current_new.parentNode.insertBefore(cut_td, td_current_new)
+
+                              } else if (evt.newIndex == 0) {
+                                   // lay ra the td o vi tri new de cut dem qua vi tr old
+                                   const td_current_new = tbody.children[cnt_new].children[1];
+                                   const td_current_old = tbody.children[cnt_old].children[1];
+                                   let cut_td = td_current_new
+                                   td_current_new.remove()
+                                   // td_current_new.setAttribute('rowspan', rowspan_current);
+                                   td_current_old.parentNode.insertBefore(cut_td, td_current_old)
+                              }
+                              swap_nodes(sortable_table, tbody.children[cnt_old], tbody.children[cnt_new]);
+
+                              cnt_old += childrent_2.length
+                              cnt_new += childrent_2.length
+                         }
+
+                    }
+               }
+
           }
 
      })
 };
 
+
+
+const btn_test = document.querySelector('[test-swap-table]');
+btn_test.addEventListener('click', () => {
+     const listEl = document.querySelector('table tbody')
+     const items = listEl.children;
+     const row2 = items[0];
+     const row3 = items[1];
+     const row7 = items[3];
+     const row8 = items[4];
+
+     // 3) Swap hai cặp
+     swap_nodes(row2, row7);
+     swap_nodes(row3, row8);
+
+})
 const initSortable = (group) => {
      new Sortable(group, {
           animation: 250,
@@ -403,7 +506,7 @@ const attribute_change = (element) => {
                const ts = it.tomselect;
                ts.clearOptions();
                ts.clear(true)
-               if (select_id.id && extractItems(select.tomselect)[0].new == false) {
+               if (select_id && select_id.id && extractItems(select.tomselect)[0].new == false) {
                     await axios.get(`/api/attributes/detail/${select_id.id}`)
                          .then(async (res) => {
                               if (res.data.attributes) {
@@ -637,14 +740,17 @@ const updateColumeAttributeValue = (item, row) => {
           validateSelectAttribute(select);
           if (value == 1) {
                const td = row.querySelector(`td[colume='${value}']`);
-               if (!select.value) {
+               if (td && !select.value) {
                     td.classList.add("border-[2px]", "border-[red]");
-               } else {
-                    if (td.className.includes("border-[2px]", "border-[red]"))
+               } else if (td && select.value) {
+                    if (td.className && td.className.includes("border-[2px]", "border-[red]"))
                          td.classList.remove("border-[2px]", "border-[red]");
                }
-               td.setAttribute("value", select.value);
-               td.innerHTML = option.innerHTML;
+               if (td && select.value) {
+                    td.setAttribute("value", select.value);
+                    td.innerHTML = option.innerHTML;
+               }
+
                updateAttributeValueInPreviewImage(item, select);
           } else if (value == 2) {
                const table = document.querySelector("[table-attribute]");
@@ -842,7 +948,7 @@ const addAttributeValue = (group) => {
                               required=""
                               placeholder="Nhập giá"
                               type="text"
-                              value=""
+                              name = "price-before-discount"
                               size="small"
                               style="
                                    height: calc(
@@ -858,7 +964,7 @@ const addAttributeValue = (group) => {
                               required=""
                               placeholder="Giá bán sau khi giảm"
                               type="text"
-                              value=""
+                              name = "price-after-discount"
                               size="small"
                               style="
                                    height: calc(
@@ -874,8 +980,8 @@ const addAttributeValue = (group) => {
                               placeholder="Nhập tồn kho"
                               type="text"
                               value="0"
+                              name = 'stock'
                               size="small"
-                              form=""
                          ></sl-input>
                          </td>
 
@@ -914,10 +1020,7 @@ const addAttributeValue = (group) => {
                     options
                } = tom_select_att
                if (extractItems(tom_select_att)[0]) {
-                    console.log(extractItems(tom_select_att)[0]);
-                    console.log(options[extractItems(tom_select_att)[0].id].text);
                     name_attribute = options[extractItems(tom_select_att)[0].id].text
-
                }
 
 
@@ -1088,17 +1191,6 @@ const btnSlug = () => {
 };
 btnSlug();
 
-const extractItems = (tomselect) => {
-     let {
-          items,
-          options
-     } = tomselect;
-     return items.map((id) => ({
-          id: options[id].value,
-          new: options[id].isNew == true,
-     }));
-};
-
 const main = () => {
      const form = document.querySelector("form[form-validate]");
      if (!form) return;
@@ -1107,212 +1199,255 @@ const main = () => {
      });
      const btnSubmit = document.querySelector("[btn-submit]");
      btnSubmit.addEventListener("click", () => {
-          const parentGroup = document.querySelector("[parent-group]");
-          const formData = new FormData();
 
-          const name = form.querySelector(`[name = 'name']`);
-          const slug = form.querySelector(`[name = 'slug']`);
-          const categories =
-               form.querySelector(`[id = 'categories']`);
-          const brand = form.querySelector(`[id = 'brand']`);
-          const featured =
-               form.querySelector(`[name = 'featured']`);
-          const tags = form.querySelector(`[name = 'tags']`);
-          if (
-               !name ||
-               !slug ||
-               !categories ||
-               !brand ||
-               !featured ||
-               !tags
-          )
-               return;
-          const array_categories = extractItems(
-               categories.tomselect,
-          );
+          validator.revalidate().then((isValid) => {
+               if (isValid) {
+                    alert(
+                         "Thêm mới sản phẩm?",
+                         "warning",
+                         "center",
+                         "Bạn có chắc muốn thêm mới sản phẩm này?",
+                         true,
+                         () => {
+                              const parentGroup = document.querySelector("[parent-group]");
+                              const formData = new FormData();
 
-          const array_brands = extractItems(brand.tomselect);
-          let array_image_preview_id = []
-          let tier_variations = [];
-          if (parentGroup.childElementCount == 0) {
-               // Ảnh
-               const uploadId = document.querySelector(`[data-upload-id = '${listUploadPreview[0].uploadId}'] .image-preview`)
-               let index = 1;
-               for (const element of uploadId.children) {
-                    const file = listUploadPreview[0].cachedFileArray.find(file => file.name == element.getAttribute('data-upload-name'))
-                    array_image_preview_id.push({
-                         preview_id: file.name.split(":upload:")[1],
-                         position: index++
-                    });
-                    formData.append(
-                         "images",
-                         file,
+                              const name = form.querySelector(`[name = 'name']`);
+                              const slug = form.querySelector(`[name = 'slug']`);
+                              const categories =
+                                   form.querySelector(`[id = 'categories']`);
+                              const brand = form.querySelector(`[id = 'brand']`);
+                              const featured =
+                                   form.querySelector(`[name = 'featured']`);
+                              const post_tags = form.querySelector(`[name = 'post-tags']`);
+                              const seo_title = form.querySelector(`[name = 'seo-title']`);
+                              const seo_description = form.querySelector(`[name = 'seo-description']`);
+                              const seo_keyword = form.querySelector(`[name = 'seo-keyword']`);
+                              if (
+                                   !name ||
+                                   !slug ||
+                                   !categories ||
+                                   !brand ||
+                                   !featured ||
+                                   !post_tags
+                              )
+                                   return;
+                              const array_categories = extractItems(
+                                   categories.tomselect,
+                              );
+
+                              const array_brands = extractItems(brand.tomselect);
+                              let array_image_preview_id = []
+                              let tier_variations = [];
+                              if (parentGroup.childElementCount == 0) {
+
+
+                              } else if (parentGroup.childElementCount == 1) {
+
+                              } else if (parentGroup.childElementCount == 2) {
+
+                              }
+                              switch (parentGroup.childElementCount) {
+                                   case 0:
+                                        // Ảnh
+                                        const uploadId = document.querySelector(`[data-upload-id = '${listUploadPreview[0].uploadId}'] .image-preview`)
+                                        let index = 1;
+                                        for (const element of uploadId.children) {
+                                             const file = listUploadPreview[0].cachedFileArray.find(file => file.name == element.getAttribute('data-upload-name'))
+                                             array_image_preview_id.push({
+                                                  preview_id: file.name.split(":upload:")[1],
+                                                  position: index++
+                                             });
+                                             formData.append(
+                                                  "images",
+                                                  file,
+                                             );
+                                        }
+                                        // Hết Ảnh
+
+                                        // Giá và số lượng
+
+                                        const status = document.querySelector('table tbody tr sl-switch');
+                                        const SKU = document.querySelector(`table tbody tr [insert-attr-before] sl-input`);
+                                        const price_before_discount = document.querySelector(`table tbody tr [name = 'price-before-discount']`);
+                                        const price_after_discount = document.querySelector(`table tbody tr [name = 'price-after-discount']`);
+                                        const stock = document.querySelector(`table tbody tr [name = 'stock']`);
+                                        tier_variations.push({
+                                             status: status.checked,
+                                             SKU: SKU.value,
+                                             price_before_discount: +price_before_discount.value.replace(/,/g, ''),
+                                             price_after_discount: +price_after_discount.value.replace(/,/g, ''),
+                                             stock: +stock.value,
+                                        })
+
+                                        // Hết Giá và số lượng
+                                        break;
+                                   case 1:
+                                        const attribute = parentGroup.children[0].querySelector('[select-attribute]');
+                                        if (!attribute) return;
+                                        formData.append("atribute_1_status", JSON.stringify(extractItems(attribute.tomselect)[0]));
+                                        const parent_child = parentGroup.children[0].querySelector('[keo-tha]');
+                                        const list_child = parent_child.querySelectorAll('select');
+                                        let index_case_1 = 0;
+                                        const tbody = document.querySelector('[table-attribute] tbody')
+                                        for (const select of list_child) {
+                                             const tr = tbody.children[index_case_1]
+
+                                             tier_variations.push({
+                                                  status: tr.querySelector('sl-switch').checked,
+                                                  atribute_value_1_status: extractItems(select.tomselect)[0],
+                                                  SKU: tr.querySelector("[name = 'sku']").value,
+                                                  price_before_discount: +tr.querySelector("[name = 'price-before-discount']").value.replace(/,/g, ''),
+                                                  price_after_discount: +tr.querySelector("[name = 'price-after-discount']").value.replace(/,/g, ''),
+                                                  stock: +tr.querySelector("[name = 'stock']").value,
+                                                  position: index_case_1 + 1
+                                             })
+                                             index_case_1++;
+                                        }
+
+                                        // Ảnh
+                                        const list_upload_element = document.querySelectorAll('[upload-image]')
+                                        let cnt = 0
+                                        for (const it of list_upload_element) {
+                                             const image_preview = it.querySelector('.image-preview');
+                                             const data_upload_id = it.querySelector('[data-upload-id]');
+                                             let res = 1;
+                                             for (const image of image_preview.children) {
+                                                  const ele = parent_child.children[cnt]
+                                                  const select = ele.querySelector('select')
+
+                                                  const upload = listUploadPreview.find(it => it.uploadId === data_upload_id.getAttribute('data-upload-id'))
+                                                  const file = upload.cachedFileArray.find(file => file.name == image.getAttribute('data-upload-name'));
+                                                  array_image_preview_id.push({
+                                                       preview_id: file.name.split(":upload:")[1],
+                                                       position: res,
+                                                       attribute_value_id: extractItems(select.tomselect)[0].id
+                                                  });
+                                                  formData.append(
+                                                       "images",
+                                                       file,
+                                                  );
+                                                  res++;
+                                             }
+                                             cnt++;
+                                        }
+                                        // Hết Ảnh
+                                        break;
+                                   case 2:
+                                        // SKU và Giá
+                                        const group_1 = document.querySelector('[parent-group]').children[0].querySelector('[keo-tha]')
+                                        const group_2 = document.querySelector('[parent-group]').children[1].querySelector('[keo-tha]');
+                                        const attribute_1_status = document.querySelector('[parent-group]').children[0].querySelector("[name = 'select-attribute']")
+                                        const attribute_2_status = document.querySelector('[parent-group]').children[1].querySelector("[name = 'select-attribute']")
+                                        formData.append("atribute_1_status", JSON.stringify(extractItems(attribute_1_status.tomselect)[0]));
+                                        formData.append("atribute_2_status", JSON.stringify(extractItems(attribute_2_status.tomselect)[0]));
+                                        formData.append("number_of_attribute_values_2", group_2.children.length);
+                                        const tbody_case_2 = document.querySelector('[table-attribute] tbody');
+                                        let index_case_2 = 0;
+                                        for (let i = 0; i < group_1.children.length; i++) {
+                                             const select_1 = group_1.children[i].querySelector('select');
+
+                                             for (let j = 0; j < group_2.children.length; j++) {
+                                                  const select_2 = group_2.children[j].querySelector('select');
+                                                  const tr = tbody_case_2.children[i * group_2.children.length + j]
+                                                  tier_variations.push({
+                                                       status: tr.querySelector('sl-switch').checked,
+                                                       atribute_value_1_status: extractItems(select_1.tomselect)[0],
+                                                       atribute_value_2_status: extractItems(select_2.tomselect)[0],
+                                                       SKU: tr.querySelector("[insert-attr-before] sl-input").value,
+                                                       price_before_discount: +tr.querySelector("[name = 'price-before-discount']").value.replace(/,/g, '') || 0,
+                                                       price_after_discount: +tr.querySelector("[name = 'price-after-discount']").value.replace(/,/g, '') || 0,
+                                                       stock: +tr.querySelector("[name = 'stock']").value,
+                                                       position: index_case_2 + 1
+                                                  });
+                                                  index_case_2++;
+
+                                             }
+                                        }
+
+                                        // Ảnh
+                                        const parent_child_case_2 = parentGroup.children[0].querySelector('[keo-tha]');
+                                        const list_upload_element_case_2 = document.querySelectorAll('[upload-image]')
+                                        let cnt_case_2 = 0
+                                        for (const it of list_upload_element_case_2) {
+                                             const image_preview = it.querySelector('.image-preview');
+                                             const data_upload_id = it.querySelector('[data-upload-id]');
+                                             let res = 1;
+                                             for (const image of image_preview.children) {
+                                                  const ele = parent_child_case_2.children[cnt_case_2]
+                                                  const select = ele.querySelector('select');
+
+                                                  const upload = listUploadPreview.find(it => it.uploadId === data_upload_id.getAttribute('data-upload-id'))
+                                                  const file = upload.cachedFileArray.find(file => file.name == image.getAttribute('data-upload-name'));
+                                                  array_image_preview_id.push({
+                                                       preview_id: file.name.split(":upload:")[1],
+                                                       position: res,
+                                                       attribute_value_id: extractItems(select.tomselect)[0].id
+                                                  });
+                                                  formData.append(
+                                                       "images",
+                                                       file,
+                                                  );
+                                                  res++;
+                                             }
+                                             cnt_case_2++;
+                                        }
+                                        // Hết Ảnh
+
+                                        // Hết SKU và Giá
+                                        break;
+                              }
+
+
+                              formData.append("array_seo_information", JSON.stringify({
+                                   title: seo_title.value,
+                                   description: seo_description.value,
+                                   keyword: seo_keyword.tomselect.items,
+                              }))
+                              formData.append("array_post_tags", JSON.stringify(post_tags.tomselect.items));
+                              formData.append("description_short", tinymce.get("description-short").getContent());
+                              formData.append("description_content", tinymce.get("description-content").getContent());
+                              formData.append("array_tier_variations", JSON.stringify(tier_variations));
+                              formData.append("array_image_preview_id", JSON.stringify(array_image_preview_id));
+                              formData.append("name", name.value);
+                              formData.append("slug", slug.value);
+                              formData.append("featured", JSON.parse(featured.value));
+                              formData.append(
+                                   "array_categories",
+                                   JSON.stringify(array_categories),
+                              );
+                              formData.append(
+                                   "array_brands",
+                                   JSON.stringify(array_brands),
+                              );
+
+                              formData.append(
+                                   "number_of_attributes",
+                                   parentGroup.childElementCount,
+                              );
+
+
+
+
+                              axios
+                                   .post("/admin/products/create", formData, {
+                                        headers: {
+                                             'Content-Type': 'multipart/form-data'
+                                        }
+                                   })
+                                   .then((res) => {
+                                        if (res.data.success == true) {
+                                             alert_quick("Thêm thành công!");
+                                        }
+                                   });
+                         },
                     );
+               } else {
+                    form.requestSubmit();
+                    alert_quick("Vui lòng điền trường màu đỏ!", "warning");
                }
-               // Hết Ảnh
-
-               // Giá và số lượng
-
-               const status = document.querySelector('table tbody tr sl-switch');
-               const SKU = document.querySelector(`table tbody tr [insert-attr-before] sl-input`);
-               const price_before_discount = document.querySelector(`table tbody tr [name = 'price-before-discount']`);
-               const price_after_discount = document.querySelector(`table tbody tr [name = 'price-after-discount']`);
-               const stock = document.querySelector(`table tbody tr [name = 'stock']`);
-               tier_variations.push({
-                    status: status.checked,
-                    SKU: SKU.value,
-                    price_before_discount: +price_before_discount.value.replace(/,/g, ''),
-                    price_after_discount: +price_after_discount.value.replace(/,/g, ''),
-                    stock: +stock.value,
-               })
-
-               // Hết Giá và số lượng
-
-          } else if (parentGroup.childElementCount == 1) {
-               const attribute = parentGroup.children[0].querySelector('[select-attribute]');
-               if (!attribute) return;
-               formData.append("atribute_1_status", JSON.stringify(extractItems(attribute.tomselect)[0]));
-               // tier_variations.push({
-               //      atribute_value_1: mongoose.SchemaTypes.ObjectId,
-               //      status: Boolean,
-               //      SKU: String,
-               //      price_before_discount: Number,
-               //      price_after_discount: Number,
-               //      stock: Number,
-               // })
-               const parent_child = parentGroup.children[0].querySelector('[keo-tha]');
-               const list_child = parent_child.querySelectorAll('select');
-               let index = 0;
-               const tbody = document.querySelector('[table-attribute] tbody')
-               for (const select of list_child) {
-                    const tr = tbody.children[index]
-
-                    tier_variations.push({
-                         status: tr.querySelector('sl-switch').checked,
-                         atribute_value_1_status: extractItems(select.tomselect)[0],
-                         SKU: tr.querySelector("[name = 'sku']").value,
-                         price_before_discount: +tr.querySelector("[name = 'price-before-discount']").value.replace(/,/g, ''),
-                         price_after_discount: +tr.querySelector("[name = 'price-after-discount']").value.replace(/,/g, ''),
-                         stock: +tr.querySelector("[name = 'stock']").value,
-                         position: index + 1
-                    })
-                    index++;
-               }
-
-               // Ảnh
-               // for (const upload of listUploadPreview) {
-               //      const element = document.querySelector(`[data-upload-id = '${upload.uploadId}'] .image-preview`)
-
-               // }
-               const list_upload_element = document.querySelectorAll('[upload-image]')
-               let cnt = 0
-               for (const it of list_upload_element) {
-                    const image_preview = it.querySelector('.image-preview');
-                    const data_upload_id = it.querySelector('[data-upload-id]');
-                    let res = 1;
-                    for (const image of image_preview.children) {
-                         const ele = parent_child.children[cnt]
-                         const select = ele.querySelector('select')
-
-                         const upload = listUploadPreview.find(it => it.uploadId === data_upload_id.getAttribute('data-upload-id'))
-                         const file = upload.cachedFileArray.find(file => file.name == image.getAttribute('data-upload-name'));
-                         array_image_preview_id.push({
-                              preview_id: file.name.split(":upload:")[1],
-                              position: res,
-                              attribute_value_id: extractItems(select.tomselect)[0].id
-                         });
-                         formData.append(
-                              "images",
-                              file,
-                         );
-                         res++;
-                    }
-                    cnt++;
-                    // const data_upload_id = it.querySelector('[data-upload-id]');
-                    // const upload = listUploadPreview.find(it => it.uploadId === data_upload_id.getAttribute('data-upload-id'))
-
-                    // let res = 1;
-                    // for (const file of upload.cachedFileArray) {
-                    //      const ele = parent_child.children[cnt]
-
-                    //      const select = ele.querySelector('select')
-                    //      array_image_preview_id.push({
-                    //           preview_id: file.name.split(":upload:")[1],
-                    //           position: res,
-                    //           attribute_value_id: extractItems(select.tomselect)[0].id
-                    //      });
-                    //      formData.append(
-                    //           "images",
-                    //           file,
-                    //      );
-                    //      res++;
-                    // }
-                    // cnt++;
-               }
-
-
-               // Hết Ảnh
-
-
-
-
-
-          }
-
-          formData.append("array_tier_variations", JSON.stringify(tier_variations));
-          formData.append("array_image_preview_id", JSON.stringify(array_image_preview_id));
-          formData.append("name", name.value);
-          formData.append("slug", slug.value);
-          formData.append("featured", JSON.parse(featured.value));
-          formData.append(
-               "array_categories",
-               JSON.stringify(array_categories),
-          );
-          formData.append(
-               "array_brands",
-               JSON.stringify(array_brands),
-          );
-          formData.append(
-               "array_brands_tags",
-               JSON.stringify(tags.tomselect.items),
-          );
-          formData.append(
-               "number_of_attributes",
-               parentGroup.childElementCount,
-          );
-
-
-
-
-          axios
-               .post("/admin/products/create", formData, {
-                    headers: {
-                         'Content-Type': 'multipart/form-data'
-                    }
-               })
-               .then((res) => {
-                    if (res.data.success == true) {
-                         alert_quick("Thêm thành công!");
-                    }
-               });
-          // validator.revalidate().then((isValid) => {
-          //      if (isValid) {
-          //           alert(
-          //                "Thêm mới sản phẩm?",
-          //                "warning",
-          //                "center",
-          //                "Bạn có chắc muốn thêm mới sản phẩm này?",
-          //                true,
-          //                () => {
-          //                     // Dán vào đây
-          //                },
-          //           );
-          //      } else {
-          //           form.requestSubmit();
-          //           alert_quick("Vui lòng điền trường màu đỏ!", "warning");
-          //      }
-          //      // Nếu không, onFail/onSuccess sẽ được gọi tương ứng
-          // });
+               // Nếu không, onFail/onSuccess sẽ được gọi tương ứng
+          });
      });
 };
 

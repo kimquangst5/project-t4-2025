@@ -12,6 +12,16 @@ const sider = () => {
 
 sider()
 
+const extractItems = (tomselect) => {
+     let {
+          items,
+          options
+     } = tomselect;
+     return items.map((id) => ({
+          id: options[id].value,
+          new: options[id].isNew == true,
+     }));
+};
 
 const alert_quick = (title = 'Chưa có tiêu đề', icon = 'success', position = 'top-right') => {
      const Toast = Swal.mixin({
