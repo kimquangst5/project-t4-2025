@@ -7,6 +7,8 @@ import path from "path";
 import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
 
+console.log("He")
+
 database();
 const app: Application = express();
 const port: Number = 4000;
