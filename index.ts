@@ -8,6 +8,7 @@ import bodyParser from 'body-parser'
 import cookieParser from "cookie-parser"
 
 console.log("He")
+console.log("Cuong")
 
 database();
 const app: Application = express();
