@@ -1,0 +1,12 @@
+extends ./layout.pug
+
+block layout
+	div(class="truncate")
+		sl-split-panel(class="h-screen truncate" position="25")
+			div(class="h-full overflow-y-auto flex flex-col" slot="start")
+				include ../partials/sider.pug
+			div(class="h-full overflow-y-auto flex flex-col" slot="end")
+				include ../partials/header.pug
+				include ../partials/header-sub.pug
+				div(class="bg-[#EBECF3] p-5 flex-1") 
+					block main

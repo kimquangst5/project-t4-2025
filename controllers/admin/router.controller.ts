@@ -2,13 +2,11 @@ import express, { Request, Response } from "express";
 import Router from "../../models/router.router";
 
 const index = async (req: Request, res: Response) => {
-     const router_admin = await Router.findOne({
-          type: 'admin'
-     })
-     console.log(req.params);
      
   res.render("admin/pages/routers/index.pug", {
-      router_admin: router_admin,
+      PAGE_TITLE: res.locals.ADMIN_ROUTER.routers.index.title,
+      PAGE_DESCRIPTION: res.locals.ADMIN_ROUTER.routers.index.description,
+      PAGE_KEYWORD: res.locals.ADMIN_ROUTER.routers.index.keyword
   });
 };
 
@@ -20,16 +18,21 @@ const update = async (req: Request, res: Response) => {
           type: 'admin'
      })
      if (admin_db){
+          
           await Router.updateOne(admin);
      }
      else{
           const new_router = new Router(admin);
           await new_router.save()
      }
+     console.log(
+         `/${admin.management_variable}/${admin.routers.path}/${admin.routers.index.name}`,
+     );
+     
 
     res.status(200).json({
         success: true,
-        redirect: `/${admin.management_variable}/routers/list`,
+        redirect: `/${admin.management_variable}/${admin.routers.path}/${admin.routers.index.name}`,
     });
 };
 export const routerController = {

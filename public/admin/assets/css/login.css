@@ -1,0 +1,43 @@
+sl-input::part(base) {
+     background-color: rgba(67, 34, 167, 0.2);
+     border: none;
+     font-size: 12px;
+}
+
+sl-input::part(input) {
+     color: #fff;
+     height: auto;
+}
+
+sl-input::part(input)::placeholder {
+     color: #ffffffb3;
+}
+
+sl-input::part(password-toggle-button) {
+     background-color: rgba(67, 34, 167, 0.2);
+     color: #ffffffb3;
+}
+
+sl-input::part(clear-button) {
+     background-color: rgba(67, 34, 167, 0.2);
+     color: #ffffffb3;
+}
+
+sl-checkbox::part(base) {
+     /* background-color: rgba(67, 34, 167, 0.2); */
+     color: #ffffffb3;
+}
+
+sl-checkbox[checked]::part(base) {
+     color: white;
+}
+
+sl-checkbox::part(control) {
+     background-color: transparent;
+     border: 1px solid #ffffffb3;
+}
+
+sl-checkbox::part(control--checked) {
+     color: #fff;
+     border: 1px solid white;
+}

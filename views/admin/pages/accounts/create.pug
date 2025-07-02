@@ -1,0 +1,18 @@
+extends ../../layouts/layout-1.pug
+
+block title
+     div(aria-label = 'Thêm tài khoản quản trị') Thêm tài khoản
+
+block action
+     sl-button(type="submit" size="small" variant="primary" btn-submit = `/${ADMIN_ROUTER.management_variable}/${ADMIN_ROUTER.accounts.path}/${ADMIN_ROUTER.accounts.create.post}`) Thêm mới
+
+block script
+     script(src="/admin/assets/js/accounts/create.js") 
+
+block main
+     div(class="bg-[white] p-[1rem]") 
+          form(action="", method="post")
+               div(class="flex flex-col gap-y-[1rem]") 
+                    sl-input(label = 'Tên tài khoản' size = 'small' required name = 'username')  
+                    sl-input(type = 'password' label = 'Mật khẩu' size = 'small' required autocomplete="off" password-toggle clearable name = 'password')  
+                    sl-input(type = 'password' label = 'Xác nhận mật khẩu' size = 'small' required autocomplete="off" password-toggle clearable name = 'confirm_password')  

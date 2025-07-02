@@ -369,88 +369,10 @@ const formatPrice = (document) => {
 };
 formatPrice(document);
 
-const initTomSelectMultiple = () => {
-     document.querySelectorAll("[select-multiple]").forEach((el) => {
-          let settings = {
-               plugins: {
-                    remove_button: {
-                         title: "Xóa lựa chọn này",
-                    },
-               },
-               persist: true,
-               create: function (input) {
-                    // Trả về một object option, với flag isNew = true
-                    return {
-                         value: input,
-                         text: input,
-                         isNew: true
-                    };
-               },
-               render: {
-                    option_create: function (data, escape) {
-                         return (
-                              '<div class="create">Ấn Enter để Thêm mới<strong>' +
-                              " " +
-                              escape(data.input) +
-                              "</strong>&hellip;</div>"
-                         );
-                    },
-                    // Thay đổi phần “No results found”
-                    no_results: function (data, escape) {
-                         return '<div class="no-results">Không có kết quả nào trong các kết quả có sẵn.</div>';
-                    },
-               },
-          };
-          const tom = new TomSelect(el, settings);
 
-          tom.on("item_add", (value, itemEl) => {
-               initSortable(itemEl.parentElement);
-          });
-     });
-};
 initTomSelectMultiple();
 
-const initTomSelectSingle = (item) => {
-     let settings = {
-          persist: true,
-          maxItems: 1,
-          // create: true,
-          create: function (input) {
-               // Trả về một object option, với flag isNew = true
-               return {
-                    value: input,
-                    text: input,
-                    isNew: true
-               };
-          },
-          sortField: {
-               field: "text",
-               direction: "asc",
-          },
-          hideSelected: true,
-          render: {
-               // Thay đổi phần “Add <value>…”
-               option_create: function (data, escape) {
-                    // data.input là text người dùng gõ
-                    return (
-                         '<div class="create">Ấn Enter để Thêm mới<strong>' +
-                         " " +
-                         escape(data.input) +
-                         "</strong>&hellip;</div>"
-                    );
-               },
-               // Thay đổi phần “No results found”
-               no_results: function (data, escape) {
-                    return '<div class="no-results">Không có kết quả nào trong các kết quả có sẵn.</div>';
-               },
-          },
-     };
-     new TomSelect(item, settings);
-     // document.querySelectorAll("[select-single]").forEach((el) => {
-     //      if (el.tomselect) return;
 
-     // });
-};
 
 // const openImage = () => {
 //      const listUploadImage = document.querySelectorAll("[upload-image]");
@@ -553,7 +475,7 @@ const addGroup = async () => {
                               placeholder = "Chọn thuộc tính ${parentGroup.children.length + 1}..."
                               multiple = ""
                               select-single = '' name="select-attribute" select-attribute="${parentGroup.children.length + 1}">`
-     await axios.get('http://localhost:3000/api/attributes/list?select=name')
+     await axios.get('/api/attributes/list?select=name')
           .then(res => {
                if (res.data && res.data.attributes.length > 0) {
                     for (const it of res.data.attributes) {
@@ -1430,7 +1352,7 @@ const main = () => {
 
 
                               axios
-                                   .post("/admin/products/create", formData, {
+                                   .post(btnSubmit.getAttribute('btn-submit'), formData, {
                                         headers: {
                                              'Content-Type': 'multipart/form-data'
                                         }

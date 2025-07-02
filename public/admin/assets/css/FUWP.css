@@ -1,0 +1,32 @@
+/* File Upload Preview */
+
+[data-upload-id] .label-container,
+[data-upload-id] .input-visible,
+[data-upload-id] .input-container {
+     display: none;
+}
+
+[data-upload-id] .image-preview {
+     min-height: 75px;
+     height: auto !important;
+     background-image: none !important;
+     padding: 0px !important;
+     background-color: var(--light) !important;
+     border-radius: 10px !important;
+}
+
+[data-upload-id] .image-preview-item {
+     aspect-ratio: 1/1;
+     width: auto !important;
+     border-radius: 15px;
+     margin: 5px !important;
+     height: 65px;
+}
+
+[data-upload-id] .image-preview-item-clear {
+     bottom: 0px !important;
+     left: auto !important;
+     right: -6px !important;
+}
+
+/* Hết File Upload Preview */

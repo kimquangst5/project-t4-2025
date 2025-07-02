@@ -32,6 +32,9 @@ const create = async (req: Request, res: Response) => {
         categories,
         branchs,
         attributes,
+        PAGE_TITLE: res.locals.ADMIN_ROUTER.products.create.title,
+        PAGE_DESCRIPTION: res.locals.ADMIN_ROUTER.products.create.description,
+        PAGE_KEYWORD: res.locals.ADMIN_ROUTER.products.create.keyword,
     });
 };
 

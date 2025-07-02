@@ -24,10 +24,8 @@ const init_sortable_table = () => {
 const swap_two_table = (i, j) => {
      const order = sortable_table.toArray().map((_, idx) => idx);
      sortable_table.captureAnimationState();
-     console.log(order);
      
      [order[i], order[j]] = [order[j], order[i]]; // hoán đổi trong mảng
-     console.log([order[j], order[i]]);
      
      sortable_table.sort(order); // SortableJS tự animate & cập nhật DOM
      sortable_table.animateAll(); // chạy animation từ cũ → mới

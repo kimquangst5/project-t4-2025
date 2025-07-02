@@ -1,0 +1,19 @@
+extends ../../layouts/layout-2.pug
+
+
+block css
+     link(rel="stylesheet" href="/admin/assets/css/login.css")
+
+block script
+     script(src="/admin/assets/js/login.js") 
+
+block main
+     div(class="flex items-center flex-col", bg-login)
+          div(class="")
+          img(src="/assets/images/banner logo-white.svg" alt="" class="h-[90px] my-[4rem]")
+          h1(class="text-white text-[20px]") Đăng nhập quản trị
+          form(method="post" action=`/${ADMIN_ROUTER.management_variable}/${ADMIN_ROUTER.login.patch}` class="flex flex-col my-[4rem] gap-y-[1rem] w-[420px]")
+               sl-input(type="text" pill class="w-full" placeholder = 'Tài khoản' autocomplete="off" name = 'username')
+               sl-input(type="password" pill placeholder = 'Mật khẩu' autocomplete="off" name = 'password' password-toggle clearable)
+               sl-checkbox(class="ml-[1rem]" name = 'remember') Ghi nhớ tài khoản
+               button(btn-submit = `/${ADMIN_ROUTER.management_variable}/${ADMIN_ROUTER.login.patch}` type="submit" class="text-[#ffffffb3] hover:text-[white] border-[1px] border-[#ffffff66]  hover:border-[#ffffffb3] py-[10px] px-[35px] w-max mx-auto rounded-[15px] my-[20px] ") Đăng nhập

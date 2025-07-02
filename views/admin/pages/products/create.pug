@@ -1,16 +1,18 @@
-extends ../../layouts/layout.pug
+extends ../../layouts/layout-1.pug
 
 block title
      div Thêm sản phẩm
 
 block action
-     sl-button(type="submit" size="small" variant="primary" btn-submit = '/admin/products/create') Thêm mới
+     sl-button(type="submit" size="small" variant="primary" btn-submit = `/${ADMIN_ROUTER.management_variable}/${ADMIN_ROUTER.products.path}/${ADMIN_ROUTER.products.create.post}`) Thêm mới
 
 block css
      link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/file-upload-with-preview@6.1.2/dist/style.min.css")
      link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.default.min.css")
      link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/viewerjs@1.11.7/dist/viewer.min.css")
      link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.min.css")
+     link(rel="stylesheet", href="/admin/assets/css/FUWP.css")
+     link(rel="stylesheet", href="/admin/assets/css/tom-select.css")
 
 block script
 

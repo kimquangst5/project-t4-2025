@@ -1,28 +1,99 @@
-extends ../../layouts/layout.pug
+extends ../../layouts/layout-1.pug
 
 block title
      div Quản lí đường dẫn
 
 block action
-     sl-button(type="submit" size="small" variant="primary" btn-submit = `/${router_admin.management_variable}/routers/update`) Cập nhật
+     sl-button(type="submit" size="small" variant="primary" btn-submit = `/${ADMIN_ROUTER.management_variable}/${ADMIN_ROUTER.routers.path}/update`) Cập nhật
 
 block script
+     script(src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.js") 
      script(src="/admin/assets/js/routers/index.js")
+
+block css
+     link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.default.min.css")
+     link(rel="stylesheet", href="/admin/assets/css/tom-select.css")
 
 block main
      sl-details(summary="Danh sách" open box-admin)
           form(class="flex flex-col gap-y-[20px]") 
                div(class="")
-                    sl-input(label="Biến quản trị" size='small' value=router_admin.management_variable name="management_variable")
-                    span(id = 'management_variable'  class="text-[12px] text-[var(--color-text)]") localhost:3000/admin
+                    sl-input(label="Biến quản trị" size='small' value=ADMIN_ROUTER.management_variable name="management_variable")
+                    span(id = 'management_variable'  class="text-[12px] text-[var(--color-text)]") localhost:4000/#{ADMIN_ROUTER.management_variable}
                     sl-copy-button(from="management_variable" class="text-[12px]")
-               div(class="")
-                    sl-input(label="Biến sản phẩm" size='small' value = 'products')
-                    span(id="my-phone" class="text-[12px] text-[var(--color-text)]") localhost:3000/admin/products
-                    sl-copy-button(from="my-phone" class="text-[12px]")
                div(class="relative")
-                    sl-input(label="Trang thêm mới sản phẩm" size='small' value = 'create')
+                    sl-input(label="Trang đăng nhập" size='small' value = ADMIN_ROUTER.login.name || '' name = 'login_name')
                     sl-badge(variant="success" size='small' class="absolute top-0 right-0") GET
-                    span(id="my-phone" class="text-[12px] text-[var(--color-text)]") localhost:3000/admin/products/create
-                    sl-copy-button(from="my-phone" class="text-[12px]" copy-label="Sao chép" success-label="Đã sao chép!")
+                    span(id="login_name" class="text-[12px] text-[var(--color-text)]") localhost:4000/#{ADMIN_ROUTER.management_variable}/#{ADMIN_ROUTER.login.name}
+                    sl-copy-button(from="login_name" class="text-[12px]")
+               div(class="relative")
+                    sl-input(size='small' value = ADMIN_ROUTER.login.title || '' name="login_title")
+                         div(slot="prefix" class="bg-[#E6E6E6] px-[10px] flex justify-center items-center h-full") Tiêu đề trang
+               div(class="relative")
+                    sl-input(size='small' value = ADMIN_ROUTER.login.description || '' name="login_description")
+                         div(slot="prefix" class="bg-[#E6E6E6] px-[10px] flex justify-center items-center h-full") Mô tả trang
+               div(class="relative")
+                    label(for="login_keyword" class="text-[12px] text-[var(--color-text)]") Từ khóa
+                    select(size='small' id='login_keyword'  name="login_keyword" value = ADMIN_ROUTER.login.keyword)
+               div(class="relative")
+                    sl-input(label="Biến sản phẩm" size='small' value = ADMIN_ROUTER.products.path || '' name = 'products_path')
+               div(class="relative")
+                    sl-input(label="Trang thêm mới sản phẩm" size='small' value = ADMIN_ROUTER.products.create.name name = 'products_create')
+                    sl-badge(variant="success" size='small' class="absolute top-0 right-0") GET
+                    span(id="products_create" class="text-[12px] text-[var(--color-text)]") localhost:4000/#{ADMIN_ROUTER.management_variable}/#{ADMIN_ROUTER.products.path}/#{ADMIN_ROUTER.products.create.name}
+                    sl-copy-button(from="products_create" class="text-[12px]" copy-label="Sao chép" success-label="Đã sao chép!")
+                    a(href=`/${ADMIN_ROUTER.management_variable}/${ADMIN_ROUTER.products.path}/${ADMIN_ROUTER.products.create.name}` target="_blank" class="text-[12px] ml-[10px]")
+                         sl-icon(name="box-arrow-up-right")
+               div(class="relative")
+                    sl-input(size='small' value = ADMIN_ROUTER.products.create.title || '' name="products_create_title")
+                         div(slot="prefix" class="bg-[#E6E6E6] px-[10px] flex justify-center items-center h-full") Tiêu đề trang
+               div(class="relative")
+                    sl-input(size='small' value = ADMIN_ROUTER.products.create.description || '' name="products_create_description")
+                         div(slot="prefix" class="bg-[#E6E6E6] px-[10px] flex justify-center items-center h-full") Mô tả trang
+               div(class="relative")
+                    label(for="products_create_keyword" class="text-[12px] text-[var(--color-text)]") Từ khóa
+                    select(size='small' id='products_create_keyword'  name="products_create_keyword" value = ADMIN_ROUTER.products.create.keyword)
+               div(class="relative")
+                    sl-input(label="Tính năng thêm mới sản phẩm" size='small' value = ADMIN_ROUTER.products.create.post || '' name = 'products_create_post')
+                    sl-badge(variant="primary" size='small' class="absolute top-0 right-0") POST
+                    span(id="products_create_post" class="text-[12px] text-[var(--color-text)]") localhost:4000/#{ADMIN_ROUTER.management_variable}/#{ADMIN_ROUTER.products.path}/#{ADMIN_ROUTER.products.create.post || ''}
+               div(class="relative")
+                    sl-input(label="Biến đường dẫn" size='small' value = ADMIN_ROUTER.routers.path || '' name="routers")
+               div(class="relative")
+                    sl-input(label="Trang danh sách đường dẫn" size='small' value = ADMIN_ROUTER.routers.index.name || '' name="routers_index")
+                    sl-badge(variant="success" size='small' class="absolute top-0 right-0") GET
+                    span(id="routers" class="text-[12px] text-[var(--color-text)]") localhost:4000/#{ADMIN_ROUTER.management_variable}/#{ADMIN_ROUTER.routers.path}/#{ADMIN_ROUTER.routers.index.name}
+                    sl-copy-button(from="routers" class="text-[12px]" copy-label="Sao chép" success-label="Đã sao chép!")
+                    a(href=`/${ADMIN_ROUTER.management_variable}/${ADMIN_ROUTER.routers.path}/${ADMIN_ROUTER.routers.index.name}` target="_blank" class="text-[12px] ml-[10px]")
+                         sl-icon(name="box-arrow-up-right")
+               div(class="relative")
+                    sl-input(size='small' value = ADMIN_ROUTER.routers.index.title || '' name="routers_title")
+                         div(slot="prefix" class="bg-[#E6E6E6] px-[10px] flex justify-center items-center h-full") Tiêu đề trang
+               div(class="relative")
+                    sl-input(size='small' value = ADMIN_ROUTER.routers.index.description || '' name="routers_description")
+                         div(slot="prefix" class="bg-[#E6E6E6] px-[10px] flex justify-center items-center h-full") Mô tả trang
+               div(class="relative")
+                    label(for="routers_keyword" class="text-[12px] text-[var(--color-text)]") Từ khóa
+                    select(size='small' id='routers_keyword'  name="routers_keyword" value = ADMIN_ROUTER.routers.index.keyword)
+               
+               
+               div(class="")
+                    sl-input(label="Biến tài khoản quản trị" size='small' value=ADMIN_ROUTER.accounts.path name="accounts_path")
+               div(class="relative")
+                    sl-input(label="Trang thêm tài khoản quản trị" size='small' value = ADMIN_ROUTER.accounts.create.name || '' name = 'accounts_create_name')
+                    sl-badge(variant="success" size='small' class="absolute top-0 right-0") GET
+                    span(id="accounts_create_name" class="text-[12px] text-[var(--color-text)]") localhost:4000/#{ADMIN_ROUTER.management_variable}/#{ADMIN_ROUTER.accounts.path}/#{ADMIN_ROUTER.accounts.create.name}
+                    sl-copy-button(from="accounts_create_name" class="text-[12px]")
+                    a(href=`/${ADMIN_ROUTER.management_variable}/${ADMIN_ROUTER.accounts.path}/${ADMIN_ROUTER.accounts.create.name}` target="_blank" class="text-[12px] ml-[10px]")
+                         sl-icon(name="box-arrow-up-right")
+               div(class="relative")
+                    sl-input(size='small' value = ADMIN_ROUTER.accounts.create.title || '' name="accounts_create_title")
+                         div(slot="prefix" class="bg-[#E6E6E6] px-[10px] flex justify-center items-center h-full") Tiêu đề trang
+               div(class="relative")
+                    sl-input(size='small' value = ADMIN_ROUTER.accounts.create.description || '' name="accounts_create_description")
+                         div(slot="prefix" class="bg-[#E6E6E6] px-[10px] flex justify-center items-center h-full") Mô tả trang
+               div(class="relative")
+                    label(for="accounts_create_keyword" class="text-[12px] text-[var(--color-text)]") Từ khóa
+                    select(size='small' id='accounts_create_keyword'  name="accounts_create_keyword" value = ADMIN_ROUTER.accounts.create.keyword)
+               
                button pk

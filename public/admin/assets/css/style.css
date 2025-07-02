@@ -26,7 +26,9 @@ sl-input::part(base):focus-within {
 
      box-shadow: none;
 }
-
+sl-input::part(base){
+     background-color: transparent;
+}
 sl-select::part(combobox):focus-within {
 
      box-shadow: none;
@@ -121,74 +123,6 @@ sl-switch[checked]::part(thumb) {
      background-size: contain;
 }
 
-
-/* Tom Select */
-
-.ts-control{
-     box-shadow: none;
-     padding: 0px;
-     padding-inline: 10px;
-     padding-block: 5px;
-}
-
-.ts-wrapper.single .ts-control {
-     box-shadow: none;
-     background-color: white;
-     background-image: none;
-     background-repeat: repeat-x;
-}
-
-.ts-wrapper.multi .ts-control [data-value].active {
-     background-color: var(--light);
-     background-image: none;
-     background-repeat: repeat-x;
-     color: var(--color-text);
-     border: none;
-}
-
-.ts-dropdown .active {
-     background-color: var(--light);
-     color: var(--color-text);
-}
-
-.ts-wrapper.multi .ts-control [data-value] {
-     display: flex;
-     flex-direction: row-reverse;
-     border-radius: 3px;
-     background-color: none;
-     background-image: none;
-     background-repeat: unset;
-     box-shadow: none;
-     text-shadow: none;
-     text-wrap: wrap;
-}
-
-.focus .ts-control{
-     box-shadow: none;
-    
-}
-
-.ts-wrapper{
- min-height: 0px;
-}
-
-.ts-wrapper.plugin-remove_button:not(.rtl) .item .remove {
-     border-left: 0px;
-     margin-right: 6px;
-     margin-left: 0px;
-     font-size: large;
-     color: var(--pink);
-}
-
-
-.ts-wrapper.multi .ts-control>div {
-     background: none;
-     color: var(--color-text);
-     border: none;
-}
-
-/* Hết Tom Select */
-
 /* Table */
 table,
 th,
@@ -199,45 +133,8 @@ td.sticky {
 
 /* Hết Table */
 
-/* File Upload Preview */
 
-[data-upload-id] .label-container,
-[data-upload-id] .input-visible,
-[data-upload-id] .input-container {
-     display: none;
-}
 
-[data-upload-id] .image-preview{
-     min-height: 75px;
-     height: auto !important;
-     background-image: none !important;
-     padding: 0px !important;
-     background-color: var(--light) !important;
-     border-radius: 10px !important;
-}
-
-[data-upload-id] .image-preview-item{
-     aspect-ratio: 1/1;
-     width: auto !important;
-     border-radius: 15px;
-     margin: 5px !important;
-     height: 65px;
-}
-[data-upload-id] .image-preview-item-clear {
-     bottom: 0px !important;
-     left: auto !important;
-     right: -6px !important;
-}
-/* Hết File Upload Preview */
-
-.ts-dropdown{
-     box-shadow: none !important;
-     border-radius: 10px;
-     overflow: hidden;
-}
-.ts-dropdown [data-selectable].option{
-     text-wrap: auto;
-}
 
 [count-character]{
      background-color:  var(--green);
@@ -245,6 +142,7 @@ td.sticky {
      border-top-left-radius: 5px;
      border-bottom-left-radius: 5px;
      height: 100%;
+     width: auto;
      aspect-ratio: 1/1;
      display: flex;
      align-items: center;
@@ -291,4 +189,10 @@ sl-radio::part(control--checked){
      margin-top: 4px;
      font-size: 14px;
      display: block;
+}
+
+.swal2-toast .swal2-title {
+     white-space: normal !important;
+     overflow-wrap: break-word;
+     text-align: left;
 }

@@ -2,23 +2,17 @@ doctype html
 html(lang="en" class="truncate")
 	include ../partials/head.pug
 	body
-		//- include ../partials/header.pug
-		//- include ../partials/activity-timeline.pug
-		//- include ../partials/sider-right.pug
-		div(class="truncate")
-			sl-split-panel(class="h-screen truncate" position="25")
-				div(class="h-full overflow-y-auto flex flex-col" slot="start")
-					include ../partials/sider.pug
-				div(class="h-full overflow-y-auto flex flex-col" slot="end")
-					include ../partials/header.pug
-					include ../partials/header-sub.pug
-					div(class="bg-[#EBECF3] p-5 flex-1") 
-						block main
+
+		block layout
+		span(please-wait class="hidden fixed inset-0 z-[9999] flex items-center justify-center bg-transparent")
+			div(class="flex items-center gap-x-[10px] py-[5px] px-[24px] rounded-[7px] bg-white")
+				p(class="loading loading-spinner text-accent")
+				p(class="text-[14px] text-gray-700") Vui lòng chờ...
 		
-		//- include ../partials/footer.pug
 		script(type="module", src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js")
 		script(src="https://unpkg.com/just-validate@4.3.0/dist/just-validate.production.min.js")
 		script(src="https://cdn.jsdelivr.net/npm/sweetalert2@11") 
 		script(src="/node_modules/axios/dist/axios.min.js")
-		block script
+		script(src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4") 
 		script(src="/admin/assets/js/style.js") 
+		block script

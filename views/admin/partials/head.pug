@@ -1,4 +1,5 @@
 head
+	title #{PAGE_TITLE}
 	// Title Meta
 	meta(charset="utf-8")
 	script(type="application/ld+json").
@@ -18,18 +19,18 @@ head
 
 	//- title Dashboard | Larkon - Responsive Admin Dashboard Template
 	meta(content="width=device-width, initial-scale=1.0", name="viewport")
-	meta(
-		content="A fully responsive premium admin dashboard template",
-		name="description"
-	)
-	meta(content="Techzaa", name="author")
+	meta(name="description", content=PAGE_DESCRIPTION ? PAGE_DESCRIPTION : '')
+	meta(name="keywords", content=PAGE_KEYWORD ? PAGE_KEYWORD.join(', ') : '')
+
+	meta(name="author", content="Kim Quang")
 	meta(content="IE=edge", http-equiv="X-UA-Compatible")
 	link(rel="stylesheet", href="/admin/assets/css/variable.css")
-	block css
 	link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/daisyui@5" type="text/css" )
 	script(src="https://cdn.tailwindcss.com")
 	script(src="/tailwind.config.js")
 	link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/sweetalert2@11.19.1/dist/sweetalert2.min.css")
 	link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css")
-	link(rel="stylesheet", href="/admin/assets/css/style.css")
 	link(rel="stylesheet", href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css")
+	link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/daisyui@5")
+	link(rel="stylesheet", href="/admin/assets/css/style.css")
+	block css

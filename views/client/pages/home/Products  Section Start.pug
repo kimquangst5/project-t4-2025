@@ -1,0 +1,550 @@
+// Products  Section Start
+section.pt-10.pb-5(
+  x-data="{ open: false }" 
+  class="3xl:pt-25 3xl:pb-17 md:pt-17 md:pb-10 sm:pt-13.5 sm:pb-5"
+  )
+  .container
+    .row.items-start(class="md:justify-between")
+      .w-full(class="lg:w-1/2")
+        .wow.fadeInUp(
+          data-wow-delay="0.2s" 
+          class="mb-7.5"
+          )
+          .left-content
+            h2.text-4xl.mb-2(class="max-lg:text-2.5xl max-sm:!text-xl") Sản phẩm phổ biến
+      .w-full(class="lg:w-1/2")
+        .mb-5.border.border-black.w-fit.rounded-4xl.wow.fadeInUp.site-filters.style-1(
+          data-wow-delay="0.4s" 
+          class="p-1.5 lg:ml-auto max-lg:w-full max-lg:text-center max-sm:p-1 max-sm:mb-10"
+          )
+          ul.filters(data-bs-toggle="buttons")
+            li.px-2.rounded-5xl.inline-block.text-sm.duration-500.active(class="py-1.1 xl:px-5 sm:px-3.6")
+              input.hidden(type="radio")
+              a.font-medium(href="javascript:void(0);") Tất cả
+            li.px-2.rounded-5xl.inline-block.text-sm.duration-500(
+              data-filter=".Dresses" 
+              class="py-1.1 xl:px-5 sm:px-3.6"
+              )
+              input.hidden(type="radio")
+              a.font-medium(href="javascript:void(0);") Dresses
+            li.px-2.rounded-5xl.inline-block.text-sm.duration-500(
+              data-filter=".Tops" 
+              class="py-1.1 xl:px-5 sm:px-3.6"
+              )
+              input.hidden(type="radio")
+              a.font-medium(href="javascript:void(0);") Tops
+            li.px-2.rounded-5xl.inline-block.text-sm.duration-500(
+              data-filter=".Outerwear" 
+              class="py-1.1 xl:px-5 sm:px-3.6"
+              )
+              input.hidden(type="radio")
+              a.font-medium(href="javascript:void(0);") Outerwear
+            li.px-2.rounded-5xl.inline-block.text-sm.duration-500(
+              data-filter=".Jacket" 
+              class="py-1.1 xl:px-5 sm:px-3.6"
+              )
+              input.hidden(type="radio")
+              a.font-medium(href="javascript:void(0);") Jacket
+    .clearfix
+      ul#masonry2.row.g-xl-4.g-3
+        .grid-sizer(class="w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2 !m-0")
+        li.grid-item.Tops.wow.fadeInUp(
+          data-wow-delay="0.6s" 
+          class="w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+          )
+          .relative.z-1.h-full.group
+            .relative.overflow-hidden.rounded-3xl.duration-500
+              img.rounded-3xl.duration-500.w-full(
+                class="group-hover:-translate-y-5" 
+                alt="image" 
+                src="/client/assets/images/shop/product/1.png"
+                )
+              .absolute.bottom-0.left-0.size-full.flex.flex-col.justify-start.items-end.duration-200(class="gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6")
+                a.btn.py-3.text-sm.font-Lufga.inline-block.font-medium.bg-secondary.text-white.rounded-full.duration-500.-bottom-16.whitespace-nowrap.absolute.overflow-hidden.border-4(
+                  class="px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]" 
+                  @click="open = true" 
+                  href="javascript:void(0);"
+                  )
+                  i.fa-solid.fa-eye.block(class="md:hidden")
+                  span.hidden(class="md:block") Xem nhanh
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-wishicon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.icon.feather.icon-heart.dz-heart.text-white.text-lg
+                  i.icon.feather.icon-heart-on.dz-heart-fill.text-white.text-lg
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-carticon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.flaticon.flaticon-basket.text-white.text-lg
+                  i.flaticon.flaticon-basket-on.dz-heart-fill.text-white.text-lg
+            .text-start.py-5.flex.justify-between(class="max-sm:p-2.5")
+              h5.capitalize(class="w-[70%] max-xl:w-full max-sm:text-sm")
+                a(href="shop-list.html")
+                  | Cozy Knit Cardigan
+                  |   Sweater
+              h5(class="max-sm:text-2xs") $80
+            .absolute.top-5.left-5.w-auto.flex.items-center.justify-between(class="max-sm:top-2.5 max-sm:left-2.5")
+              span.bg-white.font-Lufga.text-xs.uppercase.text-center.font-semibold(
+                class="py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+                )
+                | Get
+                |   20% Off
+        li.grid-item.Dresses.Jacket.wow.fadeInUp(
+          data-wow-delay="0.8s" 
+          class="w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+          )
+          .relative.z-1.h-full.group
+            .relative.overflow-hidden.rounded-3xl.duration-500
+              img.rounded-3xl.duration-500.w-full(
+                class="group-hover:-translate-y-5" 
+                alt="image" 
+                src="/client/assets/images/shop/product/2.png"
+                )
+              .absolute.bottom-0.left-0.size-full.flex.flex-col.justify-start.items-end.duration-200(class="gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6")
+                a.btn.py-3.text-sm.font-Lufga.inline-block.font-medium.bg-secondary.text-white.rounded-full.duration-500.-bottom-16.whitespace-nowrap.absolute.overflow-hidden.border-4(
+                  class="px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]" 
+                  @click="open = true" 
+                  href="javascript:void(0);"
+                  )
+                  i.fa-solid.fa-eye.block(class="md:hidden")
+                  span.hidden(class="md:block") Xem nhanh
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-wishicon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.icon.feather.icon-heart.dz-heart.text-white.text-lg
+                  i.icon.feather.icon-heart-on.dz-heart-fill.text-white.text-lg
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-carticon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.flaticon.flaticon-basket.text-white.text-lg
+                  i.flaticon.flaticon-basket-on.dz-heart-fill.text-white.text-lg
+            .text-start.py-5.flex.justify-between(class="max-sm:p-2.5")
+              h5.capitalize(class="w-[70%] max-xl:w-full max-sm:text-sm")
+                a(href="shop-list.html") Sản phẩm 3
+              h5(class="max-sm:text-2xs") 80.000đ
+            .absolute.top-5.left-5.w-auto.flex.items-center.justify-between(class="max-sm:top-2.5 max-sm:left-2.5")
+              span.bg-white.font-Lufga.text-xs.uppercase.text-center.font-semibold(
+                class="py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+                )
+                | Get
+                |   20% Off
+        li.grid-item.Dresses.wow.fadeInUp(
+          data-wow-delay="1.0s" 
+          class="w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+          )
+          .relative.z-1.h-full.group
+            .relative.overflow-hidden.rounded-3xl.duration-500
+              img.rounded-3xl.duration-500.w-full(
+                class="group-hover:-translate-y-5" 
+                alt="image" 
+                src="/client/assets/images/shop/product/3.png"
+                )
+              .absolute.bottom-0.left-0.size-full.flex.flex-col.justify-start.items-end.duration-200(class="gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6")
+                a.btn.py-3.text-sm.font-Lufga.inline-block.font-medium.bg-secondary.text-white.rounded-full.duration-500.-bottom-16.whitespace-nowrap.absolute.overflow-hidden.border-4(
+                  class="px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]" 
+                  @click="open = true" 
+                  href="javascript:void(0);"
+                  )
+                  i.fa-solid.fa-eye.block(class="md:hidden")
+                  span.hidden(class="md:block") Xem nhanh
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-wishicon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.icon.feather.icon-heart.dz-heart.text-white.text-lg
+                  i.icon.feather.icon-heart-on.dz-heart-fill.text-white.text-lg
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-carticon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.flaticon.flaticon-basket.text-white.text-lg
+                  i.flaticon.flaticon-basket-on.dz-heart-fill.text-white.text-lg
+            .text-start.py-5.flex.justify-between(class="max-sm:p-2.5")
+              h5.capitalize(class="w-[70%] max-xl:w-full max-sm:text-sm")
+                a(href="shop-list.html")
+                  | Classic Denim
+                  |   Skinny Jeans
+              h5(class="max-sm:text-2xs") $80
+            .absolute.top-5.left-5.w-auto.flex.items-center.justify-between(class="max-sm:top-2.5 max-sm:left-2.5")
+              span.bg-white.font-Lufga.text-xs.uppercase.text-center.font-semibold(
+                class="py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+                )
+                | Get
+                |   20% Off
+        li.grid-item.Tops.Jacket.wow.fadeInUp(
+          data-wow-delay="1.2s" 
+          class="w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+          )
+          .relative.z-1.h-full.group
+            .relative.overflow-hidden.rounded-3xl.duration-500
+              img.rounded-3xl.duration-500.w-full(
+                class="group-hover:-translate-y-5" 
+                alt="image" 
+                src="/client/assets/images/shop/product/4.png"
+                )
+              .absolute.bottom-0.left-0.size-full.flex.flex-col.justify-start.items-end.duration-200(class="gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6")
+                a.btn.py-3.text-sm.font-Lufga.inline-block.font-medium.bg-secondary.text-white.rounded-full.duration-500.-bottom-16.whitespace-nowrap.absolute.overflow-hidden.border-4(
+                  class="px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]" 
+                  @click="open = true" 
+                  href="javascript:void(0);"
+                  )
+                  i.fa-solid.fa-eye.block(class="md:hidden")
+                  span.hidden(class="md:block") Xem nhanh
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-wishicon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.icon.feather.icon-heart.dz-heart.text-white.text-lg
+                  i.icon.feather.icon-heart-on.dz-heart-fill.text-white.text-lg
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-carticon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.flaticon.flaticon-basket.text-white.text-lg
+                  i.flaticon.flaticon-basket-on.dz-heart-fill.text-white.text-lg
+            .text-start.py-5.flex.justify-between(class="max-sm:p-2.5")
+              h5.capitalize(class="w-[70%] max-xl:w-full max-sm:text-sm")
+                a(href="shop-list.html")
+                  | Athletic Mesh
+                  |   Sports Leggings
+              h5(class="max-sm:text-2xs") $80
+            .absolute.top-5.left-5.w-auto.flex.items-center.justify-between(class="max-sm:top-2.5 max-sm:left-2.5")
+              span.bg-white.font-Lufga.text-xs.uppercase.text-center.font-semibold(
+                class="py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+                )
+                | Get
+                |   20% Off
+        li.grid-item.Dresses.wow.fadeInUp(
+          data-wow-delay="0.2s" 
+          class="w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+          )
+          .relative.z-1.h-full.group
+            .relative.overflow-hidden.rounded-3xl.duration-500
+              img.rounded-3xl.duration-500.w-full(
+                class="group-hover:-translate-y-5" 
+                alt="image" 
+                src="/client/assets/images/shop/product/5.png"
+                )
+              .absolute.bottom-0.left-0.size-full.flex.flex-col.justify-start.items-end.duration-200(class="gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6")
+                a.btn.py-3.text-sm.font-Lufga.inline-block.font-medium.bg-secondary.text-white.rounded-full.duration-500.-bottom-16.whitespace-nowrap.absolute.overflow-hidden.border-4(
+                  class="px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]" 
+                  @click="open = true" 
+                  href="javascript:void(0);"
+                  )
+                  i.fa-solid.fa-eye.block(class="md:hidden")
+                  span.hidden(class="md:block") Xem nhanh
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-wishicon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.icon.feather.icon-heart.dz-heart.text-white.text-lg
+                  i.icon.feather.icon-heart-on.dz-heart-fill.text-white.text-lg
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-carticon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.flaticon.flaticon-basket.text-white.text-lg
+                  i.flaticon.flaticon-basket-on.dz-heart-fill.text-white.text-lg
+            .text-start.py-5.flex.justify-between(class="max-sm:p-2.5")
+              h5.capitalize(class="w-[70%] max-xl:w-full max-sm:text-sm")
+                a(href="shop-list.html")
+                  | Vintage Denim
+                  |   Overalls Shorts
+              h5(class="max-sm:text-2xs") $80
+            .absolute.top-5.left-5.w-auto.flex.items-center.justify-between(class="max-sm:top-2.5 max-sm:left-2.5")
+              span.bg-white.font-Lufga.text-xs.uppercase.text-center.font-semibold(
+                class="py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+                )
+                | Get
+                |   20% Off
+        li.grid-item.Outerwear.wow.fadeInUp(
+          data-wow-delay="0.4s" 
+          class="w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+          )
+          .relative.z-1.h-full.group
+            .relative.overflow-hidden.rounded-3xl.duration-500
+              img.rounded-3xl.duration-500.w-full(
+                class="group-hover:-translate-y-5" 
+                alt="image" 
+                src="/client/assets/images/shop/product/6.png"
+                )
+              .absolute.bottom-0.left-0.size-full.flex.flex-col.justify-start.items-end.duration-200(class="gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6")
+                a.btn.py-3.text-sm.font-Lufga.inline-block.font-medium.bg-secondary.text-white.rounded-full.duration-500.-bottom-16.whitespace-nowrap.absolute.overflow-hidden.border-4(
+                  class="px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]" 
+                  @click="open = true" 
+                  href="javascript:void(0);"
+                  )
+                  i.fa-solid.fa-eye.block(class="md:hidden")
+                  span.hidden(class="md:block") Xem nhanh
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-wishicon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.icon.feather.icon-heart.dz-heart.text-white.text-lg
+                  i.icon.feather.icon-heart-on.dz-heart-fill.text-white.text-lg
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-carticon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.flaticon.flaticon-basket.text-white.text-lg
+                  i.flaticon.flaticon-basket-on.dz-heart-fill.text-white.text-lg
+            .text-start.py-5.flex.justify-between(class="max-sm:p-2.5")
+              h5.capitalize(class="w-[70%] max-xl:w-full max-sm:text-sm")
+                a(href="shop-list.html")
+                  | Satin Wrap Party
+                  |   Blouse
+              h5(class="max-sm:text-2xs") $80
+            .absolute.top-5.left-5.w-auto.flex.items-center.justify-between(class="max-sm:top-2.5 max-sm:left-2.5")
+              span.bg-white.font-Lufga.text-xs.uppercase.text-center.font-semibold(
+                class="py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+                )
+                | Get
+                |   20% Off
+        li.grid-item.Dresses.wow.fadeInUp(
+          data-wow-delay="0.6s" 
+          class="w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+          )
+          .relative.z-1.h-full.group
+            .relative.overflow-hidden.rounded-3xl.duration-500
+              img.rounded-3xl.duration-500.w-full(
+                class="group-hover:-translate-y-5" 
+                alt="image" 
+                src="/client/assets/images/shop/product/7.png"
+                )
+              .absolute.bottom-0.left-0.size-full.flex.flex-col.justify-start.items-end.duration-200(class="gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6")
+                a.btn.py-3.text-sm.font-Lufga.inline-block.font-medium.bg-secondary.text-white.rounded-full.duration-500.-bottom-16.whitespace-nowrap.absolute.overflow-hidden.border-4(
+                  class="px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]" 
+                  @click="open = true" 
+                  href="javascript:void(0);"
+                  )
+                  i.fa-solid.fa-eye.block(class="md:hidden")
+                  span.hidden(class="md:block") Xem nhanh
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-wishicon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.icon.feather.icon-heart.dz-heart.text-white.text-lg
+                  i.icon.feather.icon-heart-on.dz-heart-fill.text-white.text-lg
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-carticon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.flaticon.flaticon-basket.text-white.text-lg
+                  i.flaticon.flaticon-basket-on.dz-heart-fill.text-white.text-lg
+            .text-start.py-5.flex.justify-between(class="max-sm:p-2.5")
+              h5.capitalize(class="w-[70%] max-xl:w-full max-sm:text-sm")
+                a(href="shop-list.html")
+                  | Plaid Wool Winter
+                  |   Coat
+              h5(class="max-sm:text-2xs") $80
+            .absolute.top-5.left-5.w-auto.flex.items-center.justify-between(class="max-sm:top-2.5 max-sm:left-2.5")
+              span.bg-white.font-Lufga.text-xs.uppercase.text-center.font-semibold(
+                class="py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+                )
+                | Get
+                |   20% Off
+        li.grid-item.Tops.wow.fadeInUp(
+          data-wow-delay="2.0s" 
+          class="w-1/2 lg:w-1/4 md:w-1/3 sm:w-1/2"
+          )
+          .relative.z-1.h-full.group
+            .relative.overflow-hidden.rounded-3xl.duration-500
+              img.rounded-3xl.duration-500.w-full(
+                class="group-hover:-translate-y-5" 
+                alt="image" 
+                src="/client/assets/images/shop/product/8.png"
+                )
+              .absolute.bottom-0.left-0.size-full.flex.flex-col.justify-start.items-end.duration-200(class="gap-1.1 p-3.6 max-sm:px-2.5 max-sm:gap-0 max-sm:group-hover:bottom-3.6")
+                a.btn.py-3.text-sm.font-Lufga.inline-block.font-medium.bg-secondary.text-white.rounded-full.duration-500.-bottom-16.whitespace-nowrap.absolute.overflow-hidden.border-4(
+                  class="px-7.5 leading-[1.2] hover:bg-primary group-hover:-bottom-1 max-sm:group-hover:bottom-[-15px] left-1/2 -translate-x-1/2 border-[#fffaf3]" 
+                  @click="open = true" 
+                  href="javascript:void(0);"
+                  )
+                  i.fa-solid.fa-eye.block(class="md:hidden")
+                  span.hidden(class="md:block") Xem nhanh
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-wishicon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.icon.feather.icon-heart.dz-heart.text-white.text-lg
+                  i.icon.feather.icon-heart-on.dz-heart-fill.text-white.text-lg
+                .flex.items-center.justify-center.rounded-full.shadow-default.relative.overflow-hidden.btn.meta-icon.dz-carticon(class="size-[45px] max-sm:size-7.5 max-sm:group-hover:-bottom-2.5 bg-[#0000004d] mb-1.1")
+                  i.flaticon.flaticon-basket.text-white.text-lg
+                  i.flaticon.flaticon-basket-on.dz-heart-fill.text-white.text-lg
+            .text-start.py-5.flex.justify-between(class="max-sm:p-2.5")
+              h5.capitalize(class="w-[70%] max-xl:w-full max-sm:text-sm")
+                a(href="shop-list.html")
+                  | Water-Resistant
+                  |   Windbreaker Jacket
+              h5(class="max-sm:text-2xs") $80
+            .absolute.top-5.left-5.w-auto.flex.items-center.justify-between(class="max-sm:top-2.5 max-sm:left-2.5")
+              span.bg-white.font-Lufga.text-xs.uppercase.text-center.font-semibold(
+                class="py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px] rounded-3.5xl"
+                )
+                | Get
+                |   20% Off
+  // Quick Modal Start
+  .fixed.inset-0.transition-opacity.z-999999.overflow-x-hidden.overflow-y-auto.mt-0(
+    x-transition:leave-end="opacity-0" 
+    x-transition:leave-start="opacity-100" 
+    x-transition:leave="transition ease-in duration-500" 
+    x-transition:enter-end="opacity-100" 
+    x-transition:enter-start="opacity-0" 
+    x-transition:enter="transition ease-in duration-800" 
+    x-show="open" 
+    x-cloak="" 
+    @keydown.escape.window="open = false" 
+    class="bg-black/60"
+    )
+    .flex.items-center.justify-center.min-h-screen
+      .modal-dialog.flex.flex-col.relative.rounded-lg.bg-card.w-full.pointer-events-auto(
+        @click.away="open = false" 
+        class="mx-[10px] max-w-[1070px]"
+        )
+        .modal-content.bg-white(class="max-md:p-7.5 max-md:pt-13.5 max-sm:!px-3.6 max-sm:!pb-5")
+          button.absolute.right-2.top-2.text-secondary.text-2xl.size-10.z-1(
+            @click="open = false" 
+            type="button"
+            )
+            i.icon.feather.icon-x
+          .modal-body
+            .row.g-xl-4.g-3
+              .w-full(class="md:w-1/2")
+                .dz-product-detail.mb-0
+                  .relative.swiper-btn-center-lr
+                    .swiper.quick-modal-swiper2
+                      #lightgallery.swiper-wrapper
+                        .swiper-slide
+                          .relative.overflow-hidden.DZoomImage.group
+                            a.mfp-link.lg-item(
+                              data-src="/client/assets/images/products/lady-1.png" 
+                              href="/client/assets/images/products/lady-1.png"
+                              )
+                              i.feather.icon-maximize.dz-maximize.absolute.top-5.right-5.size-10.flex.items-center.justify-center.bg-white.text-2xl.rounded-xl.duration-500.opacity-0(class="group-hover:opacity-100")
+                            img(
+                              alt="image" 
+                              src="/client/assets/images/products/lady-1.png"
+                              )
+                        .swiper-slide
+                          .relative.overflow-hidden.DZoomImage.group
+                            a.mfp-link.lg-item(
+                              data-src="/client/assets/images/products/lady-2.png" 
+                              href="/client/assets/images/products/lady-2.png"
+                              )
+                              i.feather.icon-maximize.dz-maximize.absolute.top-5.right-5.size-10.flex.items-center.justify-center.bg-white.text-2xl.rounded-xl.duration-500.opacity-0(class="group-hover:opacity-100")
+                            img(
+                              alt="image" 
+                              src="/client/assets/images/products/lady-2.png"
+                              )
+                        .swiper-slide
+                          .relative.overflow-hidden.DZoomImage.group
+                            a.mfp-link.lg-item(
+                              data-src="/client/assets/images/products/lady-3.png" 
+                              href="/client/assets/images/products/lady-3.png"
+                              )
+                              i.feather.icon-maximize.dz-maximize.absolute.top-5.right-5.size-10.flex.items-center.justify-center.bg-white.text-2xl.rounded-xl.duration-500.opacity-0(class="group-hover:opacity-100")
+                            img(
+                              alt="image" 
+                              src="/client/assets/images/products/lady-3.png"
+                              )
+                    .swiper.quick-modal-swiper.thumb-swiper-lg.swiper-vertical.absolute(class="top-7.5 left-7.5")
+                      .swiper-wrapper
+                        .swiper-slide(class="mb-3.6 !size-13.5")
+                          img.border.border-white(
+                            alt="image" 
+                            src="/client/assets/images/products//thumb-img/lady-1.png"
+                            )
+                        .swiper-slide(class="mb-3.6 !size-13.5")
+                          img.border.border-white(
+                            alt="image" 
+                            src="/client/assets/images/products//thumb-img/lady-2.png"
+                            )
+                        .swiper-slide(class="mb-3.6 !size-13.5")
+                          img.border.border-white(
+                            alt="image" 
+                            src="/client/assets/images/products//thumb-img/lady-3.png"
+                            )
+              .w-full(class="md:w-1/2")
+                .dz-product-detail.style-2.pt-2.mb-0(class="xl:pl-4")
+                  .dz-content
+                    .flex(class="mb-3.6")
+                      div(class="flex-[1]")
+                        span.inline-block.font-Lufga.text-xs.uppercase.text-center.font-semibold.rounded-md.bg-secondary.text-white.mb-2(
+                          class="py-1.1 px-3.6 max-sm:py-0.5 max-sm:px-2 max-sm:text-xxs min-w-[22px] min-h-[22px] leading-[18px]"
+                          ) SALE 20% Off
+                        h4.text-2xl.font-bold.mb-1(class="sm:text-2.5xl")
+                          a(href="shop-list.html") Cozy Knit Cardigan Sweater
+                        .flex
+                          ul.flex.items-center.mr-2(class="gap-0.5")
+                            li.text-sm.star-fill(class="text-[#ff8a00]")
+                              i.flaticon-star-1
+                            li.text-sm.star-fill(class="text-[#ff8a00]")
+                              i.flaticon-star-1
+                            li.text-sm.star-fill(class="text-[#ff8a00]")
+                              i.flaticon-star-1
+                            li.text-sm(class="text-[#e4e5e8]")
+                              i.flaticon-star-1
+                            li.text-sm(class="text-[#e4e5e8]")
+                              i.flaticon-star-1
+                          span.text-2xs.mr-2 4.7 Rating
+                          a.text-2xs(href="javascript:void(0);") (5 customer reviews)
+                    p.text-2sm.mb-4
+                      | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has.
+                    .meta-content.mb-5.flex.items-end
+                      .meta-content.mr-4
+                        label.text-base.font-bold.block.font-Lufga(class="mb-2.5") Price
+                        span.font-medium.text-2xl.font-Lufga
+                          | $125.75
+                          del.opacity-60.text-lg.text-body(class="py-1.1") $132.17
+                      .input-group
+                        label.text-base.font-bold.block.font-Lufga(class="mb-2.5") Quantity
+                        span.flex
+                          input.button-minus.size-10.rounded-full.text-center.text-3xl.border.border-secondary.bg-secondary.text-white(
+                            class="leading-[27px] mr-2.5 mb-1.1" 
+                            data-field="quantity" 
+                            value="-" 
+                            type="button"
+                            )
+                          input.touchspin.size-10.rounded-full.text-center.border.border-secondary.bg-light.outline-none(
+                            class="leading-[27px] mr-2.5 mb-1.1" 
+                            name="quantity" 
+                            value="1" 
+                            step="1" 
+                            type="number"
+                            )
+                          input.button-plus.size-10.rounded-full.text-center.text-3xl.border.border-secondary.bg-secondary.text-white(
+                            class="leading-[27px] mr-2.5 mb-1.1" 
+                            data-field="quantity" 
+                            value="+" 
+                            type="button"
+                            )
+                    .flex.flex-wrap(class="mb-2.5")
+                      a.btn.py-3.px-5.text-base.font-Lufga.inline-block.font-medium.border.border-secondary.bg-secondary.text-white.rounded-xl.duration-700.uppercase.relative.overflow-hidden(
+                        class="leading-[1.2] m-1.1" 
+                        href="shop-cart.html"
+                        ) Add To Cart
+                      a.btn.py-3.px-5.text-base.inline-flex.items-center.justify-center.font-medium.font-Lufga.border.border-secondary.rounded-xl.duration-700.relative.overflow-hidden(
+                        class="gap-2.5 leading-[1.2] hover:bg-secondary hover:text-white m-1.1" 
+                        href="shop-wishlist.html"
+                        )
+                        i.icon.feather.icon-heart
+                        | Add To Wishlist
+                    .pt-5.border-t.border-border.relative
+                      ul.flex.flex-wrap.items-center(class="mb-2.5")
+                        li.text-sm(class="mr-2.5")
+                          strong.text-2sm.font-Lufga SKU:
+                        li.text-sm(class="mr-2.5") PRT584E63A
+                      ul.flex.flex-wrap.items-center(class="mb-2.5")
+                        li.text-sm(class="mr-2.5")
+                          strong.text-2sm.font-Lufga Category:
+                        li.text-sm(class="mr-2.5")
+                          a(href="shop-standard.html") Dresses,
+                        li.text-sm(class="mr-2.5")
+                          a(href="shop-standard.html") Jeans,
+                        li.text-sm(class="mr-2.5")
+                          a(href="shop-standard.html") Swimwear,
+                        li.text-sm(class="mr-2.5")
+                          a(href="shop-standard.html") Summer,
+                        li.text-sm(class="mr-2.5")
+                          a(href="shop-standard.html") Clothing,
+                      ul.flex.flex-wrap.items-center(class="mb-2.5")
+                        li.text-sm(class="mr-2.5")
+                          strong.text-2sm.font-Lufga Tags:
+                        li.text-sm(class="mr-2.5")
+                          a(href="shop-standard.html") Casual,
+                        li.text-sm(class="mr-2.5")
+                          a(href="shop-standard.html") Athletic,
+                        li.text-sm(class="mr-2.5")
+                          a(href="shop-standard.html") Workwear,
+                        li.text-sm(class="mr-2.5")
+                          a(href="shop-standard.html") Accessories,
+                      ul.flex.flex-wrap.items-center(class="mb-2.5")
+                        li.text-sm(class="mr-2.5")
+                          a(
+                            target="_blank" 
+                            href="https://www.facebook.com/dexignzone" 
+                            class="hover:text-primary"
+                            )
+                            i.fa-brands.fa-facebook-f
+                        li.text-sm(class="mr-2.5")
+                          a(
+                            target="_blank" 
+                            href="https://www.linkedin.com/showcase/3686700/admin/" 
+                            class="hover:text-primary"
+                            )
+                            i.fa-brands.fa-linkedin-in
+                        li.text-sm(class="mr-2.5")
+                          a(
+                            target="_blank" 
+                            href="https://www.instagram.com/dexignzone/" 
+                            class="hover:text-primary"
+                            )
+                            i.fa-brands.fa-instagram
+                        li.text-sm(class="mr-2.5")
+                          a(
+                            target="_blank" 
+                            href="https://twitter.com/dexignzones" 
+                            class="hover:text-primary"
+                            )
+                            i.fa-brands.fa-twitter
+  // Quick Modal End
+// Products Section Start

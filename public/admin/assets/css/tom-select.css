@@ -1,0 +1,76 @@
+/* Tom Select */
+
+.ts-control {
+     box-shadow: none;
+     padding: 0px;
+     padding-inline: 10px;
+     padding-block: 5px;
+}
+
+.ts-wrapper.single .ts-control {
+     box-shadow: none;
+     background-color: white;
+     background-image: none;
+     background-repeat: repeat-x;
+}
+
+.ts-wrapper.multi .ts-control [data-value].active {
+     background-color: var(--light);
+     background-image: none;
+     background-repeat: repeat-x;
+     color: var(--color-text);
+     border: none;
+}
+
+.ts-dropdown .active {
+     background-color: var(--light);
+     color: var(--color-text);
+}
+
+.ts-wrapper.multi .ts-control [data-value] {
+     display: flex;
+     flex-direction: row-reverse;
+     border-radius: 3px;
+     background-color: none;
+     background-image: none;
+     background-repeat: unset;
+     box-shadow: none;
+     text-shadow: none;
+     text-wrap: wrap;
+}
+
+.focus .ts-control {
+     box-shadow: none;
+
+}
+
+.ts-wrapper {
+     min-height: 0px;
+}
+
+.ts-wrapper.plugin-remove_button:not(.rtl) .item .remove {
+     border-left: 0px;
+     margin-right: 6px;
+     margin-left: 0px;
+     font-size: large;
+     color: var(--pink);
+}
+
+
+.ts-wrapper.multi .ts-control>div {
+     background: none;
+     color: var(--color-text);
+     border: none;
+}
+
+.ts-dropdown {
+     box-shadow: none !important;
+     border-radius: 10px;
+     overflow: hidden;
+}
+
+.ts-dropdown [data-selectable].option {
+     text-wrap: auto;
+}
+
+/* Hết Tom Select */

@@ -12,6 +12,95 @@ const sider = () => {
 
 sider()
 
+const initTomSelectSingle = (item, number = 1, options = [], items = []) => {
+     let settings = {
+          options: options,
+          items: items,
+          plugins: {
+               remove_button: {
+                    title: "Xóa lựa chọn này",
+               },
+          },
+          persist: true,
+          maxItems: number,
+          // create: true,
+          create: function (input) {
+               // Trả về một object option, với flag isNew = true
+               return {
+                    value: input,
+                    text: input,
+                    isNew: true
+               };
+          },
+          sortField: {
+               field: "text",
+               direction: "asc",
+          },
+          hideSelected: true,
+          render: {
+               // Thay đổi phần “Add <value>…”
+               option_create: function (data, escape) {
+                    // data.input là text người dùng gõ
+                    return (
+                         '<div class="create">Ấn Enter để Thêm mới<strong>' +
+                         " " +
+                         escape(data.input) +
+                         "</strong>&hellip;</div>"
+                    );
+               },
+               // Thay đổi phần “No results found”
+               no_results: function (data, escape) {
+                    return '<div class="no-results">Không có kết quả nào trong các kết quả có sẵn.</div>';
+               },
+          },
+     };
+     new TomSelect(item, settings);
+     // document.querySelectorAll("[select-single]").forEach((el) => {
+     //      if (el.tomselect) return;
+
+     // });
+};
+
+const initTomSelectMultiple = () => {
+     document.querySelectorAll("[select-multiple]").forEach((el) => {
+          let settings = {
+               plugins: {
+                    remove_button: {
+                         title: "Xóa lựa chọn này",
+                    },
+               },
+               persist: true,
+               create: function (input) {
+                    // Trả về một object option, với flag isNew = true
+                    return {
+                         value: input,
+                         text: input,
+                         isNew: true
+                    };
+               },
+               render: {
+                    option_create: function (data, escape) {
+                         return (
+                              '<div class="create">Ấn Enter để Thêm mới<strong>' +
+                              " " +
+                              escape(data.input) +
+                              "</strong>&hellip;</div>"
+                         );
+                    },
+                    // Thay đổi phần “No results found”
+                    no_results: function (data, escape) {
+                         return '<div class="no-results">Không có kết quả nào trong các kết quả có sẵn.</div>';
+                    },
+               },
+          };
+          const tom = new TomSelect(el, settings);
+
+          tom.on("item_add", (value, itemEl) => {
+               initSortable(itemEl.parentElement);
+          });
+     });
+};
+
 const extractItems = (tomselect) => {
      let {
           items,
@@ -22,6 +111,11 @@ const extractItems = (tomselect) => {
           new: options[id].isNew == true,
      }));
 };
+
+const please_wait = (status = true) => {
+     const please_wait = document.querySelector('[please-wait]');
+     status == true ? please_wait.classList.remove('hidden') : please_wait.classList.add('hidden')
+}
 
 const alert_quick = (title = 'Chưa có tiêu đề', icon = 'success', position = 'top-right') => {
      const Toast = Swal.mixin({
@@ -90,6 +184,48 @@ if (sessionStorage.getItem('alert_quick')) {
      alert(title, icon, position);
      sessionStorage.removeItem('alert_quick')
 }
+const getCookie = (cookieName) => {
+     // Tách chuỗi thành một mảng các cặp name/value
+     let cookieArray = document.cookie.split("; ");
+     // Chuyển name/value từ dạng string thành object
+     cookieArray = cookieArray.map(item => {
+          item = item.split("=");
+          return {
+               name: item[0],
+               value: item[1]
+          };
+     });
+     // Lấy ra cookie đang cần tìm
+     const cookie = cookieArray.find(item => {
+          return item.name === cookieName;
+     });
+
+     return cookie ? cookie.value : null;
+}
+
+const deleteCookie = (cookieName) => {
+     document.cookie =
+          cookieName + "=; " +
+          "expires=Thu, 01 Jan 1970 00:00:00 UTC; " +
+          "path=/;";
+}
+if (getCookie('alert_quick')) {
+     console.log(getCookie('alert_quick'));
+     console.log(decodeURIComponent(getCookie('alert_quick')));
+     let value = decodeURIComponent(getCookie('alert_quick'))
+     const {
+          title,
+          icon,
+          position,
+     } = JSON.parse(value);
+     alert_quick(title, icon, position);
+     console.log('ok');
+     
+     deleteCookie('alert_quick')
+     
+}
+
+
 
 
 const countCharacter = () => {
